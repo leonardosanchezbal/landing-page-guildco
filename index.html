@@ -404,7 +404,7 @@ section{position:relative;}
 /* ============================================================
    Team
    ============================================================ */
-.team-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(20px,3vw,32px);}
+.team-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(20px,3vw,32px);max-width:720px;margin:0 auto;}
 .team-card{position:relative;border-radius:var(--radius-m);overflow:hidden;background:var(--surface-2);}
 .team-card figure{aspect-ratio:1/1;overflow:hidden;position:relative;}
 .team-card img{width:100%;height:100%;object-fit:cover;filter:grayscale(1);transition:transform var(--dur-l) var(--ease);}
@@ -767,7 +767,7 @@ section{position:relative;}
     <div class="section-head reveal">
       <p class="eyebrow">05 · EQUIPO</p>
       <h2>Fundadores</h2>
-      <p class="lead">Tres perfiles convencidos de que la inteligencia artificial debe ampliar el criterio humano, no sustituirlo.</p>
+      <p class="lead">Dos perfiles convencidos de que la inteligencia artificial debe ampliar el criterio humano, no sustituirlo.</p>
     </div>
     <div class="team-grid">
       <div class="team-card reveal" style="--rd:0ms">
@@ -776,11 +776,6 @@ section{position:relative;}
         <div class="underline"></div>
       </div>
       <div class="team-card reveal" style="--rd:80ms">
-        <figure><img src="founder-jp.jpg" alt="Juan Pablo Garavito"></figure>
-        <div class="info"><b>Juan Pablo Garavito</b><span>Universidad de los Andes</span></div>
-        <div class="underline"></div>
-      </div>
-      <div class="team-card reveal" style="--rd:160ms">
         <figure><img src="founder-santi.jpg" alt="Santiago Caballero"></figure>
         <div class="info"><b>Santiago Caballero</b><span>Tec de Monterrey</span></div>
         <div class="underline"></div>
@@ -813,13 +808,13 @@ section{position:relative;}
         <span class="process-node">02</span>
         <span class="step-tag">Paso 02</span>
         <h3>Diagnóstico organizacional 360°</h3>
-        <p>Cruzamos la visión de dirección, empleados, clientes y datos operativos en una sola lectura.</p>
+        <p>Cruzamos la visión de dirección, empleados, clientes y datos operativos para construir un clon de la empresa: su cultura, sus procesos y toda la información que encontramos, en una sola lectura.</p>
       </div>
       <div class="process-item" data-step>
         <span class="process-node">03</span>
         <span class="step-tag">Paso 03</span>
         <h3>Identificamos los cuellos de botella</h3>
-        <p>Cada hallazgo queda vinculado a evidencia rastreable hasta su fuente.</p>
+        <p>A partir de ese clon, ubicamos dónde está el problema real. Cada hallazgo queda vinculado a evidencia rastreable hasta su fuente.</p>
       </div>
       <div class="process-item" data-step>
         <span class="process-node">04</span>
