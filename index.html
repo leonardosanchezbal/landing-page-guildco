@@ -875,7 +875,7 @@ section{position:relative;}
       <h2 style="font-size:clamp(2rem,2.4vw + 1rem,3rem);margin-top:16px;">Empecemos por comprender tu organización.</h2>
       <p class="lead" style="margin-top:14px;">Cuéntanos en qué está tu empresa hoy. Te respondemos con los próximos pasos para tu diagnóstico inicial.</p>
 
-      <form class="form-grid" id="contactForm" novalidate>
+      <form class="form-grid" id="contactForm" action="https://formspree.io/f/xljrrvbl" method="POST" novalidate>
         <div class="field"><label for="fname">Nombre</label><input id="fname" name="nombre" type="text" required placeholder="Tu nombre"></div>
         <div class="field"><label for="fcompany">Empresa</label><input id="fcompany" name="empresa" type="text" required placeholder="Nombre de la empresa"></div>
         <div class="field full"><label for="femail">Email</label><input id="femail" name="email" type="email" required placeholder="tu@empresa.com"></div>
@@ -1061,15 +1061,30 @@ section{position:relative;}
     });
   }
 
-  /* ---------- Contact form (no backend — graceful local confirmation) ---------- */
+  /* ---------- Contact form — sends to Formspree, keeps inline success UI ---------- */
   var form = document.getElementById('contactForm');
   var success = document.getElementById('formSuccess');
   form.addEventListener('submit', function(e){
     e.preventDefault();
     if(!form.checkValidity()){ form.reportValidity(); return; }
-    success.classList.add('is-shown');
-    form.querySelector('button[type="submit"]').setAttribute('disabled','true');
-    form.reset();
+    var submitBtn = form.querySelector('button[type="submit"]');
+    submitBtn.setAttribute('disabled','true');
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    }).then(function(response){
+      if(response.ok){
+        success.classList.add('is-shown');
+        form.reset();
+      } else {
+        submitBtn.removeAttribute('disabled');
+        alert('No se pudo enviar. Intenta de nuevo o escríbenos directo a hola@gild.co');
+      }
+    }).catch(function(){
+      submitBtn.removeAttribute('disabled');
+      alert('No se pudo enviar. Intenta de nuevo o escríbenos directo a hola@gild.co');
+    });
   });
 
 })();
