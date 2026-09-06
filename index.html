@@ -9,1355 +9,1187 @@
 <meta property="og:description" content="Tu organización ya tiene el motor. GILDCO lo hace producir más.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231C1A17'/%3E%3Ctext x='50' y='73' font-family='sans-serif' font-size='68' font-weight='700' text-anchor='middle' fill='%235B4FD1'%3EG%3C/text%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%231C1A17'/%3E%3Ctext x='50' y='73' font-family='sans-serif' font-size='68' font-weight='700' text-anchor='middle' fill='%235B4FD1'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,500;0,600;0,700;0,800;1,600;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ─── TOKENS ─── */
-:root {
-  --grafito:     #1C1A17;
-  --grafito-2:   #2A2723;
-  --morado:      #5B4FD1;
-  --morado-dim:  #4840B0;
-  --morado-soft: #EEEDFE;
-  --crema:       #F7F6F3;
-  --arena:       #EFEDE7;
-  --blanco:      #FFFFFF;
-  --subtexto:    #5A5751;
-  --borde:       #E0DDD6;
-  --borde-dark:  rgba(255,255,255,0.1);
+/* ═══════════════════ TOKENS ═══════════════════ */
+:root{
+  --grafito:#1C1A17; --grafito-2:#2A2723; --grafito-3:#3A3733;
+  --morado:#5B4FD1; --morado-dim:#4840B0; --morado-soft:#EEEDFE;
+  --crema:#F7F6F3; --blanco-roto:#FAFAF8; --arena:#EFEDE7; --blanco:#FFFFFF;
+  --sub:#75726A; --borde:#E7E4DC; --borde-f:#C5C1B8;
+  --terracota:#A8452B; --verde:#0F8A6A; --track:#DEDCD5;
+  --bd:rgba(255,255,255,0.10); --bd2:rgba(255,255,255,0.16);
+  --font:'Inter',sans-serif; --body:'DM Sans',sans-serif;
+  --w:min(1160px,100% - 48px);
+  --r:14px; --rl:22px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body);background:var(--crema);color:var(--grafito);-webkit-font-smoothing:antialiased;line-height:1.7;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer;border:none;background:none;color:inherit}
+.w{width:var(--w);margin:0 auto}
+h1,h2{font-family:var(--font);letter-spacing:-0.03em;line-height:1.08}
+h3,h4{font-family:var(--body);font-weight:500}
+::selection{background:var(--morado);color:#fff}
 
-  --font: 'Inter', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+/* reveal */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.rv.in{opacity:1;transform:none}
+.rv.d1{transition-delay:.08s}.rv.d2{transition-delay:.16s}.rv.d3{transition-delay:.24s}.rv.d4{transition-delay:.32s}
 
-  --w: min(1140px, 100% - 48px);
-  --r: 16px;
-  --r-lg: 24px;
-}
+/* tag */
+.tag{font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--morado);display:flex;align-items:center;gap:12px;margin-bottom:36px}
+.tag::before{content:'';width:28px;height:1px;background:currentColor}
+.tag.light{color:rgba(255,255,255,.45)}
 
-/* ─── RESET ─── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-body);
-  background: var(--crema);
-  color: var(--grafito);
-  -webkit-font-smoothing: antialiased;
-  line-height: 1.6;
-  overflow-x: hidden;
-}
-a { color: inherit; text-decoration: none; }
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;padding:14px 26px;border-radius:100px;transition:transform .15s,opacity .15s,background .15s,color .15s;white-space:nowrap}
+.btn:hover{transform:translateY(-1px)}
+.btn-p{background:var(--morado);color:#fff}
+.btn-p:hover{background:var(--morado-dim)}
+.btn-d{background:var(--grafito);color:var(--crema)}
+.btn-d:hover{background:#000}
+.btn-o{border:1px solid var(--borde-f);color:var(--grafito)}
+.btn-o:hover{border-color:var(--grafito)}
+.btn-ol{border:1px solid var(--bd2);color:#fff}
+.btn-ol:hover{background:rgba(255,255,255,.06)}
+.btn-ghost{color:rgba(255,255,255,.55);font-size:14px;display:inline-flex;align-items:center;gap:6px}
+.btn-ghost:hover{color:#fff}
+.btn .arr{display:inline-block;transition:transform .2s}
+.btn:hover .arr{transform:translateX(3px)}
 
-/* ─── NAV ─── */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 200;
-  padding: 0 calc((100% - min(1140px, 100% - 48px)) / 2);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  height: 64px;
-  background: rgba(28, 26, 23, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--borde-dark);
-}
-.nav-inner {
-  width: var(--w);
-  margin: 0 auto;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 32px;
-}
-.wordmark {
-  font-family: var(--font);
-  font-weight: 800;
-  font-size: 17px;
-  letter-spacing: 0.08em;
-  color: var(--blanco);
-}
-.nav-links {
-  display: flex;
-  gap: 36px;
-}
-.nav-links a {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.01em;
-  transition: color 0.15s;
-}
-.nav-links a:hover { color: var(--blanco); }
-.nav-cta {
-  font-size: 13px;
-  font-weight: 600;
-  background: var(--morado);
-  color: var(--blanco);
-  padding: 9px 20px;
-  border-radius: 100px;
-  transition: opacity 0.15s;
-  white-space: nowrap;
-}
-.nav-cta:hover { opacity: 0.85; }
+/* ═══════════════════ NAV ═══════════════════ */
+#nav{position:fixed;top:0;left:0;right:0;z-index:300;height:66px;background:rgba(28,26,23,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--bd);transition:background .3s}
+#nav.solid{background:rgba(17,16,13,.94)}
+.nav-in{width:var(--w);margin:0 auto;height:100%;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.wordmark{font-family:var(--font);font-weight:600;font-size:17px;letter-spacing:5px;color:#fff}
+.nav-c{display:flex;align-items:center;gap:8px}
+.nav-links{display:flex;gap:4px}
+.nav-links a,.menu-btn{font-size:14px;color:rgba(255,255,255,.6);padding:8px 12px;border-radius:8px;transition:color .15s,background .15s;display:inline-flex;align-items:center;gap:6px}
+.nav-links a:hover,.menu-btn:hover,.nav-links a.act{color:#fff;background:rgba(255,255,255,.06)}
+.menu-btn .chev{width:10px;height:10px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:rotate(45deg) translateY(-2px);transition:transform .2s}
+.menu-btn.open .chev{transform:rotate(-135deg) translateY(-2px)}
+.nav-cta{font-size:13px;font-weight:500;background:var(--morado);color:#fff;padding:10px 18px;border-radius:100px;transition:background .15s}
+.nav-cta:hover{background:var(--morado-dim)}
+.burger{display:none;width:40px;height:40px;align-items:center;justify-content:center;flex-direction:column;gap:5px}
+.burger span{width:20px;height:1.5px;background:#fff;transition:transform .25s,opacity .2s}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg)}
 
-/* ─── HERO ─── */
-.hero {
-  min-height: 100vh;
-  background: var(--grafito);
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  padding-top: 64px;
-  position: relative;
-  overflow: hidden;
-}
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 80% at 85% 50%, rgba(91,79,209,0.18) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 50% at 15% 80%, rgba(91,79,209,0.08) 0%, transparent 60%);
-}
-.hero-inner {
-  width: var(--w);
-  margin: 0 auto;
-  padding: 80px 0 80px;
-  position: relative;
-  z-index: 2;
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: 80px;
-  align-items: end;
-}
-.hero-label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--morado);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 32px;
-}
-.hero-label::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 1px;
-  background: var(--morado);
-}
-.hero h1 {
-  font-family: var(--font);
-  font-size: clamp(52px, 7.5vw, 92px);
-  font-weight: 800;
-  line-height: 1.02;
-  letter-spacing: -0.035em;
-  color: var(--blanco);
-  margin-bottom: 32px;
-}
-.hero h1 em {
-  font-style: italic;
-  font-weight: 700;
-  color: var(--morado);
-}
-.hero-sub {
-  font-size: clamp(15px, 1.6vw, 18px);
-  color: rgba(255,255,255,0.55);
-  line-height: 1.7;
-  max-width: 520px;
-  margin-bottom: 44px;
-}
-.hero-ctas {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  flex-wrap: wrap;
-}
-.btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--morado);
-  color: var(--blanco);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 14px 26px;
-  border-radius: 100px;
-  transition: opacity 0.15s, transform 0.15s;
-  letter-spacing: 0.01em;
-}
-.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
-.btn-ghost {
-  font-size: 14px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.5);
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: color 0.15s;
-}
-.btn-ghost:hover { color: var(--blanco); }
+/* mega menu */
+#mega{position:fixed;top:66px;left:0;right:0;z-index:290;background:rgba(17,16,13,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--bd);transform:translateY(-8px);opacity:0;pointer-events:none;transition:opacity .25s var(--ease),transform .25s var(--ease);max-height:calc(100vh - 66px);overflow:auto}
+#mega.open{transform:none;opacity:1;pointer-events:auto}
+.mega-in{width:var(--w);margin:0 auto;padding:32px 0 36px;display:grid;grid-template-columns:repeat(5,1fr);gap:8px}
+.mega-item{display:flex;flex-direction:column;gap:6px;padding:16px;border-radius:12px;border:1px solid transparent;transition:background .15s,border-color .15s}
+.mega-item:hover{background:rgba(255,255,255,.05);border-color:var(--bd)}
+.mega-item .n{font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:2px;color:var(--morado)}
+.mega-item .t{font-family:var(--body);font-size:15px;font-weight:500;color:#fff}
+.mega-item .d{font-size:13px;color:rgba(255,255,255,.4);line-height:1.5}
+.mega-item.cta{background:var(--morado);border-color:var(--morado)}
+.mega-item.cta .n{color:rgba(255,255,255,.7)}.mega-item.cta .d{color:rgba(255,255,255,.75)}
+.mega-item.cta:hover{background:var(--morado-dim)}
+.mega-foot{width:var(--w);margin:0 auto;padding:0 0 28px;display:flex;justify-content:space-between;align-items:center;font-size:13px;color:rgba(255,255,255,.35)}
+.mega-foot a{color:rgba(255,255,255,.6)}
 
-/* hero right panel */
-.hero-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 1px;
-  border: 1px solid var(--borde-dark);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  background: var(--borde-dark);
-  align-self: end;
-  margin-bottom: 4px;
-}
-.hero-stat {
-  background: rgba(255,255,255,0.04);
-  padding: 24px 28px;
-}
-.hero-stat + .hero-stat {
-  border-top: 1px solid var(--borde-dark);
-}
-.stat-num {
-  font-family: var(--font);
-  font-size: 36px;
-  font-weight: 800;
-  color: var(--blanco);
-  letter-spacing: -0.03em;
-  line-height: 1;
-  margin-bottom: 4px;
-}
-.stat-num span { color: var(--morado); }
-.stat-label {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
-  line-height: 1.4;
-}
+/* ═══════════════════ HERO ═══════════════════ */
+.hero{min-height:100vh;background:var(--grafito);position:relative;overflow:hidden;display:flex;align-items:flex-end;padding-top:66px}
+#heroCanvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-fade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(28,26,23,.96) 0%,rgba(28,26,23,.85) 42%,rgba(28,26,23,.35) 100%),linear-gradient(0deg,var(--grafito) 0%,transparent 35%)}
+.hero-in{width:var(--w);margin:0 auto;position:relative;z-index:2;padding:72px 0 72px;display:grid;grid-template-columns:1.25fr .75fr;gap:64px;align-items:end}
+.hero-lab{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--morado);display:flex;align-items:center;gap:12px;margin-bottom:28px;font-weight:500}
+.hero-lab::before{content:'';width:28px;height:1px;background:var(--morado)}
+.hero-lab .live{width:7px;height:7px;border-radius:50%;background:var(--morado);box-shadow:0 0 0 0 rgba(91,79,209,.6);animation:pulse 2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(91,79,209,.6)}70%{box-shadow:0 0 0 10px rgba(91,79,209,0)}100%{box-shadow:0 0 0 0 rgba(91,79,209,0)}}
+.hero h1{font-size:clamp(46px,7vw,88px);font-weight:700;color:#fff;margin-bottom:28px;line-height:1.02}
+.hero h1 em{font-style:italic;color:var(--morado)}
+.hero h1 .line{display:block;overflow:hidden}
+.hero h1 .line span{display:block;transform:translateY(110%);animation:rise .9s var(--ease) forwards}
+.hero h1 .line:nth-child(2) span{animation-delay:.1s}.hero h1 .line:nth-child(3) span{animation-delay:.2s}.hero h1 .line:nth-child(4) span{animation-delay:.3s}
+@keyframes rise{to{transform:none}}
+.hero-sub{font-size:clamp(15px,1.5vw,18px);color:rgba(255,255,255,.58);max-width:540px;margin-bottom:40px;font-weight:300}
+.hero-sub b{color:#fff;font-weight:500}
+.hero-ctas{display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+.hero-side{display:flex;flex-direction:column;gap:12px}
+.hs-card{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:22px 24px;backdrop-filter:blur(6px)}
+.hs-card .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:12px}
+.hs-row{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:rgba(255,255,255,.7);padding:9px 0;border-top:1px solid var(--bd)}
+.hs-row:first-of-type{border-top:none}
+.hs-row .v{font-family:var(--font);font-weight:600;color:#fff}
+.hs-row .v.m{color:var(--morado)}
+.hs-bar{height:6px;border-radius:4px;background:rgba(255,255,255,.08);overflow:hidden;margin-top:14px}
+.hs-bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--morado),#8f86e8);border-radius:4px;transition:width 1.6s var(--ease)}
+.hs-note{font-size:12px;color:rgba(255,255,255,.35);margin-top:10px}
+.hero-scroll{position:absolute;bottom:24px;left:50%;transform:translateX(-50%);z-index:2;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll i{width:1px;height:36px;background:linear-gradient(180deg,var(--morado),transparent);animation:drop 1.8s infinite}
+@keyframes drop{0%{transform:scaleY(0);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}51%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
 
-/* ─── PROBLEMA ─── */
-.problema {
-  background: var(--crema);
-  padding: 120px 0;
-}
-.w { width: var(--w); margin: 0 auto; }
+/* ═══════════════════ TICKER ═══════════════════ */
+.ticker{background:var(--morado);color:#fff;overflow:hidden;padding:14px 0;font-size:13px;letter-spacing:1.5px;text-transform:uppercase;font-weight:500}
+.ticker-track{display:flex;gap:56px;white-space:nowrap;animation:tick 40s linear infinite;width:max-content}
+.ticker-track span{display:inline-flex;align-items:center;gap:56px}
+.ticker-track span::after{content:'◆';font-size:8px;opacity:.6}
+@keyframes tick{to{transform:translateX(-50%)}}
 
-.section-tag {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--morado);
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 40px;
-}
-.section-tag::before {
-  content: '';
-  width: 28px;
-  height: 1px;
-  background: var(--morado);
-  flex-shrink: 0;
-}
+/* ═══════════════════ SECTIONS SHARED ═══════════════════ */
+section.s{padding:120px 0}
+.s-dark{background:var(--grafito);color:#fff}
+.s-crema{background:var(--crema)}
+.s-arena{background:var(--arena)}
+.h2{font-size:clamp(32px,4.4vw,56px);font-weight:700;color:var(--grafito)}
+.h2 em{font-style:italic;color:var(--morado)}
+.s-dark .h2{color:#fff}.s-dark .h2 em{color:var(--morado)}
+.h2 em.dim{color:var(--sub)}.s-dark .h2 em.dim{color:rgba(255,255,255,.4)}
+.lead{font-size:17px;color:var(--sub);max-width:560px}
+.s-dark .lead{color:rgba(255,255,255,.55)}
+.head2{display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:end;margin-bottom:72px}
 
-.problema-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 72px;
-  align-items: start;
-}
-.problema-head h2 {
-  font-family: var(--font);
-  font-size: clamp(32px, 4vw, 52px);
-  font-weight: 800;
-  line-height: 1.1;
-  letter-spacing: -0.03em;
-  color: var(--grafito);
-}
-.problema-head p {
-  font-size: 17px;
-  color: var(--subtexto);
-  line-height: 1.7;
-  padding-top: 8px;
-}
+/* ═══════════════════ PROMESA ═══════════════════ */
+.prom{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.prom .lead{margin-top:24px}
+.eq{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:var(--rl);padding:32px}
+.eq-hint{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:18px;display:flex;align-items:center;gap:10px}
+.eq-hint .live{width:6px;height:6px;border-radius:50%;background:var(--morado);animation:pulse 2s infinite}
+.eq-row{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:22px}
+.eq-t{font-family:var(--body);font-size:14px;font-weight:500;padding:10px 16px;border-radius:10px;border:1px solid var(--bd2);color:rgba(255,255,255,.6);background:rgba(255,255,255,.04);transition:all .25s var(--ease);display:inline-flex;align-items:center;gap:8px}
+.eq-t i{width:8px;height:8px;border-radius:50%;border:1.5px solid currentColor}
+.eq-t.on{background:var(--morado);border-color:var(--morado);color:#fff;transform:translateY(-2px);box-shadow:0 8px 24px rgba(91,79,209,.35)}
+.eq-t.on i{background:#fff;border-color:#fff}
+.eq-op{font-size:20px;color:rgba(255,255,255,.25)}
+.eq-res{border-top:1px solid var(--bd);padding-top:20px;display:flex;justify-content:space-between;align-items:flex-end;gap:16px}
+.eq-res .lbl{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:6px}
+.eq-res .val{font-family:var(--font);font-size:26px;font-weight:700;color:rgba(255,255,255,.25);transition:color .3s,text-shadow .3s;letter-spacing:-.02em}
+.eq-res .val.full{color:#fff;text-shadow:0 0 30px rgba(91,79,209,.6)}
+.eq-res .val em{color:var(--morado);font-style:italic}
+.eq-meter{width:120px;height:8px;border-radius:5px;background:rgba(255,255,255,.08);overflow:hidden}
+.eq-meter i{display:block;height:100%;width:0;background:var(--morado);transition:width .4s var(--ease)}
+.eq-desc{margin-top:18px;min-height:48px;font-size:14px;color:rgba(255,255,255,.55);line-height:1.6;transition:opacity .25s}
+.eq-note{margin-top:14px;font-size:13px;color:rgba(255,255,255,.35)}
 
-.questions {
-  display: flex;
-  flex-direction: column;
-}
-.question-row {
-  display: grid;
-  grid-template-columns: 60px 1fr;
-  align-items: baseline;
-  gap: 24px;
-  padding: 28px 0;
-  border-top: 1px solid var(--borde);
-  transition: background 0.15s;
-}
-.question-row:last-child { border-bottom: 1px solid var(--borde); }
-.q-num {
-  font-family: var(--font);
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  color: var(--morado);
-}
-.question-row p {
-  font-family: var(--font);
-  font-size: clamp(18px, 2.2vw, 24px);
-  font-weight: 600;
-  color: var(--grafito);
-  letter-spacing: -0.015em;
-  line-height: 1.35;
-}
+/* ═══════════════════ PROBLEMA / DIAGNÓSTICO RÁPIDO ═══════════════════ */
+.diag{display:grid;grid-template-columns:1fr 380px;gap:56px;align-items:start}
+.qs{display:flex;flex-direction:column}
+.q{display:grid;grid-template-columns:28px 1fr auto;gap:22px;align-items:center;padding:24px 0;border-top:1px solid var(--borde);cursor:pointer;transition:background .15s;user-select:none}
+.q:last-child{border-bottom:1px solid var(--borde)}
+.q:hover{background:rgba(28,26,23,.02)}
+.q .cb{width:26px;height:26px;border-radius:8px;border:1.5px solid var(--borde-f);display:flex;align-items:center;justify-content:center;transition:all .2s var(--ease);background:#fff}
+.q .cb svg{width:14px;height:14px;stroke:#fff;stroke-width:3;fill:none;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .25s var(--ease)}
+.q.on .cb{background:var(--morado);border-color:var(--morado)}
+.q.on .cb svg{stroke-dashoffset:0}
+.q p{font-family:var(--font);font-size:clamp(17px,1.9vw,22px);font-weight:600;letter-spacing:-.015em;line-height:1.35;color:var(--grafito);transition:color .2s}
+.q .n{font-size:12px;letter-spacing:2px;color:var(--borde-f);font-family:var(--font);font-weight:600}
+.q.on .n{color:var(--morado)}
+.diag-panel{position:sticky;top:90px;background:var(--grafito);color:#fff;border-radius:var(--rl);padding:32px;overflow:hidden}
+.diag-panel .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:18px}
+.gauge{position:relative;height:110px;margin-bottom:14px}
+.gauge svg{width:100%;height:100%;overflow:visible}
+.gauge .big{position:absolute;left:0;right:0;bottom:0;text-align:center;font-family:var(--font);font-size:44px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.gauge .big small{font-size:16px;color:rgba(255,255,255,.4);font-weight:500;letter-spacing:0}
+.diag-msg{font-size:15px;color:rgba(255,255,255,.7);min-height:72px;line-height:1.6;transition:opacity .2s}
+.diag-msg b{color:#fff;font-weight:500}
+.diag-panel .btn{width:100%;justify-content:center;margin-top:20px}
+.diag-panel .foot{font-size:12px;color:rgba(255,255,255,.3);margin-top:12px;text-align:center}
 
-.problema-closing {
-  margin-top: 64px;
-  background: var(--grafito);
-  border-radius: var(--r-lg);
-  padding: 48px 52px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 48px;
-  align-items: center;
-}
-.problema-closing p {
-  font-family: var(--font);
-  font-size: clamp(18px, 2vw, 22px);
-  font-weight: 600;
-  color: var(--blanco);
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-}
-.problema-closing p em {
-  font-style: normal;
-  color: rgba(255,255,255,0.4);
-  font-weight: 400;
-}
-.closing-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--morado);
-  color: var(--blanco);
-  font-weight: 600;
-  font-size: 14px;
-  padding: 14px 24px;
-  border-radius: 100px;
-  white-space: nowrap;
-  transition: opacity 0.15s;
-}
-.closing-cta:hover { opacity: 0.85; }
+/* ═══════════════════ COMPARADOR ═══════════════════ */
+.cmp{display:grid;grid-template-columns:300px 1fr;gap:40px;align-items:start}
+.cmp-tabs{display:flex;flex-direction:column;gap:6px;position:sticky;top:90px}
+.cmp-tab{text-align:left;padding:18px 20px;border-radius:14px;border:1px solid var(--bd);background:rgba(255,255,255,.02);transition:all .2s var(--ease);display:flex;flex-direction:column;gap:4px}
+.cmp-tab .t{font-family:var(--body);font-size:15px;font-weight:500;color:rgba(255,255,255,.75)}
+.cmp-tab .s{font-size:12px;color:rgba(255,255,255,.35)}
+.cmp-tab:hover{background:rgba(255,255,255,.05)}
+.cmp-tab.on{background:#fff;border-color:#fff}
+.cmp-tab.on .t{color:var(--grafito)}.cmp-tab.on .s{color:var(--sub)}
+.cmp-tab.g.on{background:var(--morado);border-color:var(--morado)}
+.cmp-tab.g.on .t,.cmp-tab.g.on .s{color:#fff}
+.cmp-body{background:rgba(255,255,255,.03);border:1px solid var(--bd);border-radius:var(--rl);padding:36px;min-height:420px}
+.cmp-body h3{font-family:var(--font);font-size:24px;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:8px}
+.cmp-body .sum{font-size:15px;color:rgba(255,255,255,.55);margin-bottom:28px;min-height:48px}
+.cap{display:grid;grid-template-columns:1fr;gap:2px}
+.cap-row{display:grid;grid-template-columns:36px 1fr;gap:16px;align-items:center;padding:14px 16px;border-radius:10px;background:rgba(255,255,255,.02);opacity:0;transform:translateX(-8px);animation:capin .4s var(--ease) forwards}
+.cap-row:nth-child(1){animation-delay:.02s}.cap-row:nth-child(2){animation-delay:.08s}.cap-row:nth-child(3){animation-delay:.14s}.cap-row:nth-child(4){animation-delay:.2s}.cap-row:nth-child(5){animation-delay:.26s}.cap-row:nth-child(6){animation-delay:.32s}
+@keyframes capin{to{opacity:1;transform:none}}
+.cap-row .ic{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700}
+.cap-row.y .ic{background:rgba(15,138,106,.2);color:#3fd3a8}
+.cap-row.n .ic{background:rgba(168,69,43,.2);color:#e5765a}
+.cap-row .l{font-size:15px;color:rgba(255,255,255,.85)}
+.cap-row .l small{display:block;font-size:12.5px;color:rgba(255,255,255,.4);margin-top:2px}
+.cmp-verdict{margin-top:24px;padding-top:20px;border-top:1px solid var(--bd);display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:14px;color:rgba(255,255,255,.5)}
+.cmp-verdict .sc{font-family:var(--font);font-size:22px;font-weight:700;color:#fff}
+.cmp-verdict .sc small{font-size:13px;color:rgba(255,255,255,.4);font-weight:500}
+.why-line{text-align:center;margin-top:64px;font-family:var(--font);font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.02em;color:#fff}
+.why-line em{font-style:italic;color:var(--morado)}
 
-/* ─── POR QUÉ NO FUNCIONÓ ─── */
-.why-not {
-  background: var(--grafito);
-  padding: 120px 0;
-}
-.why-not-head {
-  margin-bottom: 72px;
-}
-.why-not-head h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 800;
-  line-height: 1.06;
-  letter-spacing: -0.03em;
-  color: var(--blanco);
-  max-width: 780px;
-  margin-bottom: 20px;
-}
-.why-not-head h2 em {
-  font-style: italic;
-  font-weight: 700;
-  color: rgba(255,255,255,0.35);
-}
-.why-not-head p {
-  font-size: 17px;
-  color: rgba(255,255,255,0.45);
-  max-width: 520px;
-  line-height: 1.7;
-}
+/* ═══════════════════ MÉTODO — FLUJO 5 ETAPAS ═══════════════════ */
+.flow{position:relative;margin-bottom:28px}
+.flow-steps{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;position:relative;z-index:2}
+.fstep{text-align:left;padding:20px 18px 18px;border-radius:16px;border:1px solid var(--borde);background:var(--blanco-roto);transition:all .25s var(--ease);position:relative;overflow:hidden}
+.fstep .n{font-family:var(--font);font-size:11px;font-weight:600;letter-spacing:2px;color:var(--sub);margin-bottom:10px;display:flex;justify-content:space-between;align-items:center}
+.fstep .n i{width:8px;height:8px;border-radius:50%;background:var(--track);transition:background .2s}
+.fstep .t{font-family:var(--body);font-size:15px;font-weight:500;color:var(--grafito);line-height:1.3}
+.fstep .sub{font-size:12px;color:var(--sub);margin-top:4px}
+.fstep .prog{position:absolute;left:0;bottom:0;height:3px;width:0;background:var(--morado)}
+.fstep:hover{border-color:var(--borde-f);transform:translateY(-2px)}
+.fstep.on{background:var(--grafito);border-color:var(--grafito);color:#fff}
+.fstep.on .n{color:rgba(255,255,255,.5)}.fstep.on .n i{background:var(--morado)}
+.fstep.on .t{color:#fff}.fstep.on .sub{color:rgba(255,255,255,.45)}
+.fstep.done .n i{background:var(--verde)}
+.flow-line{position:absolute;top:50%;left:2%;right:2%;height:1px;background:var(--borde-f);z-index:1;display:none}
+.flow-panel{display:grid;grid-template-columns:1fr 1fr;gap:0;background:var(--grafito);border-radius:var(--rl);overflow:hidden;min-height:340px}
+.fp-l{padding:44px 44px;color:#fff}
+.fp-l .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--morado);margin-bottom:14px;font-weight:500}
+.fp-l h3{font-family:var(--font);font-size:clamp(24px,2.6vw,32px);font-weight:700;letter-spacing:-.02em;color:#fff;line-height:1.15;margin-bottom:16px}
+.fp-l p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:22px}
+.fp-l .meta{display:flex;gap:28px;flex-wrap:wrap}
+.fp-l .meta div{font-size:13px;color:rgba(255,255,255,.4)}
+.fp-l .meta b{display:block;font-family:var(--font);font-size:16px;font-weight:600;color:#fff;margin-bottom:2px}
+.fp-r{background:rgba(255,255,255,.04);border-left:1px solid var(--bd);padding:44px 40px}
+.fp-r .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:16px;font-weight:500}
+.fp-r ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.fp-r li{display:grid;grid-template-columns:22px 1fr;gap:12px;font-size:14.5px;color:rgba(255,255,255,.75);opacity:0;transform:translateY(6px);animation:capin .4s var(--ease) forwards}
+.fp-r li:nth-child(2){animation-delay:.07s}.fp-r li:nth-child(3){animation-delay:.14s}.fp-r li:nth-child(4){animation-delay:.21s}
+.fp-r li i{width:20px;height:20px;border-radius:6px;background:rgba(91,79,209,.25);color:#b6afff;display:flex;align-items:center;justify-content:center;font-size:11px;font-style:normal;font-weight:700;margin-top:2px}
+.fp-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;font-size:13px;color:var(--sub)}
+.fp-nav .ctrls{display:flex;gap:8px}
+.fp-nav button{width:38px;height:38px;border-radius:50%;border:1px solid var(--borde-f);display:flex;align-items:center;justify-content:center;color:var(--grafito);transition:all .15s}
+.fp-nav button:hover{background:var(--grafito);color:#fff;border-color:var(--grafito)}
+.fp-nav .auto{display:flex;align-items:center;gap:8px}
+.fp-nav .auto i{width:8px;height:8px;border-radius:50%;background:var(--verde);animation:pulse 2s infinite}
+.fp-nav .auto.paused i{background:var(--borde-f);animation:none}
+.interv{margin-top:72px;display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.interv-card{background:var(--blanco-roto);border:1px solid var(--borde);border-radius:18px;padding:28px;transition:transform .2s,border-color .2s}
+.interv-card:hover{transform:translateY(-3px);border-color:var(--borde-f)}
+.interv-card .n{font-size:11px;letter-spacing:2px;color:var(--morado);font-weight:500;margin-bottom:14px}
+.interv-card h4{font-family:var(--body);font-size:18px;font-weight:500;color:var(--grafito);margin-bottom:8px}
+.interv-card p{font-size:14.5px;color:var(--sub)}
+.interv-head{margin-top:72px;margin-bottom:0}
+.interv-head .h2{font-size:clamp(24px,2.8vw,34px)}
+.metodo-close{margin-top:56px;text-align:center;font-family:var(--font);font-size:clamp(20px,2.4vw,28px);font-weight:700;letter-spacing:-.02em;color:var(--grafito)}
+.metodo-close em{font-style:italic;color:var(--morado)}
 
-.alternatives {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--borde-dark);
-  border-radius: var(--r-lg);
-  overflow: hidden;
-  margin-bottom: 72px;
-}
-.alt-card {
-  background: var(--grafito-2);
-  padding: 40px 36px;
-}
-.alt-num {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  color: rgba(255,255,255,0.25);
-  margin-bottom: 20px;
-}
-.alt-card h3 {
-  font-family: var(--font);
-  font-size: 19px;
-  font-weight: 700;
-  color: var(--blanco);
-  margin-bottom: 16px;
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-}
-.alt-card p {
-  font-size: 15px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.7;
-}
-.alt-card .alt-flaw {
-  display: inline-block;
-  margin-top: 20px;
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.25);
-  padding: 6px 12px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 100px;
-}
+/* ═══════════════════ FICHA ═══════════════════ */
+.ficha-wrap{display:grid;grid-template-columns:320px 1fr;gap:40px;align-items:start}
+.ficha-side{position:sticky;top:90px}
+.ficha-side .lead{margin-top:20px;margin-bottom:28px}
+.sector-picks{display:flex;flex-direction:column;gap:6px}
+.sp{text-align:left;padding:14px 16px;border-radius:12px;border:1px solid var(--borde);background:var(--blanco-roto);font-size:14.5px;font-weight:500;color:var(--grafito);display:flex;justify-content:space-between;align-items:center;transition:all .2s var(--ease)}
+.sp small{font-size:12px;color:var(--sub);font-weight:400}
+.sp:hover{border-color:var(--borde-f)}
+.sp.on{background:var(--grafito);border-color:var(--grafito);color:#fff}
+.sp.on small{color:rgba(255,255,255,.5)}
+.ficha{background:var(--blanco);border:1px solid var(--borde);border-radius:var(--rl);overflow:hidden;box-shadow:0 30px 60px -30px rgba(28,26,23,.25)}
+.f-head{padding:26px 32px;border-bottom:1px solid var(--borde);display:flex;justify-content:space-between;align-items:center;gap:20px;background:var(--blanco-roto)}
+.f-head .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);font-weight:500}
+.f-head .t{font-family:var(--font);font-size:20px;font-weight:700;letter-spacing:-.02em;color:var(--grafito);margin-top:4px}
+.f-head .pri{font-size:12px;font-weight:500;padding:6px 12px;border-radius:100px;background:rgba(168,69,43,.1);color:var(--terracota);white-space:nowrap}
+.f-grid{display:grid;grid-template-columns:1fr 1fr}
+.f-cell{padding:26px 32px;border-bottom:1px solid var(--borde)}
+.f-cell:nth-child(odd){border-right:1px solid var(--borde)}
+.f-cell .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--sub);font-weight:500;margin-bottom:12px;display:flex;align-items:center;gap:8px}
+.f-cell .k i{width:8px;height:8px;border-radius:2px}
+.f-cell .k i.h{background:var(--morado)}.f-cell .k i.o{background:var(--grafito-3)}
+.f-cell ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.f-cell li{font-size:14px;color:var(--grafito);display:grid;grid-template-columns:6px 1fr;gap:10px;align-items:start}
+.f-cell li::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--borde-f);margin-top:8px}
+.f-cell li b{font-weight:500;color:var(--grafito)}
+.f-full{grid-column:1/-1;border-right:none!important}
+.f-cause{background:var(--morado-soft)}
+.f-cause p{font-family:var(--font);font-size:17px;font-weight:600;letter-spacing:-.01em;color:var(--grafito);line-height:1.4}
+.f-cause .tagline{display:inline-block;margin-top:10px;font-size:12px;color:var(--morado);font-weight:500}
+.f-bars{display:flex;flex-direction:column;gap:14px}
+.f-bar .lbl{display:flex;justify-content:space-between;font-size:13px;color:var(--sub);margin-bottom:6px}
+.f-bar .lbl b{color:var(--grafito);font-weight:500}
+.f-bar .tr{height:10px;background:var(--track);border-radius:6px;overflow:hidden;display:flex}
+.f-bar .tr i{display:block;height:100%;width:0;transition:width 1.2s var(--ease)}
+.f-bar .tr i.loss{background:var(--terracota)}
+.f-bar .tr i.cur{background:var(--grafito-3)}
+.f-bar .tr i.rec{background:var(--verde)}
+.f-legend{display:flex;gap:18px;font-size:12px;color:var(--sub);margin-top:10px}
+.f-legend span{display:inline-flex;align-items:center;gap:6px}
+.f-legend i{width:10px;height:10px;border-radius:3px}
+.f-roi{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.f-roi div{background:var(--blanco-roto);border:1px solid var(--borde);border-radius:12px;padding:16px}
+.f-roi .v{font-family:var(--font);font-size:24px;font-weight:700;letter-spacing:-.02em;color:var(--grafito)}
+.f-roi .v.g{color:var(--verde)}.f-roi .v.r{color:var(--terracota)}
+.f-roi .l{font-size:12px;color:var(--sub);margin-top:4px}
+.f-foot{padding:16px 32px;font-size:12px;color:var(--sub);background:var(--blanco-roto);display:flex;justify-content:space-between;align-items:center;gap:16px}
+.f-foot em{font-style:italic}
 
-.why-not-statement {
-  text-align: center;
-  padding: 16px 0 0;
-}
-.why-not-statement p {
-  font-family: var(--font);
-  font-size: clamp(22px, 3vw, 36px);
-  font-weight: 800;
-  color: var(--blanco);
-  letter-spacing: -0.02em;
-}
-.why-not-statement p em {
-  font-style: italic;
-  color: var(--morado);
-}
+/* ═══════════════════ GARANTÍAS + FAQ ═══════════════════ */
+.gar{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:64px}
+.gar-card{background:var(--blanco);border:1px solid var(--borde);border-radius:20px;padding:30px;cursor:pointer;transition:all .25s var(--ease);position:relative}
+.gar-card:hover{border-color:var(--borde-f);transform:translateY(-3px)}
+.gar-card .n{font-family:var(--font);font-size:36px;font-weight:700;letter-spacing:-.03em;color:var(--morado-soft);line-height:1;margin-bottom:16px;-webkit-text-stroke:1px var(--morado)}
+.gar-card h4{font-family:var(--body);font-size:18px;font-weight:500;color:var(--grafito);margin-bottom:10px;line-height:1.3}
+.gar-card p{font-size:14.5px;color:var(--sub)}
+.gar-card .more{max-height:0;overflow:hidden;transition:max-height .4s var(--ease),margin .3s}
+.gar-card.open .more{max-height:240px;margin-top:14px}
+.gar-card .more p{padding-top:14px;border-top:1px solid var(--borde);color:var(--grafito)}
+.gar-card .x{position:absolute;top:26px;right:26px;width:26px;height:26px;border-radius:50%;border:1px solid var(--borde-f);display:flex;align-items:center;justify-content:center;font-size:14px;color:var(--sub);transition:transform .3s,background .2s}
+.gar-card.open .x{transform:rotate(45deg);background:var(--grafito);color:#fff;border-color:var(--grafito)}
+.faq-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:36px}
+.faq{display:flex;flex-direction:column}
+.faq-i{border-top:1px solid var(--borde)}
+.faq-i:last-child{border-bottom:1px solid var(--borde)}
+.faq-q{width:100%;text-align:left;padding:24px 0;display:grid;grid-template-columns:44px 1fr 32px;gap:16px;align-items:center;font-family:var(--body);font-size:17px;font-weight:500;color:var(--grafito)}
+.faq-q .n{font-family:var(--font);font-size:11px;letter-spacing:2px;color:var(--sub);font-weight:600}
+.faq-q .pl{width:28px;height:28px;border-radius:50%;border:1px solid var(--borde-f);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--sub);transition:transform .3s,background .2s}
+.faq-i.open .faq-q .pl{transform:rotate(45deg);background:var(--grafito);color:#fff;border-color:var(--grafito)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .45s var(--ease)}
+.faq-a .in{padding:0 0 26px 60px;font-size:15.5px;color:var(--sub);max-width:720px}
+.faq-a .in b{color:var(--grafito);font-weight:500}
+.gar-close{margin-top:56px;background:var(--grafito);color:#fff;border-radius:var(--rl);padding:40px 44px;display:flex;justify-content:space-between;align-items:center;gap:32px}
+.gar-close p{font-family:var(--font);font-size:clamp(18px,2vw,22px);font-weight:600;letter-spacing:-.01em;line-height:1.4;max-width:600px}
+.gar-close p em{font-style:italic;color:var(--morado)}
 
-/* ─── MÉTODO ─── */
-.metodo {
-  background: var(--crema);
-  padding: 120px 0;
-}
-.metodo-head {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  margin-bottom: 80px;
-  align-items: end;
-}
-.metodo-head h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 4.5vw, 58px);
-  font-weight: 800;
-  line-height: 1.07;
-  letter-spacing: -0.03em;
-  color: var(--grafito);
-}
-.metodo-head h2 em {
-  font-style: italic;
-  color: var(--morado);
-}
-.metodo-head p {
-  font-size: 17px;
-  color: var(--subtexto);
-  line-height: 1.7;
-}
+/* ═══════════════════ EQUIPO ═══════════════════ */
+.team{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.team .lead{margin-top:22px}
+.pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:32px}
+.pillar{background:var(--blanco-roto);border:1px solid var(--borde);border-radius:14px;padding:18px}
+.pillar .v{font-family:var(--font);font-size:15px;font-weight:600;color:var(--grafito);margin-bottom:4px}
+.pillar .l{font-size:12.5px;color:var(--sub)}
+.allies{background:var(--grafito);color:#fff;border-radius:var(--rl);padding:36px}
+.allies .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--morado);margin-bottom:16px;font-weight:500}
+.allies p{font-size:15px;color:rgba(255,255,255,.6);margin-bottom:18px}
+.ally{display:grid;grid-template-columns:44px 1fr;gap:16px;padding:16px 0;border-top:1px solid var(--bd);align-items:start}
+.ally .ic{width:44px;height:44px;border-radius:12px;background:rgba(91,79,209,.2);display:flex;align-items:center;justify-content:center;color:#b6afff;font-family:var(--font);font-weight:700;font-size:13px}
+.ally .t{font-size:15px;font-weight:500;color:#fff}
+.ally .d{font-size:13.5px;color:rgba(255,255,255,.5);margin-top:2px}
+.allies .cl{margin-top:16px;font-size:14px;color:#fff;font-style:italic}
 
-.stages {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-.stage {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  gap: 0;
-  border-top: 1px solid var(--borde);
-  padding: 0;
-  transition: background 0.2s;
-  cursor: default;
-}
-.stage:last-child { border-bottom: 1px solid var(--borde); }
-.stage:hover { background: var(--arena); }
-.stage-left {
-  padding: 36px 0 36px 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  border-right: 1px solid var(--borde);
-}
-.stage-num {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--morado);
-}
-.stage-name-tag {
-  font-size: 11px;
-  font-weight: 500;
-  color: rgba(28,26,23,0.35);
-  margin-top: 6px;
-  text-transform: uppercase;
-  letter-spacing: 0.06em;
-  font-family: var(--font);
-  line-height: 1.3;
-}
-.stage-right {
-  padding: 36px 0 36px 48px;
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 40px;
-  align-items: start;
-}
-.stage-title {
-  font-family: var(--font);
-  font-size: 20px;
-  font-weight: 700;
-  color: var(--grafito);
-  letter-spacing: -0.01em;
-  line-height: 1.3;
-  padding-top: 2px;
-}
-.stage-text {
-  font-size: 15px;
-  color: var(--subtexto);
-  line-height: 1.7;
-}
+/* ═══════════════════ CTA FINAL ═══════════════════ */
+.cta-final{position:relative;overflow:hidden}
+.cta-final .glow{position:absolute;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(91,79,209,.28),transparent 60%);top:-300px;right:-200px;pointer-events:none}
+.cta-in{position:relative;z-index:2;display:grid;grid-template-columns:1.1fr .9fr;gap:72px;align-items:center}
+.cta-in .h2{font-size:clamp(38px,5.5vw,72px)}
+.cta-in .lead{margin-top:24px;margin-bottom:36px}
+.cta-card{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:var(--rl);padding:36px;backdrop-filter:blur(8px)}
+.cta-card .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:20px;font-weight:500}
+.cta-steps{display:flex;flex-direction:column;gap:0}
+.cta-step{display:grid;grid-template-columns:34px 1fr;gap:14px;padding:14px 0;border-top:1px solid var(--bd);align-items:start}
+.cta-step:first-child{border-top:none;padding-top:0}
+.cta-step .n{width:30px;height:30px;border-radius:50%;border:1px solid var(--bd2);display:flex;align-items:center;justify-content:center;font-family:var(--font);font-size:12px;font-weight:600;color:rgba(255,255,255,.7)}
+.cta-step .t{font-size:15px;font-weight:500;color:#fff}
+.cta-step .d{font-size:13.5px;color:rgba(255,255,255,.45);margin-top:2px}
+.cta-card .btn{width:100%;justify-content:center;margin-top:22px;padding:17px}
+.cta-card .foot{font-size:12.5px;color:rgba(255,255,255,.35);text-align:center;margin-top:12px}
+.cta-card .alt{margin-top:16px;padding-top:16px;border-top:1px solid var(--bd);font-size:13px;color:rgba(255,255,255,.4);text-align:center}
+.cta-card .alt a{color:#fff;border-bottom:1px solid rgba(255,255,255,.3)}
 
-/* ─── POR QUÉ VA A FUNCIONAR ─── */
-.why-works {
-  background: var(--arena);
-  padding: 120px 0;
-}
-.why-works-head {
-  margin-bottom: 72px;
-}
-.why-works-head h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 4.5vw, 58px);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--grafito);
-  max-width: 700px;
-  margin-bottom: 20px;
-}
-.why-works-head h2 em {
-  font-style: italic;
-  color: var(--morado);
-}
-.why-works-head p {
-  font-size: 17px;
-  color: var(--subtexto);
-  max-width: 540px;
-  line-height: 1.7;
-}
+/* ═══════════════════ FOOTER ═══════════════════ */
+footer{background:#111009;padding:64px 0 32px;color:#fff}
+.ft{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.07);margin-bottom:28px}
+.ft .wordmark{display:block;margin-bottom:14px}
+.ft p{font-size:13.5px;color:rgba(255,255,255,.4);max-width:280px}
+.ft h4{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:16px;font-weight:500}
+.ft a{display:block;font-size:14px;color:rgba(255,255,255,.55);margin-bottom:10px;transition:color .15s}
+.ft a:hover{color:#fff}
+.fb{display:flex;justify-content:space-between;align-items:center;font-size:12.5px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:8px}
 
-.guarantees {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 56px;
-}
-.guarantee {
-  background: var(--blanco);
-  border-radius: var(--r-lg);
-  padding: 36px 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  border: 1px solid var(--borde);
-}
-.guarantee-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: var(--morado-soft);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-}
-.guarantee h3 {
-  font-family: var(--font);
-  font-size: 17px;
-  font-weight: 700;
-  color: var(--grafito);
-  letter-spacing: -0.01em;
-  line-height: 1.35;
-}
-.guarantee p {
-  font-size: 15px;
-  color: var(--subtexto);
-  line-height: 1.7;
-}
+/* ═══════════════════ WIZARD (vista aparte) ═══════════════════ */
+#wiz{display:none;position:fixed;inset:0;z-index:400;background:var(--grafito);color:#fff;overflow:auto}
+#wiz.show{display:block}
+body.wiz-open{overflow:hidden}
+.wz-top{position:sticky;top:0;z-index:5;background:rgba(28,26,23,.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.wz-top-in{width:var(--w);margin:0 auto;height:66px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.wz-top .wordmark{font-size:15px}
+.wz-close{font-size:13px;color:rgba(255,255,255,.55);display:inline-flex;align-items:center;gap:8px;padding:8px 14px;border-radius:100px;border:1px solid var(--bd2);transition:all .15s}
+.wz-close:hover{color:#fff;border-color:#fff}
+.wz-prog{height:3px;background:rgba(255,255,255,.08)}
+.wz-prog i{display:block;height:100%;width:0;background:var(--morado);transition:width .5s var(--ease)}
+.wz-body{width:min(760px,100% - 48px);margin:0 auto;padding:56px 0 100px;min-height:calc(100vh - 70px);display:flex;flex-direction:column}
+.wz-step{display:none;animation:wzin .45s var(--ease)}
+.wz-step.on{display:block}
+@keyframes wzin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.wz-k{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--morado);margin-bottom:18px;font-weight:500;display:flex;align-items:center;gap:12px}
+.wz-k::before{content:'';width:24px;height:1px;background:currentColor}
+.wz-step h2{font-size:clamp(30px,4.2vw,46px);font-weight:700;color:#fff;margin-bottom:12px}
+.wz-step h2 em{font-style:italic;color:var(--morado)}
+.wz-step .sub{font-size:16px;color:rgba(255,255,255,.5);margin-bottom:36px;max-width:560px}
+.wz-field{display:flex;flex-direction:column;gap:8px;margin-bottom:22px}
+.wz-field label{font-size:12px;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,.45);font-weight:500}
+.wz-field input,.wz-field textarea,.wz-field select{background:rgba(255,255,255,.05);border:1px solid var(--bd2);border-radius:12px;padding:16px 18px;font-size:16px;font-family:var(--body);color:#fff;outline:none;transition:border-color .15s,background .15s;width:100%}
+.wz-field input:focus,.wz-field textarea:focus{border-color:var(--morado);background:rgba(91,79,209,.08)}
+.wz-field input::placeholder,.wz-field textarea::placeholder{color:rgba(255,255,255,.22)}
+.wz-field textarea{resize:vertical;min-height:130px}
+.wz-field .hint{font-size:12.5px;color:rgba(255,255,255,.3)}
+.wz-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{padding:12px 18px;border-radius:100px;border:1px solid var(--bd2);font-size:14.5px;color:rgba(255,255,255,.7);transition:all .2s var(--ease);display:inline-flex;align-items:center;gap:8px;text-align:left}
+.chip:hover{border-color:#fff;color:#fff}
+.chip.on{background:var(--morado);border-color:var(--morado);color:#fff}
+.chip.on::before{content:'✓';font-size:12px}
+.chips.big .chip{padding:16px 44px 16px 20px;border-radius:14px;flex:1 1 calc(50% - 8px);font-size:15px;flex-direction:column;align-items:flex-start;gap:2px;position:relative}
+.chips.big .chip.on::before{position:absolute;right:16px;top:16px;width:20px;height:20px;border-radius:50%;background:#fff;color:var(--morado);display:flex;align-items:center;justify-content:center;font-size:11px}
+.chips.big .chip b{display:block;font-weight:500}
+.chips.big .chip small{display:block;font-size:12.5px;opacity:.6;font-weight:300}
+.wz-err{font-size:13px;color:#e5765a;margin-top:-10px;margin-bottom:16px;display:none}
+.wz-err.show{display:block}
+.wz-nav{margin-top:auto;padding-top:36px;display:flex;justify-content:space-between;align-items:center;gap:16px}
+.wz-nav .back{color:rgba(255,255,255,.5);font-size:14px;display:inline-flex;align-items:center;gap:8px}
+.wz-nav .back:hover{color:#fff}
+.wz-nav .cnt{font-size:12px;color:rgba(255,255,255,.3);letter-spacing:1px}
+.wz-sum{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:18px;padding:24px;margin-bottom:24px}
+.wz-sum .k{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:14px}
+.wz-sum dl{display:grid;grid-template-columns:150px 1fr;gap:8px 16px;font-size:14px}
+.wz-sum dt{color:rgba(255,255,255,.4)}
+.wz-sum dd{color:#fff}
+.wz-sum .edit{font-size:12px;color:var(--morado);margin-top:12px;display:inline-block}
+.wz-done .big{width:72px;height:72px;border-radius:50%;background:rgba(15,138,106,.2);display:flex;align-items:center;justify-content:center;margin-bottom:24px}
+.wz-done .big svg{width:32px;height:32px;stroke:#3fd3a8;stroke-width:3;fill:none;stroke-dasharray:40;stroke-dashoffset:40;animation:chk .6s var(--ease) .2s forwards}
+@keyframes chk{to{stroke-dashoffset:0}}
+.sched{background:rgba(255,255,255,.04);border:1px solid var(--bd);border-radius:20px;padding:28px;margin-top:8px}
+.sched .k{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--morado);margin-bottom:8px;font-weight:500}
+.sched h3{font-family:var(--font);font-size:22px;font-weight:700;letter-spacing:-.02em;color:#fff;margin-bottom:6px}
+.sched p{font-size:14.5px;color:rgba(255,255,255,.5);margin-bottom:20px}
+.slots{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
+.slot{padding:12px 8px;border-radius:12px;border:1px solid var(--bd2);text-align:center;font-size:13px;color:rgba(255,255,255,.7);transition:all .15s}
+.slot b{display:block;font-family:var(--font);font-size:15px;font-weight:600;color:#fff}
+.slot:hover{border-color:#fff}
+.slot.on{background:var(--morado);border-color:var(--morado);color:#fff}
+.hours{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:20px}
+.hour{padding:10px 14px;border-radius:100px;border:1px solid var(--bd2);font-size:13.5px;color:rgba(255,255,255,.7);transition:all .15s}
+.hour:hover{border-color:#fff}.hour.on{background:#fff;color:var(--grafito);border-color:#fff}
+.sched-actions{display:flex;gap:10px;flex-wrap:wrap}
+.sched .st{font-size:13px;color:rgba(255,255,255,.4);margin-top:12px;min-height:20px}
+.sched .st.ok{color:#3fd3a8}
+.more-ctx{margin-top:22px;padding-top:22px;border-top:1px solid var(--bd)}
+.more-ctx .k{color:rgba(255,255,255,.4)}
+.spin{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:inline-block}
+@keyframes sp{to{transform:rotate(360deg)}}
 
-.guarantees-footer {
-  background: var(--grafito);
-  border-radius: var(--r-lg);
-  padding: 40px 44px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 40px;
+/* ═══════════════════ RESPONSIVE ═══════════════════ */
+@media(max-width:1000px){
+  :root{--w:min(1160px,100% - 40px)}
+  .hero-in{grid-template-columns:1fr;gap:40px}
+  .hero-side{display:grid;grid-template-columns:1fr 1fr}
+  .head2,.prom,.faq-head,.team,.cta-in{grid-template-columns:1fr;gap:32px}
+  .diag{grid-template-columns:1fr}.diag-panel{position:static}
+  .cmp{grid-template-columns:1fr}.cmp-tabs{position:static;flex-direction:row;overflow:auto;padding-bottom:4px}.cmp-tab{min-width:190px}
+  .flow-steps{grid-template-columns:repeat(5,minmax(150px,1fr));overflow:auto;padding-bottom:6px}
+  .flow-panel{grid-template-columns:1fr}.fp-r{border-left:none;border-top:1px solid var(--bd)}
+  .interv,.gar,.f-roi{grid-template-columns:1fr}
+  .ficha-wrap{grid-template-columns:1fr}.ficha-side{position:static}.sector-picks{flex-direction:row;flex-wrap:wrap}.sp{flex:1 1 45%}
+  .f-grid{grid-template-columns:1fr}.f-cell:nth-child(odd){border-right:none}
+  .ft{grid-template-columns:1fr 1fr}
+  .mega-in{grid-template-columns:repeat(2,1fr)}
+  .nav-links{display:none}.burger{display:flex}
+  .gar-close{flex-direction:column;align-items:flex-start}
+  .pillars{grid-template-columns:1fr}
 }
-.guarantees-footer p {
-  font-family: var(--font);
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--blanco);
-  letter-spacing: -0.01em;
-  line-height: 1.5;
-  max-width: 560px;
-}
-.guarantees-footer p em {
-  font-style: normal;
-  color: rgba(255,255,255,0.4);
-  font-weight: 400;
-}
-
-/* ─── EQUIPO ─── */
-.equipo {
-  background: var(--crema);
-  padding: 120px 0;
-  border-top: 1px solid var(--borde);
-}
-.equipo-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: start;
-}
-.equipo-left h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 4.5vw, 56px);
-  font-weight: 800;
-  line-height: 1.08;
-  letter-spacing: -0.03em;
-  color: var(--grafito);
-  margin-bottom: 24px;
-}
-.equipo-left p {
-  font-size: 16px;
-  color: var(--subtexto);
-  line-height: 1.75;
-}
-
-.equipo-right-label {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--morado);
-  margin-bottom: 20px;
-}
-.equipo-right p {
-  font-size: 16px;
-  color: var(--subtexto);
-  line-height: 1.75;
-  margin-bottom: 20px;
-}
-.equipo-right p:last-child {
-  font-style: italic;
-  color: var(--grafito);
-  font-weight: 500;
-}
-
-/* ─── CTA FINAL ─── */
-.cta-final {
-  background: var(--grafito);
-  padding: 120px 0;
-}
-.cta-inner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: start;
-}
-.cta-left h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 5vw, 64px);
-  font-weight: 800;
-  line-height: 1.05;
-  letter-spacing: -0.035em;
-  color: var(--blanco);
-  margin-bottom: 24px;
-}
-.cta-left h2 em {
-  font-style: italic;
-  color: rgba(255,255,255,0.35);
-}
-.cta-left p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.45);
-  line-height: 1.7;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.form-row-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-.form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-.form-field label {
-  font-size: 12px;
-  font-weight: 600;
-  letter-spacing: 0.03em;
-  color: rgba(255,255,255,0.4);
-  text-transform: uppercase;
-}
-.form-field input,
-.form-field textarea {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.12);
-  border-radius: 10px;
-  padding: 13px 16px;
-  font-size: 15px;
-  font-family: var(--font-body);
-  color: var(--blanco);
-  outline: none;
-  transition: border-color 0.15s, background 0.15s;
-  width: 100%;
-}
-.form-field input::placeholder,
-.form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
-.form-field input:focus,
-.form-field textarea:focus {
-  border-color: var(--morado);
-  background: rgba(91,79,209,0.08);
-}
-.form-field textarea { resize: vertical; }
-.btn-submit {
-  align-self: stretch;
-  background: var(--morado);
-  color: var(--blanco);
-  font-size: 15px;
-  font-weight: 600;
-  font-family: var(--font-body);
-  padding: 16px 28px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.15s, transform 0.1s;
-  letter-spacing: 0.01em;
-  margin-top: 4px;
-}
-.btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
-.form-note {
-  font-size: 12px;
-  color: rgba(255,255,255,0.25);
-  line-height: 1.5;
-  text-align: center;
-}
-.form-thanks {
-  background: rgba(91,79,209,0.12);
-  border: 1px solid rgba(91,79,209,0.3);
-  border-radius: var(--r-lg);
-  padding: 40px;
-  text-align: center;
-}
-.form-thanks strong {
-  display: block;
-  font-family: var(--font);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--blanco);
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
-}
-.form-thanks p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.55);
-  line-height: 1.6;
-}
-
-/* ─── FOOTER ─── */
-footer {
-  background: #111009;
-  border-top: 1px solid rgba(255,255,255,0.06);
-  padding: 56px 0 36px;
-}
-.footer-top {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 40px;
-  padding-bottom: 48px;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
-  margin-bottom: 32px;
-}
-.footer-brand .wordmark {
-  display: block;
-  margin-bottom: 12px;
-  font-size: 16px;
-}
-.footer-brand p {
-  font-size: 13px;
-  color: rgba(255,255,255,0.35);
-  line-height: 1.6;
-}
-.footer-col h4 {
-  font-family: var(--font);
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(255,255,255,0.25);
-  margin-bottom: 16px;
-}
-.footer-col a {
-  display: block;
-  font-size: 14px;
-  color: rgba(255,255,255,0.45);
-  margin-bottom: 10px;
-  transition: color 0.15s;
-}
-.footer-col a:hover { color: var(--blanco); }
-.footer-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.2);
-}
-.footer-bottom a {
-  color: rgba(255,255,255,0.3);
-  transition: color 0.15s;
-}
-.footer-bottom a:hover { color: rgba(255,255,255,0.7); }
-
-/* ─── PROMESA (inline block) ─── */
-.promesa {
-  background: var(--grafito);
-  padding: 120px 0;
-}
-.promesa-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 100px;
-  align-items: center;
-}
-.promesa-left h2 {
-  font-family: var(--font);
-  font-size: clamp(36px, 4.5vw, 58px);
-  font-weight: 800;
-  line-height: 1.07;
-  letter-spacing: -0.03em;
-  color: var(--blanco);
-  margin-bottom: 28px;
-}
-.promesa-left h2 em {
-  font-style: italic;
-  color: rgba(255,255,255,0.35);
-}
-.promesa-left p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.5);
-  line-height: 1.75;
-}
-.equation-block {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--borde-dark);
-  border-radius: var(--r-lg);
-  padding: 36px;
-}
-.eq-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-bottom: 24px;
-}
-.eq-item {
-  font-family: var(--font);
-  font-size: 13px;
-  font-weight: 600;
-  color: rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.07);
-  border: 1px solid rgba(255,255,255,0.1);
-  padding: 6px 14px;
-  border-radius: 8px;
-  letter-spacing: 0.01em;
-}
-.eq-op {
-  font-size: 18px;
-  color: rgba(255,255,255,0.2);
-}
-.eq-result {
-  font-family: var(--font);
-  font-size: 22px;
-  font-weight: 800;
-  color: var(--blanco);
-  letter-spacing: -0.02em;
-  border-top: 1px solid var(--borde-dark);
-  padding-top: 20px;
-  margin-bottom: 8px;
-}
-.eq-result em { color: var(--morado); font-style: italic; }
-.eq-note {
-  font-size: 13px;
-  color: rgba(255,255,255,0.3);
-}
-
-/* ─── RESPONSIVE ─── */
-@media (max-width: 960px) {
-  :root { --w: min(1140px, 100% - 40px); }
-  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-  .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); flex-direction: unset; }
-  .hero-stat + .hero-stat { border-top: none; border-left: 1px solid var(--borde-dark); }
-  .problema-head { grid-template-columns: 1fr; gap: 24px; }
-  .alternatives { grid-template-columns: 1fr; }
-  .guarantees { grid-template-columns: 1fr; }
-  .metodo-head { grid-template-columns: 1fr; gap: 24px; }
-  .cta-inner { grid-template-columns: 1fr; }
-  .equipo-grid { grid-template-columns: 1fr; gap: 60px; }
-  .promesa-grid { grid-template-columns: 1fr; gap: 52px; }
-  .footer-top { grid-template-columns: 1fr; }
-  .guarantees-footer { flex-direction: column; gap: 24px; }
-  nav { padding: 0 20px; }
-}
-@media (max-width: 640px) {
-  :root { --w: min(1140px, 100% - 32px); }
-  .hero { padding-top: 64px; }
-  .hero-inner { padding: 56px 0 60px; }
-  .hero-stats { grid-template-columns: 1fr 1fr; }
-  .hero-stat:last-child { grid-column: span 2; border-top: 1px solid var(--borde-dark); border-left: none; }
-  .hero-stat + .hero-stat:nth-child(2) { border-left: 1px solid var(--borde-dark); }
-  .stage-right { grid-template-columns: 1fr; gap: 8px; }
-  .form-row-2 { grid-template-columns: 1fr; }
-  .problema-closing { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
-  .nav-links { display: none; }
-  .footer-bottom { flex-direction: column; gap: 8px; }
+@media(max-width:640px){
+  :root{--w:min(1160px,100% - 28px)}
+  section.s{padding:80px 0}
+  .hero-in{padding:48px 0 64px}.hero-side{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(40px,11vw,56px)}
+  .q{grid-template-columns:24px 1fr;gap:14px}.q .n{display:none}
+  .wz-row,.slots{grid-template-columns:1fr 1fr}
+  .chips.big .chip{flex-basis:100%}
+  .fp-l,.fp-r{padding:30px 24px}
+  .f-head,.f-cell{padding:20px 22px}
+  .ft{grid-template-columns:1fr}
+  .mega-in{grid-template-columns:1fr;padding:20px 0}
+  .wz-sum dl{grid-template-columns:1fr}
+  .nav-cta{display:none}
+  .hero-scroll{display:none}
+  .fb{flex-direction:column;align-items:flex-start}
 }
 </style>
 </head>
-
 <body>
 
-<!-- ── NAV ── -->
-<nav>
-  <div class="nav-inner">
+<!-- ═══════════════════ NAV ═══════════════════ -->
+<header id="nav">
+  <div class="nav-in">
     <a class="wordmark" href="#inicio">GILDCO</a>
-    <div class="nav-links">
-      <a href="#problema">El problema</a>
-      <a href="#metodo">Método</a>
-      <a href="#equipo">Equipo</a>
+    <div class="nav-c">
+      <nav class="nav-links" aria-label="Principal">
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mega">Secciones <span class="chev"></span></button>
+        <a href="#metodo" data-nav="metodo">Método</a>
+        <a href="#ficha" data-nav="ficha">La ficha</a>
+        <a href="#equipo" data-nav="equipo">Equipo</a>
+      </nav>
+      <a class="nav-cta" href="#diagnostico" data-open-wiz>Iniciar diagnóstico</a>
+      <button class="burger" id="burger" aria-label="Menú"><span></span><span></span><span></span></button>
     </div>
-    <a class="nav-cta" href="#contacto">Agenda tu diagnóstico</a>
   </div>
-</nav>
+</header>
 
-<!-- ── HERO ── -->
-<section id="inicio">
-  <div class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-inner">
-      <div class="hero-copy">
-        <div class="hero-label">Inteligencia organizacional</div>
-        <h1>
-          Tu organización<br>
-          ya tiene el motor.<br>
-          <em>GILDCO lo hace<br>producir más.</em>
-        </h1>
-        <p class="hero-sub">
-          Entendemos tu talento humano, identificamos qué lo está limitando
-          e implementamos la solución correcta — con retorno demostrable.
-        </p>
-        <div class="hero-ctas">
-          <a class="btn-primary" href="#contacto">Agenda tu diagnóstico →</a>
-          <a class="btn-ghost" href="#metodo">Ver cómo funciona ↓</a>
-        </div>
+<div id="mega" aria-hidden="true">
+  <div class="mega-in">
+    <a class="mega-item" href="#inicio"><span class="n">00</span><span class="t">Inicio</span><span class="d">Tu organización ya tiene el motor.</span></a>
+    <a class="mega-item" href="#promesa"><span class="n">01</span><span class="t">La promesa</span><span class="d">La ecuación que resume todo lo que hacemos.</span></a>
+    <a class="mega-item" href="#problema"><span class="n">02</span><span class="t">Diagnóstico rápido</span><span class="d">5 preguntas para saber si esto te aplica.</span></a>
+    <a class="mega-item" href="#porque"><span class="n">03</span><span class="t">Por qué no ha funcionado</span><span class="d">Compara RR.HH., consultoría e IA con GILDCO.</span></a>
+    <a class="mega-item" href="#metodo"><span class="n">04</span><span class="t">Qué hace GILDCO</span><span class="d">El proceso en cinco etapas, con entregables.</span></a>
+    <a class="mega-item" href="#ficha"><span class="n">05</span><span class="t">Así se ve GILDCO</span><span class="d">La ficha de cuello de botella, interactiva.</span></a>
+    <a class="mega-item" href="#garantias"><span class="n">06</span><span class="t">Por qué va a funcionar</span><span class="d">Tres garantías y respuestas a lo que nos preguntan.</span></a>
+    <a class="mega-item" href="#equipo"><span class="n">07</span><span class="t">Quiénes somos</span><span class="d">El equipo y la red de aliados.</span></a>
+    <a class="mega-item" href="#contacto"><span class="n">08</span><span class="t">Empecemos</span><span class="d">Qué está frenando el rendimiento de tu equipo.</span></a>
+    <a class="mega-item cta" href="#diagnostico" data-open-wiz><span class="n">→</span><span class="t">Iniciar diagnóstico</span><span class="d">5 minutos. Llegamos preparados a la llamada.</span></a>
+  </div>
+  <div class="mega-foot"><span>Inteligencia organizacional · Colombia y México</span><a href="mailto:gildco@gildcocom.com">gildco@gildcocom.com</a></div>
+</div>
+
+<main id="main">
+
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<section class="hero" id="inicio">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-fade"></div>
+  <div class="hero-in">
+    <div>
+      <div class="hero-lab"><span class="live"></span>Inteligencia organizacional</div>
+      <h1>
+        <span class="line"><span>Tu organización</span></span>
+        <span class="line"><span>ya tiene el motor.</span></span>
+        <span class="line"><span><em>GILDCO lo hace</em></span></span>
+        <span class="line"><span><em>producir más.</em></span></span>
+      </h1>
+      <p class="hero-sub">Entendemos tu talento humano, identificamos qué lo está limitando e implementamos la solución correcta — <b>estrategia, proceso y tecnología</b> — con retorno demostrable.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-p" href="#diagnostico" data-open-wiz>Iniciar diagnóstico <span class="arr">→</span></a>
+        <a class="btn-ghost" href="#metodo">Ver cómo funciona ↓</a>
       </div>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="stat-num">3<span>en 1</span></div>
-          <div class="stat-label">Diagnóstico humano,<br>estrategia y tecnología</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-num">5</div>
-          <div class="stat-label">Etapas integradas<br>con retorno medido</div>
-        </div>
-        <div class="hero-stat">
-          <div class="stat-num">0</div>
-          <div class="stat-label">Contrataciones nuevas<br>necesarias para crecer</div>
-        </div>
+    </div>
+    <div class="hero-side rv d2">
+      <div class="hs-card">
+        <div class="k">Capacidad atrapada · ejemplo</div>
+        <div class="hs-row"><span>Horas productivas perdidas / semana</span><span class="v" data-count="312">0</span></div>
+        <div class="hs-row"><span>Origen humano</span><span class="v">41%</span></div>
+        <div class="hs-row"><span>Origen de proceso</span><span class="v">35%</span></div>
+        <div class="hs-row"><span>Origen de herramienta</span><span class="v">24%</span></div>
+        <div class="hs-bar"><i data-w="68"></i></div>
+        <div class="hs-note">68% recuperable sin contratar a nadie. Caso ilustrativo.</div>
+      </div>
+      <div class="hs-card">
+        <div class="k">Lo que cambia</div>
+        <div class="hs-row"><span>Nuevas contrataciones</span><span class="v">0</span></div>
+        <div class="hs-row"><span>Etapas del proceso</span><span class="v">5</span></div>
+        <div class="hs-row"><span>Retorno medido con tus datos</span><span class="v m">Sí</span></div>
       </div>
     </div>
   </div>
+  <div class="hero-scroll">Scroll<i></i></div>
 </section>
 
-<!-- ── LA PROMESA ── -->
-<section class="promesa">
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track" id="ticker">
+    <span>Diagnóstico de clima</span><span>Detección de cuello de botella</span><span>Estrategia de gestión humana</span><span>Rediseño de proceso</span><span>IA justificada por evidencia</span><span>Retorno medido antes y después</span><span>Sin contratar más</span><span>Sin reemplazar a nadie</span>
+  </div>
+</div>
+
+<!-- ═══════════════════ 01 PROMESA ═══════════════════ -->
+<section class="s s-dark" id="promesa">
   <div class="w">
-    <div class="section-tag" style="color:rgba(255,255,255,0.4);--morado:rgba(255,255,255,0.4)">01 · La promesa</div>
-    <div class="promesa-grid">
-      <div class="promesa-left">
-        <h2>
-          El motor principal de tu empresa<br>
-          es tu gente.<br>
-          <em>Todo lo demás viene después.</em>
-        </h2>
-        <p>
-          La mayoría de las empresas busca eficiencia en herramientas y procesos.
-          GILDCO empieza por el talento — porque cuando entiendes profundamente
-          cómo trabajan las personas, qué las frena y qué las potencia, las
-          decisiones correctas se vuelven evidentes.
-        </p>
+    <div class="tag light rv">01 · La promesa</div>
+    <div class="prom">
+      <div class="rv">
+        <h2 class="h2">El motor principal de tu empresa es tu gente. <em class="dim">Todo lo demás viene después.</em></h2>
+        <p class="lead">La mayoría de las empresas busca eficiencia en herramientas y procesos. GILDCO empieza por el talento — porque cuando entiendes profundamente cómo trabajan las personas, qué las frena y qué las potencia, las decisiones correctas se vuelven evidentes.</p>
       </div>
-      <div class="equation-block">
+      <div class="eq rv d2" id="eq">
+        <div class="eq-hint"><span class="live"></span>Activa cada componente</div>
         <div class="eq-row">
-          <span class="eq-item">Capital humano</span>
-          <span class="eq-op">+</span>
-          <span class="eq-item">Estrategia</span>
-          <span class="eq-op">+</span>
-          <span class="eq-item">Tecnología</span>
+          <button class="eq-t" data-eq="0"><i></i>Capital humano</button><span class="eq-op">+</span>
+          <button class="eq-t" data-eq="1"><i></i>Estrategia</button><span class="eq-op">+</span>
+          <button class="eq-t" data-eq="2"><i></i>Tecnología</button>
         </div>
-        <div class="eq-result"><em>Mayor producción</em></div>
+        <div class="eq-res">
+          <div><div class="lbl">Resultado</div><div class="val" id="eqVal">= <em>Mayor producción</em></div></div>
+          <div class="eq-meter"><i id="eqMeter"></i></div>
+        </div>
+        <div class="eq-desc" id="eqDesc">Haz clic en cada componente para ver por qué el orden importa.</div>
         <div class="eq-note">Sin contratar más. Sin reemplazar a nadie.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── EL PROBLEMA ── -->
-<section class="problema" id="problema">
+<!-- ═══════════════════ 02 PROBLEMA / DIAGNÓSTICO RÁPIDO ═══════════════════ -->
+<section class="s s-crema" id="problema">
   <div class="w">
-    <div class="section-tag">02 · El problema</div>
-    <div class="problema-head">
-      <h2>¿Lo sientes pero no sabes exactamente dónde está?</h2>
-      <p>
-        Antes de buscar soluciones, hazte estas preguntas. Si alguna resuena,
-        el problema no es tu gente — es que nadie ha conectado los puntos.
-      </p>
+    <div class="tag rv">02 · El problema</div>
+    <div class="head2">
+      <h2 class="h2 rv">¿Lo sientes pero no sabes exactamente <em>dónde está?</em></h2>
+      <p class="lead rv d1">Antes de buscar soluciones, hazte estas preguntas. Marca las que reconoces — el panel de la derecha te dice qué significa.</p>
     </div>
-    <div class="questions">
-      <div class="question-row">
-        <span class="q-num">01</span>
-        <p>¿Tu equipo trabaja al límite pero los resultados no mejoran al mismo ritmo?</p>
+    <div class="diag">
+      <div class="qs rv" id="qs">
+        <div class="q" data-sym="Equipo al límite sin mejora de resultados"><span class="n">01</span><p>¿Tu equipo trabaja al límite pero los resultados no mejoran al mismo ritmo?</p><span class="cb"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span></div>
+        <div class="q" data-sym="Clima deteriorado sin origen claro"><span class="n">02</span><p>¿El clima se está deteriorando y no tienes claridad de dónde nació el problema?</p><span class="cb"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span></div>
+        <div class="q" data-sym="Rotación sin causas explicadas"><span class="n">03</span><p>¿La rotación sube sin que los reportes expliquen las causas reales?</p><span class="cb"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span></div>
+        <div class="q" data-sym="Tecnología no adoptada"><span class="n">04</span><p>¿Implementaron tecnología que el equipo nunca terminó de adoptar?</p><span class="cb"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span></div>
+        <div class="q" data-sym="Ineficiencia sin números"><span class="n">05</span><p>¿Sabes que hay ineficiencia pero no tienes cómo llevarla a números concretos?</p><span class="cb"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></span></div>
       </div>
-      <div class="question-row">
-        <span class="q-num">02</span>
-        <p>¿El clima se está deteriorando y no tienes claridad de dónde nació el problema?</p>
-      </div>
-      <div class="question-row">
-        <span class="q-num">03</span>
-        <p>¿La rotación sube sin que los reportes expliquen las causas reales?</p>
-      </div>
-      <div class="question-row">
-        <span class="q-num">04</span>
-        <p>¿Implementaron tecnología que el equipo nunca terminó de adoptar?</p>
-      </div>
-      <div class="question-row">
-        <span class="q-num">05</span>
-        <p>¿Sabes que hay ineficiencia pero no tienes cómo llevarla a números concretos?</p>
-      </div>
-    </div>
-    <div class="problema-closing">
-      <p>
-        Si respondiste sí a alguna de estas, el problema no es tu gente.
-        <br><em>Es que nadie ha cruzado lo que tu gente vive con lo que tus números muestran.</em>
-      </p>
-      <a class="closing-cta" href="#contacto">Hablemos →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ── POR QUÉ NO HA FUNCIONADO ── -->
-<section class="why-not">
-  <div class="w">
-    <div class="section-tag" style="color:rgba(255,255,255,0.35)">03 · Por qué no ha funcionado</div>
-    <div class="why-not-head">
-      <h2>
-        No es que no hayas intentado resolverlo.<br>
-        <em>Es que las soluciones disponibles están incompletas.</em>
-      </h2>
-      <p>Hay tres aproximaciones que existen hoy. Ninguna lo resuelve del todo.</p>
-    </div>
-    <div class="alternatives">
-      <div class="alt-card">
-        <div class="alt-num">01</div>
-        <h3>Gestión humana<br>y RR.HH.</h3>
-        <p>Entiende a las personas y mide el clima. Pero rara vez conecta esa información con la operación, los procesos o el retorno económico.</p>
-        <span class="alt-flaw">El diagnóstico termina en un reporte, no en una decisión</span>
-      </div>
-      <div class="alt-card">
-        <div class="alt-num">02</div>
-        <h3>Consultoría<br>tradicional</h3>
-        <p>Diagnostica con rigor y entrega recomendaciones bien fundamentadas. Pero no implementa, no acompaña la adopción y no mide si funcionó.</p>
-        <span class="alt-flaw">El cliente recibe un documento y queda solo</span>
-      </div>
-      <div class="alt-card">
-        <div class="alt-num">03</div>
-        <h3>IA y<br>automatización</h3>
-        <p>Implementa tecnología con rapidez y casos de éxito reales. Pero llega con la solución antes que el diagnóstico. No conoce las causas raíz.</p>
-        <span class="alt-flaw">No puede garantizar que la herramienta ataque el problema correcto</span>
-      </div>
-    </div>
-    <div class="why-not-statement">
-      <p>GILDCO hace las tres cosas. <em>Conectadas. En ese orden.</em></p>
-    </div>
-  </div>
-</section>
-
-<!-- ── MÉTODO ── -->
-<section class="metodo" id="metodo">
-  <div class="w">
-    <div class="section-tag">04 · Qué hace GILDCO</div>
-    <div class="metodo-head">
-      <h2>
-        Entendemos tu organización<br>
-        desde adentro. Intervenimos<br>
-        donde importa. <em>Medimos<br>que funcionó.</em>
-      </h2>
-      <p>
-        GILDCO estudia cómo trabaja tu gente, cruza esa evidencia con tus datos
-        operativos, identifica dónde está la capacidad atrapada y entrega una
-        intervención integrada — acompañada desde el inicio hasta el resultado demostrable.
-      </p>
-    </div>
-    <div class="stages">
-      <div class="stage">
-        <div class="stage-left">
-          <div class="stage-num">01</div>
-          <div class="stage-name-tag">Human<br>Intelligence</div>
+      <div class="diag-panel rv d2">
+        <div class="k">Señales detectadas</div>
+        <div class="gauge">
+          <svg viewBox="0 0 200 110"><path d="M10 100 A90 90 0 0 1 190 100" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="10" stroke-linecap="round"/><path id="gaugeArc" d="M10 100 A90 90 0 0 1 190 100" fill="none" stroke="#5B4FD1" stroke-width="10" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283" style="transition:stroke-dashoffset .6s cubic-bezier(.22,.61,.36,1)"/></svg>
+          <div class="big"><span id="gaugeN">0</span><small> / 5</small></div>
         </div>
-        <div class="stage-right">
-          <div class="stage-title">Radiografía del talento</div>
-          <div class="stage-text">Clima, cargas, tiempos, liderazgo, fricciones y experiencia del equipo. Entendemos tu organización antes de tocar nada.</div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="stage-left">
-          <div class="stage-num">02</div>
-          <div class="stage-name-tag">Efficiency<br>Map</div>
-        </div>
-        <div class="stage-right">
-          <div class="stage-title">Cruzamos evidencia con datos</div>
-          <div class="stage-text">Tomamos lo que tu gente vive y lo cruzamos con tus datos operativos. Identificamos dónde se pierde capacidad, en horas y en dinero.</div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="stage-left">
-          <div class="stage-num">03</div>
-          <div class="stage-name-tag">Augmentation<br>Plan</div>
-        </div>
-        <div class="stage-right">
-          <div class="stage-title">Diseñamos la intervención</div>
-          <div class="stage-text">Estrategia de gestión humana, proceso y herramienta. Con retorno proyectado antes de implementar — ninguna decisión se toma a ciegas.</div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="stage-left">
-          <div class="stage-num">04</div>
-          <div class="stage-name-tag">Implemen&shy;tation</div>
-        </div>
-        <div class="stage-right">
-          <div class="stage-title">Implementamos y acompañamos</div>
-          <div class="stage-text">La herramienta llega con estrategia de adopción, no sola. Estamos en el terreno hasta que el cambio es real.</div>
-        </div>
-      </div>
-      <div class="stage">
-        <div class="stage-left">
-          <div class="stage-num">05</div>
-          <div class="stage-name-tag">Continuous<br>Intelligence</div>
-        </div>
-        <div class="stage-right">
-          <div class="stage-title">Medimos el retorno real</div>
-          <div class="stage-text">Antes y después. Calculamos el retorno con los datos de tu operación. Detectamos nuevas fricciones y el ciclo continúa.</div>
-        </div>
+        <div class="diag-msg" id="diagMsg">Marca las situaciones que reconoces en tu empresa.</div>
+        <a class="btn btn-p" href="#diagnostico" data-open-wiz>Iniciar diagnóstico completo <span class="arr">→</span></a>
+        <div class="foot">Tus respuestas viajan contigo al diagnóstico.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── POR QUÉ VA A FUNCIONAR ── -->
-<section class="why-works">
+<!-- ═══════════════════ 03 POR QUÉ NO HA FUNCIONADO — COMPARADOR ═══════════════════ -->
+<section class="s s-dark" id="porque">
   <div class="w">
-    <div class="section-tag">05 · Por qué va a funcionar</div>
-    <div class="why-works-head">
-      <h2>
-        La herramienta correcta,<br>
-        en el momento correcto,<br>
-        <em>con acompañamiento real.</em>
-      </h2>
-      <p>
-        La mayoría de las implementaciones tecnológicas fallan por la misma razón:
-        llegan sin diagnóstico, sin estrategia de adopción y sin forma de medir
-        si funcionaron. GILDCO elimina esos tres riesgos antes de que ocurran.
-      </p>
+    <div class="tag light rv">03 · Por qué no ha funcionado</div>
+    <div class="head2">
+      <h2 class="h2 rv">No es que no hayas intentado resolverlo. <em class="dim">Es que las soluciones disponibles están incompletas.</em></h2>
+      <p class="lead rv d1">Hay tres aproximaciones que existen hoy para este tipo de problema. Ninguna lo resuelve del todo. Compáralas.</p>
     </div>
-    <div class="guarantees">
-      <div class="guarantee">
-        <div class="guarantee-icon">🎯</div>
-        <h3>La herramienta llega justificada</h3>
-        <p>Ninguna herramienta se recomienda sin evidencia. El diagnóstico determina qué problema existe, dónde está y cuánto cuesta. La intervención se diseña sobre esa evidencia — no sobre tendencias.</p>
+    <div class="cmp">
+      <div class="cmp-tabs rv" id="cmpTabs">
+        <button class="cmp-tab on" data-cmp="0"><span class="t">Gestión humana y RR.HH.</span><span class="s">Mide el clima</span></button>
+        <button class="cmp-tab" data-cmp="1"><span class="t">Consultoría tradicional</span><span class="s">Recomienda</span></button>
+        <button class="cmp-tab" data-cmp="2"><span class="t">IA y automatización</span><span class="s">Implementa herramientas</span></button>
+        <button class="cmp-tab g" data-cmp="3"><span class="t">GILDCO</span><span class="s">Las tres, conectadas</span></button>
       </div>
-      <div class="guarantee">
-        <div class="guarantee-icon">🤝</div>
-        <h3>La adopción está diseñada desde el inicio</h3>
-        <p>Implementar no es instalar. GILDCO acompaña el proceso de adopción desde el primer día — porque una herramienta que el equipo no usa no resuelve nada.</p>
-      </div>
-      <div class="guarantee">
-        <div class="guarantee-icon">📊</div>
-        <h3>El retorno se mide con tus propios números</h3>
-        <p>Antes de intervenir definimos los KPIs y la línea base. Después medimos con los datos de tu operación. El retorno no es una promesa — es un cálculo.</p>
-      </div>
+      <div class="cmp-body rv d1" id="cmpBody"></div>
     </div>
-    <div class="guarantees-footer">
+    <p class="why-line rv">GILDCO hace las tres cosas. <em>Conectadas. En ese orden.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 04 QUÉ HACE GILDCO — FLUJO ═══════════════════ -->
+<section class="s s-crema" id="metodo">
+  <div class="w">
+    <div class="tag rv">04 · Qué hace GILDCO</div>
+    <div class="head2">
+      <h2 class="h2 rv">Entendemos tu organización desde adentro. Intervenimos donde importa. <em>Medimos que funcionó.</em></h2>
+      <p class="lead rv d1">GILDCO estudia cómo trabaja tu gente, cruza esa evidencia con tus datos operativos, identifica dónde está la capacidad atrapada y entrega una intervención integrada — acompañada desde el inicio hasta el resultado demostrable.</p>
+    </div>
+
+    <div class="flow rv">
+      <div class="flow-steps" id="flowSteps"></div>
+    </div>
+    <div class="flow-panel rv d1" id="flowPanel"></div>
+    <div class="fp-nav rv d1">
+      <div class="auto" id="flowAuto"><i></i><span>Reproduciendo · pasa el mouse para pausar</span></div>
+      <div class="ctrls"><button id="flowPrev" aria-label="Anterior">←</button><button id="flowNext" aria-label="Siguiente">→</button></div>
+    </div>
+
+    <div class="interv-head rv"><h2 class="h2">El diagnóstico produce una intervención — <em>o una combinación de las tres.</em></h2></div>
+    <div class="interv">
+      <div class="interv-card rv"><div class="n">Intervención A</div><h4>Estrategia de gestión humana</h4><p>Liderazgo, roles, comunicación, cultura. Cuando la evidencia muestra que el origen está en cómo se lidera y se coordina el equipo.</p></div>
+      <div class="interv-card rv d1"><div class="n">Intervención B</div><h4>Rediseño de proceso</h4><p>Operacional, sin tecnología. Cuando el flujo de trabajo es el que atrapa la capacidad — pasos redundantes, aprobaciones lentas, retrabajos.</p></div>
+      <div class="interv-card rv d2"><div class="n">Intervención C</div><h4>IA o automatización</h4><p>Solo cuando la evidencia justifica el retorno. La herramienta llega con estrategia de adopción y línea base — nunca sola.</p></div>
+    </div>
+    <p class="metodo-close rv">No entregamos recomendaciones. <em>Entregamos resultados con evidencia.</em></p>
+  </div>
+</section>
+
+<!-- ═══════════════════ 05 ASÍ SE VE GILDCO — FICHA ═══════════════════ -->
+<section class="s s-arena" id="ficha">
+  <div class="w">
+    <div class="tag rv">05 · Así se ve GILDCO</div>
+    <div class="ficha-wrap">
+      <div class="ficha-side rv">
+        <h2 class="h2">Esto es exactamente <em>lo que recibes.</em></h2>
+        <p class="lead">La ficha de cuello de botella: evidencia humana, evidencia operacional, causa raíz, intervención y retorno proyectado. Elige un sector para ver cómo se vería en tu operación.</p>
+        <div class="sector-picks" id="sectorPicks"></div>
+      </div>
+      <div class="ficha rv d1" id="fichaCard"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ 06 POR QUÉ VA A FUNCIONAR + FAQ ═══════════════════ -->
+<section class="s s-crema" id="garantias">
+  <div class="w">
+    <div class="tag rv">06 · Por qué va a funcionar</div>
+    <div class="head2">
+      <h2 class="h2 rv">La herramienta correcta, en el momento correcto, <em>con acompañamiento real.</em></h2>
+      <p class="lead rv d1">La mayoría de las implementaciones tecnológicas fallan por la misma razón: llegan sin diagnóstico, sin estrategia de adopción y sin forma de medir si funcionaron. GILDCO elimina esos tres riesgos antes de que ocurran.</p>
+    </div>
+    <div class="gar">
+      <div class="gar-card rv" data-gar><div class="x">+</div><div class="n">01</div><h4>La herramienta llega justificada</h4><p>Ninguna herramienta se recomienda sin evidencia. El diagnóstico determina qué problema existe, dónde está y cuánto cuesta.</p><div class="more"><p>La intervención se diseña sobre esa evidencia — no sobre tendencias ni suposiciones. Si el problema es humano, la respuesta no es software.</p></div></div>
+      <div class="gar-card rv d1" data-gar><div class="x">+</div><div class="n">02</div><h4>La adopción está diseñada desde el inicio</h4><p>Implementar no es instalar. GILDCO acompaña el proceso de adopción desde el primer día.</p><div class="more"><p>Porque una herramienta que el equipo no usa no resuelve nada. Definimos quién la usa, cómo entra a la rutina y qué cambia en el día a día antes de encenderla.</p></div></div>
+      <div class="gar-card rv d2" data-gar><div class="x">+</div><div class="n">03</div><h4>El retorno se mide con tus propios números</h4><p>Antes de intervenir definimos los KPIs y la línea base. Después medimos con los datos de tu operación.</p><div class="more"><p>El retorno no es una promesa — es un cálculo con evidencia real. Horas, dinero, rotación, errores: los mismos indicadores que ya miras, antes y después.</p></div></div>
+    </div>
+
+    <div class="faq-head">
+      <h2 class="h2 rv" style="font-size:clamp(26px,3.2vw,40px)">Lo que nos preguntan <em>antes de empezar.</em></h2>
+      <p class="lead rv d1">Las objeciones reales que escuchamos de gerentes generales y directores de operaciones. Respondidas sin rodeos.</p>
+    </div>
+    <div class="faq rv" id="faq"></div>
+
+    <div class="gar-close rv">
       <p>No vas a comprar tecnología a ciegas. Vas a tomar una decisión respaldada por evidencia de <em>tu propia empresa.</em></p>
-      <a class="closing-cta" href="#contacto">Agenda tu diagnóstico →</a>
+      <a class="btn btn-p" href="#diagnostico" data-open-wiz>Iniciar diagnóstico <span class="arr">→</span></a>
     </div>
   </div>
 </section>
 
-<!-- ── EQUIPO ── -->
-<section class="equipo" id="equipo">
+<!-- ═══════════════════ 07 QUIÉNES SOMOS ═══════════════════ -->
+<section class="s s-arena" id="equipo">
   <div class="w">
-    <div class="section-tag">06 · Quiénes somos</div>
-    <div class="equipo-grid">
-      <div class="equipo-left">
-        <h2>El equipo detrás de GILDCO.</h2>
-        <p>
-          Somos un equipo con formación en administración, ingeniería industrial
-          e innovación digital, construido específicamente para entender
-          organizaciones desde adentro y transformarlas con evidencia.
-        </p>
+    <div class="tag rv">07 · Quiénes somos</div>
+    <div class="team">
+      <div class="rv">
+        <h2 class="h2">El equipo <em>detrás de GILDCO.</em></h2>
+        <p class="lead">Somos un equipo con formación en administración, ingeniería industrial e innovación digital, construido específicamente para entender organizaciones desde adentro y transformarlas con evidencia.</p>
+        <div class="pillars">
+          <div class="pillar"><div class="v">Administración</div><div class="l">Estrategia y gestión humana</div></div>
+          <div class="pillar"><div class="v">Ingeniería industrial</div><div class="l">Procesos y eficiencia operativa</div></div>
+          <div class="pillar"><div class="v">Innovación digital</div><div class="l">Tecnología e IA aplicada</div></div>
+        </div>
       </div>
-      <div class="equipo-right">
-        <div class="equipo-right-label">Aliados estratégicos</div>
-        <p>
-          Las herramientas que implementamos están respaldadas por aliados
-          especializados con trayectoria comprobada en sus categorías. Cada
-          aliado fue seleccionado porque resuelve un problema específico mejor
-          que cualquier alternativa genérica.
-        </p>
-        <p>
-          No llegamos con herramientas genéricas. Llegamos con la red correcta
-          para cada problema específico.
-        </p>
+      <div class="allies rv d1">
+        <div class="k">Aliados estratégicos</div>
+        <p>Las herramientas que implementamos están respaldadas por aliados especializados con trayectoria comprobada en sus categorías. Cada aliado fue seleccionado porque resuelve un problema específico mejor que cualquier alternativa genérica.</p>
+        <div class="ally"><div class="ic">AI</div><div><div class="t">Agentes de IA para atención y ventas</div><div class="d">Cuando el diagnóstico identifica fricción en el customer journey: WhatsApp, email, teléfono.</div></div></div>
+        <div class="ally"><div class="ic">HI</div><div><div class="t">Colaboradores de IA internos por función</div><div class="d">Cuando el diagnóstico identifica carga manual repetitiva dentro del equipo. Potencian al talento, no lo reemplazan.</div></div></div>
+        <div class="cl">No llegamos con herramientas genéricas. Llegamos con la red correcta para cada problema específico.</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── CTA FINAL ── -->
-<section class="cta-final" id="contacto">
+<!-- ═══════════════════ 08 CTA FINAL ═══════════════════ -->
+<section class="s s-dark cta-final" id="contacto">
+  <div class="glow"></div>
   <div class="w">
-    <div class="section-tag" style="color:rgba(255,255,255,0.35)">Empecemos</div>
-    <div class="cta-inner">
-      <div class="cta-left">
-        <h2>
-          ¿Qué está frenando hoy<br>
-          <em>el rendimiento de<br>tu equipo?</em>
-        </h2>
-        <p>
-          Cuéntanos antes de la llamada. Llegamos preparados para aprovechar
-          cada minuto. Sin compromisos — una conversación de 30 minutos para
-          entender tu situación.
-        </p>
+    <div class="tag light rv">08 · Empecemos</div>
+    <div class="cta-in">
+      <div class="rv">
+        <h2 class="h2">¿Qué está frenando hoy <em>el rendimiento de tu equipo?</em></h2>
+        <p class="lead">Cuéntanos antes de la llamada. Llegamos preparados para aprovechar cada minuto. Sin compromisos — una conversación de 30 minutos para entender tu situación.</p>
+        <a class="btn btn-p" href="#diagnostico" data-open-wiz style="padding:17px 32px;font-size:15px">Iniciar diagnóstico <span class="arr">→</span></a>
       </div>
-      <div id="form-wrapper">
-        <form class="contact-form" id="contact-form">
-          <div class="form-row-2">
-            <div class="form-field">
-              <label for="nombre">Nombre</label>
-              <input id="nombre" type="text" required placeholder="Tu nombre">
-            </div>
-            <div class="form-field">
-              <label for="empresa">Empresa</label>
-              <input id="empresa" type="text" required placeholder="Nombre de tu empresa">
-            </div>
-          </div>
-          <div class="form-field">
-            <label for="sector">Sector y número de empleados</label>
-            <input id="sector" type="text" required placeholder="Ej: Logística, 80 empleados">
-          </div>
-          <div class="form-field">
-            <label for="reto">¿Cuál es el principal reto de tu equipo hoy?</label>
-            <textarea id="reto" required rows="4" placeholder="Cuéntanos con tus palabras..."></textarea>
-          </div>
-          <button type="submit" class="btn-submit">Agenda tu diagnóstico →</button>
-          <p class="form-note">Sin compromisos. 30 minutos. Sin costo.</p>
-        </form>
+      <div class="cta-card rv d2">
+        <div class="k">Cómo funciona</div>
+        <div class="cta-steps">
+          <div class="cta-step"><div class="n">1</div><div><div class="t">Respondes 5 preguntas</div><div class="d">Sobre tu empresa, lo que sientes y lo que ya intentaron. 5 minutos.</div></div></div>
+          <div class="cta-step"><div class="n">2</div><div><div class="t">Nos llega tu contexto</div><div class="d">Lo leemos antes de la llamada. Puedes agregar más información cuando quieras.</div></div></div>
+          <div class="cta-step"><div class="n">3</div><div><div class="t">Agendas la reunión</div><div class="d">Eliges el momento y te enviamos el enlace. 30 minutos, sin costo.</div></div></div>
+        </div>
+        <a class="btn btn-p" href="#diagnostico" data-open-wiz>Empezar ahora <span class="arr">→</span></a>
+        <div class="foot">Sin compromisos. 30 minutos. Sin costo.</div>
+        <div class="alt">¿Prefieres escribirnos? <a href="mailto:gildco@gildcocom.com">gildco@gildcocom.com</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ── FOOTER ── -->
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
 <footer>
   <div class="w">
-    <div class="footer-top">
-      <div class="footer-brand">
-        <a class="wordmark" href="#inicio">GILDCO</a>
-        <p>Inteligencia organizacional<br>para decisiones más humanas.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navegación</h4>
-        <a href="#problema">El problema</a>
-        <a href="#metodo">Método</a>
-        <a href="#equipo">Equipo</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="mailto:hola@gildandco.com">hola@gildandco.com</a>
-      </div>
+    <div class="ft">
+      <div><a class="wordmark" href="#inicio">GILDCO</a><p>Inteligencia organizacional para decisiones más humanas. Colombia y México.</p></div>
+      <div><h4>Recorrido</h4><a href="#promesa">La promesa</a><a href="#problema">Diagnóstico rápido</a><a href="#porque">Por qué no ha funcionado</a><a href="#metodo">Qué hace GILDCO</a></div>
+      <div><h4>Más</h4><a href="#ficha">La ficha</a><a href="#garantias">Por qué va a funcionar</a><a href="#equipo">Quiénes somos</a><a href="#contacto">Empecemos</a></div>
+      <div><h4>Contacto</h4><a href="mailto:gildco@gildcocom.com">gildco@gildcocom.com</a><a href="#diagnostico" data-open-wiz>Iniciar diagnóstico →</a></div>
     </div>
-    <div class="footer-bottom">
-      <span>© <span id="yr"></span> GILDCO · Colombia</span>
-      <span>Inteligencia organizacional</span>
-    </div>
+    <div class="fb"><span>© <span id="yr"></span> GILDCO · Colombia</span><span>Capital humano + estrategia + tecnología = mayor producción</span></div>
   </div>
 </footer>
 
+</main>
+
+<!-- ═══════════════════ WIZARD — DIAGNÓSTICO (vista aparte) ═══════════════════ -->
+<div id="wiz" role="dialog" aria-modal="true" aria-label="Diagnóstico GILDCO">
+  <div class="wz-top">
+    <div class="wz-top-in">
+      <a class="wordmark" href="#inicio" data-close-wiz>GILDCO</a>
+      <span style="font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35)">Diagnóstico · <span id="wzStepLbl">1 / 5</span></span>
+      <button class="wz-close" data-close-wiz>Volver al sitio ✕</button>
+    </div>
+    <div class="wz-prog"><i id="wzProg"></i></div>
+  </div>
+
+  <div class="wz-body">
+    <!-- STEP 0 -->
+    <div class="wz-step on" data-step="0">
+      <div class="wz-k">Paso 1 · Tu empresa</div>
+      <h2>Empecemos por <em>dónde trabajas.</em></h2>
+      <p class="sub">Así llegamos con contexto y aprovechamos cada minuto de la llamada.</p>
+      <div class="wz-field"><label>Nombre de la empresa</label><input id="f_empresa" type="text" placeholder="Ej: Logística Andina S.A.S." autocomplete="organization"></div>
+      <div class="wz-field"><label>Sector</label><div class="chips" data-single id="f_sector">
+        <button class="chip" type="button">Industrial / manufactura</button><button class="chip" type="button">Call center / BPO</button><button class="chip" type="button">Logística / transporte</button><button class="chip" type="button">Servicios</button><button class="chip" type="button">Otro</button>
+      </div></div>
+      <div class="wz-field"><label>Tamaño del equipo</label><div class="chips" data-single id="f_tamano">
+        <button class="chip" type="button">Menos de 50</button><button class="chip" type="button">50 – 100</button><button class="chip" type="button">100 – 200</button><button class="chip" type="button">Más de 200</button>
+      </div></div>
+      <div class="wz-err" id="err0">Cuéntanos al menos el nombre de la empresa y el sector.</div>
+    </div>
+
+    <!-- STEP 1 -->
+    <div class="wz-step" data-step="1">
+      <div class="wz-k">Paso 2 · Lo que sientes</div>
+      <h2>¿Qué está pasando <em>hoy en tu equipo?</em></h2>
+      <p class="sub">Marca todas las que reconozcas. No hay respuestas incorrectas — esto nos dice por dónde empezar a mirar.</p>
+      <div class="wz-field"><div class="chips big" id="f_sintomas">
+        <button class="chip" type="button" data-sym="Equipo al límite sin mejora de resultados"><b>Trabajan al límite, los resultados no mejoran</b><small>Mucho esfuerzo, poco movimiento en los números</small></button>
+        <button class="chip" type="button" data-sym="Clima deteriorado sin origen claro"><b>El clima se está deteriorando</b><small>Y no está claro dónde nació el problema</small></button>
+        <button class="chip" type="button" data-sym="Rotación sin causas explicadas"><b>La rotación sube</b><small>Los reportes no explican las causas reales</small></button>
+        <button class="chip" type="button" data-sym="Tecnología no adoptada"><b>Tecnología que nadie terminó de adoptar</b><small>Se compró, se instaló, no se usa</small></button>
+        <button class="chip" type="button" data-sym="Ineficiencia sin números"><b>Hay ineficiencia pero no hay números</b><small>Se siente, no se puede demostrar</small></button>
+        <button class="chip" type="button" data-sym="Fricción entre áreas"><b>Fricción entre áreas</b><small>Cada área culpa a la otra, nadie ve el flujo completo</small></button>
+        <button class="chip" type="button" data-sym="Carga manual repetitiva"><b>Carga manual repetitiva</b><small>Horas en tareas que no requieren criterio</small></button>
+        <button class="chip" type="button" data-sym="Liderazgo saturado"><b>Liderazgo saturado</b><small>Los líderes apagan incendios en lugar de dirigir</small></button>
+      </div></div>
+      <div class="wz-err" id="err1">Marca al menos una situación.</div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="wz-step" data-step="2">
+      <div class="wz-k">Paso 3 · Lo que ya intentaron</div>
+      <h2>¿Qué han hecho <em>hasta ahora?</em></h2>
+      <p class="sub">Saber qué no funcionó nos ahorra semanas. No es un examen.</p>
+      <div class="wz-field"><div class="chips" id="f_intentos">
+        <button class="chip" type="button">Encuesta de clima / RR.HH.</button><button class="chip" type="button">Consultoría externa</button><button class="chip" type="button">Compramos software o IA</button><button class="chip" type="button">Reestructuramos el equipo</button><button class="chip" type="button">Contratamos más gente</button><button class="chip" type="button">Nada aún</button>
+      </div></div>
+      <div class="wz-field"><label>¿Qué pasó con eso? (opcional)</label><textarea id="f_intentos_ctx" placeholder="Ej: Hicimos encuesta de clima el año pasado, salió regular, pero no supimos qué hacer con el resultado..."></textarea></div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="wz-step" data-step="3">
+      <div class="wz-k">Paso 4 · El reto</div>
+      <h2>¿Cuál es el principal reto que está enfrentando <em>tu equipo hoy?</em></h2>
+      <p class="sub">Con tus palabras. Esta es la pregunta que más leemos antes de la llamada.</p>
+      <div class="wz-field"><textarea id="f_reto" placeholder="Cuéntanos con tus palabras..." style="min-height:170px"></textarea><div class="hint">Cuanto más contexto, mejor llegamos. Puedes agregar más después.</div></div>
+      <div class="wz-field"><label>¿Qué tan urgente es?</label><div class="chips" data-single id="f_urgencia">
+        <button class="chip" type="button">Necesito resolverlo ya</button><button class="chip" type="button">Este trimestre</button><button class="chip" type="button">Este año</button><button class="chip" type="button">Estoy explorando</button>
+      </div></div>
+      <div class="wz-err" id="err3">Cuéntanos el reto en una o dos líneas — es lo que más nos sirve.</div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="wz-step" data-step="4">
+      <div class="wz-k">Paso 5 · Tus datos</div>
+      <h2>¿A quién le <em>respondemos?</em></h2>
+      <p class="sub">Revisa el resumen y déjanos cómo contactarte.</p>
+      <div class="wz-sum"><div class="k">Lo que recibimos</div><dl id="wzSummary"></dl><a class="edit" href="#" data-goto="0">Editar respuestas</a></div>
+      <div class="wz-row">
+        <div class="wz-field"><label>Nombre</label><input id="f_nombre" type="text" placeholder="Tu nombre" autocomplete="name"></div>
+        <div class="wz-field"><label>Cargo</label><input id="f_cargo" type="text" placeholder="Ej: Director de Operaciones" autocomplete="organization-title"></div>
+      </div>
+      <div class="wz-row">
+        <div class="wz-field"><label>Correo</label><input id="f_email" type="email" placeholder="tu@empresa.com" autocomplete="email"></div>
+        <div class="wz-field"><label>WhatsApp (opcional)</label><input id="f_tel" type="tel" placeholder="+57 300 000 0000" autocomplete="tel"></div>
+      </div>
+      <div class="wz-err" id="err4">Necesitamos tu nombre y un correo válido para responderte.</div>
+      <div class="wz-err" id="errSend">No pudimos enviar automáticamente. Abrimos tu correo con todo prellenado — solo dale enviar.</div>
+    </div>
+
+    <!-- STEP 5 — DONE -->
+    <div class="wz-step wz-done" data-step="5">
+      <div class="big"><svg viewBox="0 0 24 24"><path d="M4 12l5 5L20 6"/></svg></div>
+      <div class="wz-k">Recibido</div>
+      <h2>Gracias, <em id="doneName">—</em>. Ya tenemos tu contexto.</h2>
+      <p class="sub">Lo leemos antes de la llamada. Ahora elige el momento que te sirva — te confirmamos por correo con el enlace de la reunión.</p>
+
+      <div class="sched">
+        <div class="k">Agenda tu diagnóstico · 30 min · sin costo</div>
+        <h3>Elige un día y una hora</h3>
+        <p>Horario de Bogotá / Ciudad de México. Si ninguno te sirve, escríbenos y lo cuadramos.</p>
+        <div class="slots" id="slots"></div>
+        <div class="hours" id="hours"></div>
+        <div class="sched-actions">
+          <button class="btn btn-p" id="btnConfirm">Confirmar horario <span class="arr">→</span></button>
+          <a class="btn btn-ol" id="btnGcal" target="_blank" rel="noopener">Agregar a Google Calendar</a>
+        </div>
+        <div class="st" id="schedStatus"></div>
+
+        <div class="more-ctx">
+          <div class="k">¿Algo más que debamos saber?</div>
+          <div class="wz-field" style="margin-bottom:12px"><textarea id="f_more" placeholder="Documentos que nos vas a compartir, personas que deberían estar en la llamada, datos que ya tienes..." style="min-height:100px"></textarea></div>
+          <button class="btn btn-ol" id="btnMore">Enviar contexto adicional</button>
+          <div class="st" id="moreStatus"></div>
+        </div>
+      </div>
+      <div style="margin-top:28px;font-size:13.5px;color:rgba(255,255,255,.35)">También puedes escribirnos directo a <a href="mailto:gildco@gildcocom.com" style="color:#fff;border-bottom:1px solid rgba(255,255,255,.3)">gildco@gildcocom.com</a></div>
+    </div>
+
+    <div class="wz-nav" id="wzNav">
+      <button class="back" id="wzBack">← Atrás</button>
+      <span class="cnt" id="wzCnt"></span>
+      <button class="btn btn-p" id="wzNext">Continuar <span class="arr">→</span></button>
+    </div>
+  </div>
+</div>
+
 <script>
-  document.getElementById('yr').textContent = new Date().getFullYear();
+/* ═══════════════════ DATA ═══════════════════ */
+const GILD_EMAIL = 'gildco@gildcocom.com';
+const FORM_ENDPOINT = 'https://formsubmit.co/ajax/' + GILD_EMAIL;
 
-  document.getElementById('contact-form').addEventListener('submit', function(e) {
-    e.preventDefault();
-    var nombre = document.getElementById('nombre').value;
-    document.getElementById('form-wrapper').innerHTML =
-      '<div class="form-thanks">' +
-        '<strong>Gracias, ' + nombre + '.</strong>' +
-        '<p>Recibimos tu información. Te contactamos pronto para coordinar la llamada de diagnóstico.</p>' +
-      '</div>';
-  });
+const EQ = [
+  'Capital humano: empezamos por entender cómo trabaja tu gente — clima, cargas, liderazgo, fricciones. Sin esto, cualquier decisión es una apuesta.',
+  'Estrategia: con la evidencia en la mano, diseñamos la intervención en gestión humana y proceso. Es lo que convierte un diagnóstico en una decisión.',
+  'Tecnología: llega de última, solo cuando la evidencia justifica el retorno. Con estrategia de adopción y línea base para medir.',
+];
+const EQ_FULL = 'Los tres conectados, en ese orden. Eso es mayor producción sin contratar más y sin reemplazar a nadie.';
 
-  // Nav style on scroll
-  var nav = document.querySelector('nav');
-  window.addEventListener('scroll', function() {
-    if (window.scrollY > 60) {
-      nav.style.background = 'rgba(17,16,9,0.95)';
-    } else {
-      nav.style.background = 'rgba(28,26,23,0.85)';
-    }
-  });
+const DIAG_MSG = [
+  'Marca las situaciones que reconoces en tu empresa.',
+  '<b>Una señal.</b> Puede ser aislada — o la punta de algo conectado. Vale la pena mirar.',
+  '<b>Dos señales.</b> Cuando aparecen juntas, casi nunca son independientes. Hay capacidad atrapada.',
+  '<b>Tres señales.</b> Este es el patrón típico: el problema no es tu gente, es que nadie ha cruzado lo que viven con lo que muestran los números.',
+  '<b>Cuatro señales.</b> Estás cargando con algo que sientes pero no puedes evidenciar. Ese es exactamente el punto donde entramos.',
+  '<b>Cinco de cinco.</b> No estás solo — es el perfil exacto de las empresas con las que trabajamos. Es el momento correcto, no el equivocado.',
+];
+
+const CAPS = [
+  ['Entiende a las personas', 'Clima, cargas, liderazgo, fricciones'],
+  ['Cruza con datos operativos', 'Horas, errores, rotación, KPIs reales'],
+  ['Identifica la causa raíz', 'Humana, de proceso o de herramienta'],
+  ['Implementa la intervención', 'No solo recomienda'],
+  ['Acompaña la adopción', 'Hasta que el equipo realmente lo usa'],
+  ['Mide el retorno', 'Línea base antes, resultado después'],
+];
+const CMP = [
+  { t:'Gestión humana y RR.HH.', s:'Entiende a las personas y mide el clima. Pero rara vez conecta esa información con la operación, los procesos o el retorno económico. El diagnóstico termina en un reporte de satisfacción, no en una decisión.', c:[1,0,0,0,0,0], v:'Un reporte, no una decisión.' },
+  { t:'Consultoría tradicional', s:'Diagnostica con rigor y entrega recomendaciones bien fundamentadas. Pero no implementa, no acompaña la adopción y no mide si funcionó. El cliente recibe un documento y queda solo frente a la ejecución.', c:[1,1,1,0,0,0], v:'Un documento, y quedas solo.' },
+  { t:'IA y automatización', s:'Implementa tecnología con rapidez y casos de éxito reales. Pero llega con la solución antes que el diagnóstico. No entiende el clima, no conoce las causas raíz y no puede garantizar que la herramienta ataque el problema correcto.', c:[0,0,0,1,1,0], v:'La solución antes que el diagnóstico.' },
+  { t:'GILDCO', s:'Cruza evidencia humana con datos operativos, identifica la causa raíz, interviene en los tres niveles — estrategia, proceso y herramienta — acompaña la adopción y demuestra que funcionó con tus propios números.', c:[1,1,1,1,1,1], v:'Las tres cosas. Conectadas. En ese orden.' },
+];
+
+const FLOW = [
+  { n:'01', tag:'Human Intelligence', t:'Radiografía del talento', p:'Clima, cargas, tiempos, liderazgo, fricciones y experiencia del equipo. Entendemos cómo trabaja tu gente antes de tocar nada — con entrevistas multinivel y evidencia, no con una encuesta de satisfacción.', dur:'2 – 3 semanas', ops:'No interrumpe la operación', out:['Mapa de clima por área y nivel','Cargas y tiempos reales del equipo','Fricciones y puntos de dolor priorizados','Evidencia humana lista para cruzar'] },
+  { n:'02', tag:'Efficiency Map', t:'Cruzamos evidencia con datos', p:'Tomamos lo que tu gente vive y lo cruzamos con tus datos operativos: metas, tiempos, errores, retrabajos, rotación. Ahí aparecen los patrones. Identificamos dónde se pierde capacidad — en horas y en dinero.', dur:'1 – 2 semanas', ops:'Con los datos que ya tienes', out:['Organizational Health Score','Fichas de cuello de botella priorizadas','Capacidad atrapada cuantificada en horas y $','Origen de cada cuello: humano, proceso o herramienta'] },
+  { n:'03', tag:'Augmentation Plan', t:'Diseñamos la intervención', p:'Estrategia de gestión humana, rediseño de proceso y herramienta — como un paquete coherente, no como módulos sueltos. Con KPIs, línea base y retorno proyectado antes de implementar. Ninguna decisión se toma a ciegas.', dur:'1 – 2 semanas', ops:'Decisión con evidencia', out:['Plan de intervención integrado','KPIs y línea base definidos','Retorno proyectado por intervención','Herramienta justificada (si aplica) y estrategia de adopción'] },
+  { n:'04', tag:'Implementation', t:'Implementamos y acompañamos', p:'La herramienta llega con estrategia de entrada, no sola. Lideramos la implementación, diseñamos cómo entra a la rutina del equipo y estamos en el terreno hasta que el cambio es real. Implementar no es instalar.', dur:'Según alcance', ops:'Acompañamiento en terreno', out:['Intervención implementada en gestión humana y proceso','Herramienta operando con adopción real','Equipo entrenado en la nueva rutina','Seguimiento semanal de adopción'] },
+  { n:'05', tag:'Continuous Intelligence', t:'Medimos el retorno real', p:'Antes y después, con los datos de tu operación. Calculamos el retorno real, detectamos nuevas fricciones y el ciclo continúa. Una plataforma que vive dentro de tu empresa, se alimenta sola y mide constantemente.', dur:'Continuo', ops:'Renuevas por resultados', out:['Retorno real calculado con tus números','Valor recuperado acumulado','Nuevas fricciones detectadas a tiempo','Nuevo ciclo de intervención cuando aplica'] },
+];
+
+const FICHAS = [
+  { s:'Logística / transporte', sub:'80 – 150 personas', t:'Despacho y coordinación de rutas', pri:'Prioridad alta', h:['<b>Coordinadores</b> reportan sobrecarga en horas pico y decisiones sin información','Fricción constante entre <b>despacho y bodega</b>: cada área culpa a la otra','Rotación de <b>auxiliares</b> atribuida a "actitud" — nadie ha preguntado por qué'], o:['<b>18%</b> de despachos con retrabajo por información incompleta','Tiempo de coordinación por ruta <b>2.3×</b> el estándar','Ausentismo en despacho <b>+31%</b> vs. resto de la operación'], cause:'El cuello no es la gente de despacho: es un proceso de confirmación manual que obliga a re-preguntar tres veces lo mismo. El clima se deteriora como consecuencia, no como causa.', ctag:'Origen: proceso (60%) + herramienta (40%)', inter:['Rediseño del flujo de confirmación con un solo punto de verdad','Agente de IA para confirmaciones por WhatsApp con el cliente','Rutina semanal de coordinación despacho–bodega con métricas compartidas'], bars:[['Horas productivas / semana', 34, 46, 20],['Retrabajo en despachos', 55, 30, 15],['Carga de coordinadores', 40, 35, 25]], roi:[['312 h','recuperables / mes','g'],['$ ~38M','capacidad atrapada / año','r'],['4.1×','retorno proyectado 12 meses','g']] },
+  { s:'Call center / BPO', sub:'100 – 200 personas', t:'Atención y gestión de casos', pri:'Prioridad alta', h:['<b>Agentes</b> reportan que el 40% del tiempo se va en buscar información en 4 sistemas','<b>Supervisores</b> saturados: coaching reemplazado por control de métricas','Clima bajo en turnos nocturnos, alta rotación en los primeros 90 días'], o:['AHT <b>+27%</b> sobre el objetivo en casos de segundo contacto','Rotación a 90 días: <b>38%</b>','<b>22%</b> de casos reabiertos por información inconsistente'], cause:'La rotación no es un problema de selección ni de "actitud": es la combinación de una herramienta fragmentada y un modelo de supervisión que no deja espacio para acompañar. El agente se va porque no puede hacer bien su trabajo.', ctag:'Origen: herramienta (50%) + humano (50%)', inter:['Colaborador de IA interno que consolida la información del caso en una sola vista','Rediseño del rol de supervisor: de control a coaching, con tiempo protegido','Programa de onboarding de 90 días con indicadores de fricción temprana'], bars:[['Tiempo útil por agente', 38, 42, 20],['Rotación a 90 días', 50, 28, 22],['Casos reabiertos', 45, 35, 20]], roi:[['1.240 h','recuperables / mes','g'],['$ ~95M','capacidad atrapada / año','r'],['3.6×','retorno proyectado 12 meses','g']] },
+  { s:'Industrial / manufactura', sub:'50 – 120 personas', t:'Planeación y área administrativa', pri:'Prioridad media-alta', h:['<b>Planeación</b> trabaja con información de producción que llega con 2 días de retraso','Tensión entre <b>administración y planta</b>: reportes duplicados, versiones distintas','Líderes de área en reuniones <b>14 h/semana</b> — la mayoría para conciliar datos'], o:['<b>11%</b> de órdenes reprogramadas por información desactualizada','Cierre administrativo mensual: <b>9 días</b>','Horas extra administrativas <b>+40%</b> en cierre'], cause:'La capacidad atrapada está en la conciliación manual entre planta y administración. No falta gente: falta un flujo único de datos y un acuerdo claro de quién es dueño de cada número.', ctag:'Origen: proceso (55%) + herramienta (30%) + humano (15%)', inter:['Proceso único de captura de producción con responsables definidos','Automatización de la consolidación de reportes','Reunión de planeación rediseñada: 1 fuente, 45 minutos, decisiones'], bars:[['Horas en conciliación', 48, 32, 20],['Órdenes reprogramadas', 40, 40, 20],['Carga de líderes en reuniones', 52, 28, 20]], roi:[['420 h','recuperables / mes','g'],['$ ~52M','capacidad atrapada / año','r'],['3.9×','retorno proyectado 12 meses','g']] },
+  { s:'Servicios', sub:'50 – 100 personas', t:'Operación comercial y entrega', pri:'Prioridad media', h:['<b>Equipo comercial</b> siente que "entrega" no cumple lo prometido; entrega siente que ventas promete lo imposible','Seguimiento a clientes hecho a mano, en el celular de cada ejecutivo','<b>Gerencia</b> sin visibilidad real del pipeline hasta fin de mes'], o:['<b>29%</b> de propuestas sin seguimiento después del segundo contacto','Tiempo de respuesta a cliente: <b>3.4 días</b> promedio','<b>17%</b> de proyectos con alcance renegociado tras la venta'], cause:'No es un problema de ventas ni de entrega: es la ausencia de un traspaso formal entre las dos. La fricción entre áreas es el síntoma; el proceso inexistente es la causa.', ctag:'Origen: proceso (65%) + herramienta (35%)', inter:['Rito de traspaso venta → entrega con checklist y responsables','Agente de IA para seguimiento comercial multicanal','Tablero único de pipeline y entrega para gerencia'], bars:[['Propuestas con seguimiento', 42, 38, 20],['Tiempo de respuesta', 50, 30, 20],['Alcance renegociado', 38, 42, 20]], roi:[['180 h','recuperables / mes','g'],['$ ~29M','capacidad atrapada / año','r'],['3.2×','retorno proyectado 12 meses','g']] },
+];
+
+const FAQ = [
+  ['"Esto suena a consultoría cara que no llega a nada."', 'GILDCO <b>implementa y mide</b>. No entregamos recomendaciones — entregamos resultados con línea base definida antes y retorno calculado después, con los números de tu operación. Si no se puede medir, no lo proponemos.'],
+  ['"Ya compramos tecnología antes y no funcionó."', 'Por eso no llegamos con una herramienta. Llegamos con un <b>diagnóstico que justifica la herramienta</b> — o que demuestra que no hace falta — y con una estrategia de implementación que garantiza la adopción. Implementar no es instalar.'],
+  ['"No tengo tiempo para un proceso largo."', 'El proceso <b>no interrumpe la operación: se alimenta de ella</b>. Las primeras dos etapas — radiografía y mapa de eficiencia — se hacen con entrevistas cortas y los datos que ya tienes. En semanas, no en meses, sabes dónde está la capacidad atrapada y cuánto vale.'],
+  ['"No sé si mi empresa está lista para esto."', 'GILDCO entra precisamente <b>cuando la casa está desordenada</b>. Ese es el momento correcto, no cuando ya está resuelto. Si sientes el problema pero no puedes evidenciarlo, ese es exactamente el punto donde trabajamos.'],
+  ['"¿Cómo sé que el retorno va a ser real?"', 'Por la <b>línea base</b>. Definimos los KPIs antes de intervenir y medimos después, con tus datos. El retorno no es una promesa en una presentación — es un cálculo con números reales de tu empresa que puedes verificar.'],
+  ['"No conozco GILDCO, no sé si son confiables."', 'Lo entendemos. Por eso mostramos el proceso completo, la ficha que recibes y cómo se calcula cada número. Estamos en <b>pilotos en curso</b> con empresas operativas en Colombia, y las herramientas que implementamos están respaldadas por aliados con trayectoria comprobada en sus categorías.'],
+  ['"Cualquier IA ya hace eso."', 'Tres cosas que ninguna IA genérica hace: <b>entender el clima</b> de tu empresa específica antes de recomendar nada; <b>acompañar</b> diagnóstico, selección, adopción, implementación y medición; y conectar tu problema con la <b>solución correcta</b> de una red de aliados — sin que busques entre cientos de opciones.'],
+];
+
+/* ═══════════════════ HELPERS ═══════════════════ */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const state = JSON.parse(localStorage.getItem('gildco_diag') || '{}');
+const save = () => localStorage.setItem('gildco_diag', JSON.stringify(state));
+$('#yr').textContent = new Date().getFullYear();
+
+/* ═══════════════════ NAV / MEGA / SCROLL ═══════════════════ */
+const nav = $('#nav'), mega = $('#mega'), menuBtn = $('#menuBtn'), burger = $('#burger');
+function setMega(open){ mega.classList.toggle('open', open); menuBtn.classList.toggle('open', open); burger.classList.toggle('open', open); menuBtn.setAttribute('aria-expanded', open); mega.setAttribute('aria-hidden', !open); }
+menuBtn.addEventListener('click', e => { e.stopPropagation(); setMega(!mega.classList.contains('open')); });
+burger.addEventListener('click', e => { e.stopPropagation(); setMega(!mega.classList.contains('open')); });
+document.addEventListener('click', e => { if (!mega.contains(e.target)) setMega(false); });
+mega.addEventListener('click', e => { if (e.target.closest('a')) setMega(false); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') { setMega(false); if (wiz.classList.contains('show')) closeWiz(); } });
+window.addEventListener('scroll', () => { nav.classList.toggle('solid', window.scrollY > 40); }, { passive:true });
+
+// active nav link
+const secObs = new IntersectionObserver(entries => {
+  entries.forEach(en => { if (en.isIntersecting) { $$('.nav-links a').forEach(a => a.classList.toggle('act', a.dataset.nav === en.target.id)); } });
+}, { rootMargin:'-40% 0px -55% 0px' });
+$$('section[id]').forEach(s => secObs.observe(s));
+
+// reveal
+const rvObs = new IntersectionObserver(entries => { entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add('in'); rvObs.unobserve(en.target); } }); }, { threshold:.12 });
+$$('.rv').forEach(el => rvObs.observe(el));
+
+// count-up + bars in hero
+const heroObs = new IntersectionObserver(entries => { entries.forEach(en => { if (!en.isIntersecting) return;
+  $$('[data-count]').forEach(el => { const to = +el.dataset.count; let t0; const step = ts => { if (!t0) t0 = ts; const p = Math.min(1, (ts - t0) / 1400); el.textContent = Math.round(to * (1 - Math.pow(1 - p, 3))); if (p < 1) requestAnimationFrame(step); }; requestAnimationFrame(step); });
+  $$('.hs-bar i').forEach(i => { setTimeout(() => i.style.width = i.dataset.w + '%', 300); });
+  heroObs.disconnect(); }); }, { threshold:.3 });
+heroObs.observe($('.hero-side'));
+
+// ticker duplicate
+$('#ticker').innerHTML += $('#ticker').innerHTML;
+
+/* ═══════════════════ HERO CANVAS — red de capacidad ═══════════════════ */
+(function(){
+  const cv = $('#heroCanvas'), ctx = cv.getContext('2d');
+  let W, H, nodes = [], mouse = { x:-9999, y:-9999 }, t = 0;
+  const N = 70, LINK = 150;
+  function resize(){ W = cv.width = cv.offsetWidth * devicePixelRatio; H = cv.height = cv.offsetHeight * devicePixelRatio; ctx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0); }
+  function init(){ nodes = []; const w = cv.offsetWidth, h = cv.offsetHeight; for (let i=0;i<N;i++) nodes.push({ x:Math.random()*w, y:Math.random()*h, vx:(Math.random()-.5)*.25, vy:(Math.random()-.5)*.25, r:1.5+Math.random()*2, f: Math.random() < .22 ? 1 : 0, ph: Math.random()*6.28, heal: 0 }); }
+  function draw(){ t += .012; const w = cv.offsetWidth, h = cv.offsetHeight; ctx.clearRect(0,0,w,h);
+    for (const n of nodes){ n.x += n.vx; n.y += n.vy; if (n.x<0||n.x>w) n.vx*=-1; if (n.y<0||n.y>h) n.vy*=-1;
+      const dx = mouse.x - n.x, dy = mouse.y - n.y, d = Math.hypot(dx,dy); if (d < 160){ n.x -= dx/d*.6; n.y -= dy/d*.6; if (n.f) n.heal = Math.min(1, n.heal + .02); } else if (n.heal>0) n.heal = Math.max(0, n.heal - .004); }
+    for (let i=0;i<N;i++) for (let j=i+1;j<N;j++){ const a=nodes[i], b=nodes[j], d=Math.hypot(a.x-b.x,a.y-b.y); if (d<LINK){ const al = (1-d/LINK)*.35; const fr = (a.f && !a.heal) || (b.f && !b.heal); ctx.strokeStyle = fr ? `rgba(168,69,43,${al*.9})` : `rgba(91,79,209,${al})`; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(a.x,a.y); ctx.lineTo(b.x,b.y); ctx.stroke(); } }
+    for (const n of nodes){ const pulse = n.f ? (1 + Math.sin(t*3 + n.ph)*.5) : 1; const healed = n.heal; const col = n.f ? (healed>0 ? `rgba(${Math.round(168+(91-168)*healed)},${Math.round(69+(79-69)*healed)},${Math.round(43+(209-43)*healed)},1)` : 'rgba(168,69,43,1)') : 'rgba(143,134,232,.9)'; ctx.fillStyle = col; ctx.beginPath(); ctx.arc(n.x,n.y,n.r*pulse,0,6.28); ctx.fill(); if (n.f && healed<1){ ctx.strokeStyle = `rgba(168,69,43,${.25*(1-healed)})`; ctx.beginPath(); ctx.arc(n.x,n.y,n.r*pulse+6+Math.sin(t*3+n.ph)*3,0,6.28); ctx.stroke(); } }
+    requestAnimationFrame(draw); }
+  resize(); init(); draw();
+  window.addEventListener('resize', () => { resize(); init(); });
+  $('.hero').addEventListener('mousemove', e => { const r = cv.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; });
+  $('.hero').addEventListener('mouseleave', () => { mouse.x = -9999; mouse.y = -9999; });
+})();
+
+/* ═══════════════════ ECUACIÓN ═══════════════════ */
+(function(){
+  const on = [0,0,0], ts = $$('.eq-t'), val = $('#eqVal'), meter = $('#eqMeter'), desc = $('#eqDesc');
+  ts.forEach(b => b.addEventListener('click', () => { const i = +b.dataset.eq; on[i] = on[i]?0:1; b.classList.toggle('on', !!on[i]); const n = on.reduce((a,c)=>a+c,0); meter.style.width = (n/3*100)+'%'; val.classList.toggle('full', n===3); desc.style.opacity = 0; setTimeout(() => { desc.innerHTML = n===3 ? '<b style="color:#fff;font-weight:500">'+EQ_FULL+'</b>' : (on[i] ? EQ[i] : 'Sin '+['capital humano','estrategia','tecnología'][i]+' la ecuación queda incompleta. Ninguno de los tres funciona solo.'); desc.style.opacity = 1; }, 180); }));
+  // auto-demo once visible
+  const o = new IntersectionObserver(en => { if (en[0].isIntersecting){ o.disconnect(); [0,1,2].forEach((i,k) => setTimeout(() => { if (!on[i]) ts[i].click(); }, 900 + k*700)); } }, { threshold:.5 });
+  o.observe($('#eq'));
+})();
+
+/* ═══════════════════ DIAGNÓSTICO RÁPIDO ═══════════════════ */
+(function(){
+  const qs = $$('.q'), arc = $('#gaugeArc'), num = $('#gaugeN'), msg = $('#diagMsg');
+  state.sintomas = state.sintomas || [];
+  function paint(){ const n = qs.filter(q => q.classList.contains('on')).length; arc.style.strokeDashoffset = 283 - 283*(n/5); num.textContent = n; msg.style.opacity = 0; setTimeout(() => { msg.innerHTML = DIAG_MSG[n]; msg.style.opacity = 1; }, 150); }
+  qs.forEach(q => { if (state.sintomas.includes(q.dataset.sym)) q.classList.add('on'); q.addEventListener('click', () => { q.classList.toggle('on'); const s = q.dataset.sym; if (q.classList.contains('on')) { if (!state.sintomas.includes(s)) state.sintomas.push(s); } else state.sintomas = state.sintomas.filter(x => x!==s); save(); paint(); syncSymChips(); }); });
+  paint();
+})();
+
+/* ═══════════════════ COMPARADOR ═══════════════════ */
+(function(){
+  const body = $('#cmpBody'), tabs = $$('.cmp-tab');
+  function render(i){ const c = CMP[i]; const sc = c.c.reduce((a,b)=>a+b,0); body.innerHTML = `<h3>${c.t}</h3><p class="sum">${c.s}</p><div class="cap">${CAPS.map((cap,k)=>`<div class="cap-row ${c.c[k]?'y':'n'}"><div class="ic">${c.c[k]?'✓':'✕'}</div><div class="l">${cap[0]}<small>${cap[1]}</small></div></div>`).join('')}</div><div class="cmp-verdict"><span>${c.v}</span><span class="sc">${sc}<small> / 6 capacidades</small></span></div>`; tabs.forEach((t,k) => t.classList.toggle('on', k===i)); }
+  tabs.forEach((t,i) => t.addEventListener('click', () => render(i)));
+  render(0);
+  let idx = 0, auto = setInterval(() => { idx = (idx+1)%4; render(idx); if (idx===3) clearInterval(auto); }, 2600);
+  $('.cmp').addEventListener('mouseenter', () => clearInterval(auto), { once:true });
+  tabs.forEach(t => t.addEventListener('click', () => clearInterval(auto)));
+})();
+
+/* ═══════════════════ FLUJO 5 ETAPAS ═══════════════════ */
+(function(){
+  const steps = $('#flowSteps'), panel = $('#flowPanel'), autoEl = $('#flowAuto');
+  let cur = 0, timer = null, paused = false;
+  steps.innerHTML = FLOW.map((f,i) => `<button class="fstep" data-i="${i}"><div class="n"><span>${f.n}</span><i></i></div><div class="t">${f.tag}</div><div class="sub">${f.t}</div><div class="prog"></div></button>`).join('');
+  const btns = $$('.fstep');
+  function render(i){ cur = i; const f = FLOW[i]; btns.forEach((b,k) => { b.classList.toggle('on', k===i); b.classList.toggle('done', k<i); const p = b.querySelector('.prog'); p.style.transition='none'; p.style.width = k<i ? '100%' : '0'; });
+    panel.innerHTML = `<div class="fp-l"><div class="k">Etapa ${f.n} · ${f.tag}</div><h3>${f.t}</h3><p>${f.p}</p><div class="meta"><div><b>${f.dur}</b>Duración</div><div><b>${f.ops}</b>Operación</div></div></div><div class="fp-r"><div class="k">Qué recibes</div><ul>${f.out.map(o=>`<li><i>✓</i><span>${o}</span></li>`).join('')}</ul></div>`;
+    if (!paused){ const p = btns[i].querySelector('.prog'); requestAnimationFrame(() => { p.style.transition = 'width 6s linear'; p.style.width = '100%'; }); } }
+  function start(){ stop(); timer = setInterval(() => render((cur+1)%FLOW.length), 6000); autoEl.classList.remove('paused'); autoEl.querySelector('span').textContent = 'Reproduciendo · pasa el mouse para pausar'; paused = false; }
+  function stop(){ clearInterval(timer); timer = null; }
+  function pause(){ stop(); paused = true; autoEl.classList.add('paused'); autoEl.querySelector('span').textContent = 'En pausa · usa las flechas'; btns.forEach(b => { const p = b.querySelector('.prog'); p.style.transition='none'; }); }
+  btns.forEach(b => b.addEventListener('click', () => { pause(); render(+b.dataset.i); }));
+  $('#flowPrev').addEventListener('click', () => { pause(); render((cur-1+FLOW.length)%FLOW.length); });
+  $('#flowNext').addEventListener('click', () => { pause(); render((cur+1)%FLOW.length); });
+  const wrap = $('#metodo .flow'); wrap.addEventListener('mouseenter', () => { if (timer) pause(); }); panel.addEventListener('mouseenter', () => { if (timer) pause(); });
+  render(0);
+  const o = new IntersectionObserver(en => { if (en[0].isIntersecting){ o.disconnect(); if (!paused) start(); } }, { threshold:.3 }); o.observe(steps);
+})();
+
+/* ═══════════════════ FICHA ═══════════════════ */
+(function(){
+  const picks = $('#sectorPicks'), card = $('#fichaCard');
+  picks.innerHTML = FICHAS.map((f,i) => `<button class="sp ${i===0?'on':''}" data-i="${i}"><span>${f.s}</span><small>${f.sub}</small></button>`).join('');
+  function render(i){ const f = FICHAS[i]; $$('.sp').forEach((b,k) => b.classList.toggle('on', k===i));
+    card.style.opacity = 0; setTimeout(() => { card.innerHTML = `
+      <div class="f-head"><div><div class="k">Ficha de cuello de botella · ${f.s}</div><div class="t">${f.t}</div></div><span class="pri">${f.pri}</span></div>
+      <div class="f-grid">
+        <div class="f-cell"><div class="k"><i class="h"></i>Evidencia humana</div><ul>${f.h.map(x=>`<li><span>${x}</span></li>`).join('')}</ul></div>
+        <div class="f-cell"><div class="k"><i class="o"></i>Evidencia operacional</div><ul>${f.o.map(x=>`<li><span>${x}</span></li>`).join('')}</ul></div>
+        <div class="f-cell f-full f-cause"><div class="k">Causa raíz</div><p>${f.cause}</p><span class="tagline">${f.ctag}</span></div>
+        <div class="f-cell"><div class="k">Intervención integrada</div><ul>${f.inter.map(x=>`<li><span>${x}</span></li>`).join('')}</ul></div>
+        <div class="f-cell"><div class="k">Capacidad atrapada</div><div class="f-bars">${f.bars.map(b=>`<div class="f-bar"><div class="lbl"><span>${b[0]}</span><b>${b[2]}% recuperable</b></div><div class="tr"><i class="cur" data-w="${b[1]}"></i><i class="rec" data-w="${b[2]}"></i><i class="loss" data-w="${b[3]}"></i></div></div>`).join('')}</div><div class="f-legend"><span><i style="background:var(--grafito-3)"></i>Actual</span><span><i style="background:var(--verde)"></i>Recuperable</span><span><i style="background:var(--terracota)"></i>Pérdida</span></div></div>
+        <div class="f-cell f-full"><div class="k">Retorno proyectado</div><div class="f-roi">${f.roi.map(r=>`<div><div class="v ${r[2]}">${r[0]}</div><div class="l">${r[1]}</div></div>`).join('')}</div></div>
+      </div>
+      <div class="f-foot"><span><em>Caso ilustrativo.</em> Los números reales salen de tu operación — nunca de un promedio de industria.</span><a href="#diagnostico" data-open-wiz style="color:var(--morado);font-weight:500;white-space:nowrap">Ver la mía →</a></div>`;
+      card.style.opacity = 1; setTimeout(() => $$('.f-bar .tr i', card).forEach(el => el.style.width = el.dataset.w + '%'), 60); bindWizOpeners(); }, 160); }
+  picks.addEventListener('click', e => { const b = e.target.closest('.sp'); if (b) render(+b.dataset.i); });
+  card.style.transition = 'opacity .2s';
+  render(0);
+})();
+
+/* ═══════════════════ GARANTÍAS + FAQ ═══════════════════ */
+$$('[data-gar]').forEach(c => c.addEventListener('click', () => c.classList.toggle('open')));
+(function(){ const el = $('#faq'); el.innerHTML = FAQ.map((f,i) => `<div class="faq-i"><button class="faq-q"><span class="n">0${i+1}</span><span>${f[0]}</span><span class="pl">+</span></button><div class="faq-a"><div class="in">${f[1]}</div></div></div>`).join('');
+  $$('.faq-i').forEach(it => it.querySelector('.faq-q').addEventListener('click', () => { const open = it.classList.contains('open'); $$('.faq-i').forEach(o => { o.classList.remove('open'); o.querySelector('.faq-a').style.maxHeight = 0; }); if (!open){ it.classList.add('open'); const a = it.querySelector('.faq-a'); a.style.maxHeight = a.scrollHeight + 'px'; } })); })();
+
+/* ═══════════════════ WIZARD ═══════════════════ */
+const wiz = $('#wiz'), STEPS = 6; let step = 0;
+function openWiz(e){ if (e) e.preventDefault(); wiz.classList.add('show'); document.body.classList.add('wiz-open'); setMega(false); history.replaceState(null,'','#diagnostico'); go(state.done ? 5 : (state.step || 0)); wiz.scrollTop = 0; }
+function closeWiz(){ wiz.classList.remove('show'); document.body.classList.remove('wiz-open'); history.replaceState(null,'',' '); }
+function bindWizOpeners(){ $$('[data-open-wiz]').forEach(a => { if (!a._w){ a._w = 1; a.addEventListener('click', openWiz); } }); }
+bindWizOpeners();
+$$('[data-close-wiz]').forEach(b => b.addEventListener('click', e => { e.preventDefault(); closeWiz(); }));
+if (location.hash === '#diagnostico') openWiz();
+
+// chips
+$$('#wiz .chips').forEach(g => g.addEventListener('click', e => { const c = e.target.closest('.chip'); if (!c) return; if (g.hasAttribute('data-single')) $$('.chip', g).forEach(x => x.classList.toggle('on', x===c)); else c.classList.toggle('on'); collect(); }));
+function chipVals(id){ return $$('#'+id+' .chip.on').map(c => c.dataset.sym || c.textContent.trim()); }
+function syncSymChips(){ $$('#f_sintomas .chip').forEach(c => c.classList.toggle('on', (state.sintomas||[]).includes(c.dataset.sym))); }
+function collect(){
+  state.empresa = $('#f_empresa').value.trim(); state.sector = chipVals('f_sector')[0] || ''; state.tamano = chipVals('f_tamano')[0] || '';
+  state.sintomas = $$('#f_sintomas .chip.on').map(c => c.dataset.sym);
+  state.intentos = chipVals('f_intentos'); state.intentos_ctx = $('#f_intentos_ctx').value.trim();
+  state.reto = $('#f_reto').value.trim(); state.urgencia = chipVals('f_urgencia')[0] || '';
+  state.nombre = $('#f_nombre').value.trim(); state.cargo = $('#f_cargo').value.trim(); state.email = $('#f_email').value.trim(); state.tel = $('#f_tel').value.trim();
+  save(); $$('.q').forEach(q => q.classList.toggle('on', state.sintomas.includes(q.dataset.sym)));
+}
+// restore
+(function(){ ['empresa','intentos_ctx','reto','nombre','cargo','email','tel'].forEach(k => { if (state[k]) $('#f_'+k).value = state[k]; });
+  [['f_sector','sector'],['f_tamano','tamano'],['f_urgencia','urgencia']].forEach(([id,k]) => { if (state[k]) $$('#'+id+' .chip').forEach(c => c.classList.toggle('on', c.textContent.trim()===state[k])); });
+  if (state.intentos) $$('#f_intentos .chip').forEach(c => c.classList.toggle('on', state.intentos.includes(c.textContent.trim())));
+  syncSymChips(); })();
+$$('#wiz input, #wiz textarea').forEach(i => i.addEventListener('input', collect));
+
+function validate(s){ collect(); $$('.wz-err').forEach(e => e.classList.remove('show'));
+  if (s===0 && (!state.empresa || !state.sector)) { $('#err0').classList.add('show'); return false; }
+  if (s===1 && !state.sintomas.length) { $('#err1').classList.add('show'); return false; }
+  if (s===3 && state.reto.length < 10) { $('#err3').classList.add('show'); return false; }
+  if (s===4 && (!state.nombre || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(state.email))) { $('#err4').classList.add('show'); return false; }
+  return true; }
+function summary(){ const dd = (k,v) => v ? `<dt>${k}</dt><dd>${v}</dd>` : ''; $('#wzSummary').innerHTML = dd('Empresa', state.empresa) + dd('Sector', state.sector) + dd('Tamaño', state.tamano) + dd('Señales', (state.sintomas||[]).join(' · ')) + dd('Ya intentaron', (state.intentos||[]).join(', ')) + dd('Reto principal', state.reto) + dd('Urgencia', state.urgencia); }
+function go(s){ step = s; state.step = s; save(); $$('.wz-step').forEach(el => el.classList.toggle('on', +el.dataset.step===s)); $('#wzProg').style.width = (Math.min(s,5)/5*100)+'%'; $('#wzStepLbl').textContent = s>=5 ? 'Listo' : (s+1)+' / 5'; $('#wzCnt').textContent = s>=5 ? '' : 'Paso '+(s+1)+' de 5'; $('#wzNav').style.display = s>=5 ? 'none' : 'flex'; $('#wzBack').style.visibility = s===0 ? 'hidden' : 'visible'; $('#wzNext').innerHTML = s===4 ? 'Enviar y agendar <span class="arr">→</span>' : 'Continuar <span class="arr">→</span>'; if (s===4) summary(); if (s===5) initSched(); wiz.scrollTo({ top:0, behavior:'smooth' }); const first = $('.wz-step.on input, .wz-step.on textarea'); if (first && window.innerWidth > 700) setTimeout(() => first.focus(), 300); }
+$('#wzBack').addEventListener('click', () => go(Math.max(0, step-1)));
+$('#wzNext').addEventListener('click', () => { if (!validate(step)) return; if (step===4) submitAll(); else go(step+1); });
+$$('[data-goto]').forEach(a => a.addEventListener('click', e => { e.preventDefault(); go(+a.dataset.goto); }));
+wiz.addEventListener('keydown', e => { if (e.key==='Enter' && e.target.tagName==='INPUT') { e.preventDefault(); $('#wzNext').click(); } });
+
+function payload(extra){ return Object.assign({
+  _subject: `Diagnóstico GILDCO — ${state.empresa} (${state.nombre})`, _template:'table', _captcha:'false', _replyto: state.email,
+  Nombre: state.nombre, Cargo: state.cargo, Correo: state.email, WhatsApp: state.tel, Empresa: state.empresa, Sector: state.sector, 'Tamaño': state.tamano,
+  'Señales': (state.sintomas||[]).join(' | '), 'Ya intentaron': (state.intentos||[]).join(', '), 'Qué pasó': state.intentos_ctx, 'Reto principal': state.reto, Urgencia: state.urgencia,
+  'Fecha envío': new Date().toLocaleString('es-CO', { timeZone:'America/Bogota' }), Origen: location.href }, extra || {}); }
+async function send(data){ const r = await fetch(FORM_ENDPOINT, { method:'POST', headers:{ 'Content-Type':'application/json', 'Accept':'application/json' }, body: JSON.stringify(data) }); if (!r.ok) throw new Error('bad'); return r.json(); }
+function mailtoFallback(data, subject){ const body = Object.entries(data).filter(([k]) => !k.startsWith('_')).map(([k,v]) => `${k}: ${v||'—'}`).join('\n'); window.location.href = `mailto:${GILD_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`; }
+async function submitAll(){ const btn = $('#wzNext'); btn.innerHTML = '<span class="spin"></span> Enviando…'; btn.disabled = true; const data = payload();
+  try { await send(data); } catch(e) { $('#errSend').classList.add('show'); mailtoFallback(data, data._subject); }
+  btn.disabled = false; state.done = true; state.sentAt = Date.now(); save(); $('#doneName').textContent = state.nombre.split(' ')[0]; go(5); }
+
+/* ═══════════════════ AGENDAMIENTO ═══════════════════ */
+const HOURS = ['8:00','9:00','10:00','11:00','14:00','15:00','16:00'];
+let pickDay = null, pickHour = null, schedInit = false;
+function initSched(){ if (schedInit) return; schedInit = true; const days = []; let d = new Date(); d.setDate(d.getDate()+1); while (days.length < 8){ if (d.getDay()!==0 && d.getDay()!==6) days.push(new Date(d)); d.setDate(d.getDate()+1); }
+  const wd = new Intl.DateTimeFormat('es-CO', { weekday:'short' }), mo = new Intl.DateTimeFormat('es-CO', { month:'short' });
+  $('#slots').innerHTML = days.map((x,i) => `<button class="slot" data-d="${x.toISOString()}"><b>${x.getDate()}</b>${wd.format(x).replace('.','')} · ${mo.format(x).replace('.','')}</button>`).join('');
+  $('#hours').innerHTML = HOURS.map(h => `<button class="hour">${h}</button>`).join('');
+  $('#slots').addEventListener('click', e => { const b = e.target.closest('.slot'); if (!b) return; $$('.slot').forEach(x => x.classList.toggle('on', x===b)); pickDay = new Date(b.dataset.d); updGcal(); });
+  $('#hours').addEventListener('click', e => { const b = e.target.closest('.hour'); if (!b) return; $$('.hour').forEach(x => x.classList.toggle('on', x===b)); pickHour = b.textContent; updGcal(); });
+  $('#btnConfirm').addEventListener('click', confirmSlot); $('#btnMore').addEventListener('click', sendMore); updGcal(); }
+function slotLabel(){ if (!pickDay || !pickHour) return ''; return new Intl.DateTimeFormat('es-CO', { weekday:'long', day:'numeric', month:'long' }).format(pickDay) + ' a las ' + pickHour; }
+function updGcal(){ const a = $('#btnGcal'); if (!pickDay || !pickHour){ a.style.opacity = .4; a.style.pointerEvents = 'none'; a.removeAttribute('href'); return; } a.style.opacity = 1; a.style.pointerEvents = 'auto';
+  const [h,m] = pickHour.split(':').map(Number); const s = new Date(pickDay); s.setHours(h, m, 0, 0); const e = new Date(s.getTime() + 30*60000); const f = x => x.getFullYear() + String(x.getMonth()+1).padStart(2,'0') + String(x.getDate()).padStart(2,'0') + 'T' + String(x.getHours()).padStart(2,'0') + String(x.getMinutes()).padStart(2,'0') + '00';
+  const details = `Diagnóstico GILDCO — 30 min.\n\nEmpresa: ${state.empresa}\nSector: ${state.sector} · ${state.tamano}\nSeñales: ${(state.sintomas||[]).join(', ')}\nReto: ${state.reto}\n\nGILDCO confirma el enlace de reunión por correo.`;
+  a.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent('Diagnóstico GILDCO — ' + state.empresa)}&dates=${f(s)}/${f(e)}&ctz=America/Bogota&details=${encodeURIComponent(details)}&add=${encodeURIComponent(GILD_EMAIL)}`; }
+async function confirmSlot(){ const st = $('#schedStatus'); if (!pickDay || !pickHour){ st.className = 'st'; st.textContent = 'Elige un día y una hora.'; return; } const b = $('#btnConfirm'); b.innerHTML = '<span class="spin"></span> Confirmando…'; b.disabled = true;
+  const data = payload({ _subject: `Solicitud de reunión — ${state.empresa} (${state.nombre}) · ${slotLabel()}`, 'Horario solicitado': slotLabel() + ' (hora Bogotá)' });
+  try { await send(data); st.className = 'st ok'; st.textContent = '✓ Solicitud enviada para el ' + slotLabel() + '. Te confirmamos por correo con el enlace.'; } catch(e){ st.className = 'st'; st.textContent = 'No pudimos enviar automáticamente — abrimos tu correo con la solicitud lista.'; mailtoFallback(data, data._subject); }
+  b.innerHTML = 'Confirmar horario <span class="arr">→</span>'; b.disabled = false; }
+async function sendMore(){ const txt = $('#f_more').value.trim(), st = $('#moreStatus'); if (txt.length < 3){ st.className='st'; st.textContent = 'Escribe algo primero.'; return; } const b = $('#btnMore'); b.innerHTML = '<span class="spin"></span> Enviando…'; b.disabled = true;
+  const data = { _subject: `Contexto adicional — ${state.empresa} (${state.nombre})`, _template:'table', _captcha:'false', _replyto: state.email, Nombre: state.nombre, Empresa: state.empresa, Correo: state.email, 'Contexto adicional': txt, 'Fecha': new Date().toLocaleString('es-CO', { timeZone:'America/Bogota' }) };
+  try { await send(data); st.className='st ok'; st.textContent = '✓ Recibido. Lo sumamos a tu contexto.'; $('#f_more').value = ''; } catch(e){ st.className='st'; st.textContent = 'No pudimos enviar automáticamente — abrimos tu correo.'; mailtoFallback(data, data._subject); }
+  b.innerHTML = 'Enviar contexto adicional'; b.disabled = false; }
 </script>
-
 </body>
 </html>
