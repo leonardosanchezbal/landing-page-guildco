@@ -5,142 +5,177 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>GILDCO — Inteligencia organizacional</title>
 <meta name="description" content="Entendemos tu talento humano, identificamos qué lo está limitando e implementamos la solución correcta — estrategia, proceso y tecnología — con retorno demostrable.">
-
 <meta property="og:title" content="GILDCO — Inteligencia organizacional">
 <meta property="og:description" content="Tu organización ya tiene el motor. GILDCO lo hace producir más.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_CO">
-
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='18' fill='%231C1A17'/%3E%3Ctext x='50' y='72' font-family='sans-serif' font-size='64' font-weight='700' text-anchor='middle' fill='%235B4FD1'%3EG%3C/text%3E%3C/svg%3E">
-
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%231C1A17'/%3E%3Ctext x='50' y='73' font-family='sans-serif' font-size='68' font-weight='700' text-anchor='middle' fill='%235B4FD1'%3EG%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ── TOKENS ── */
+/* ─── TOKENS ─── */
 :root {
   --grafito:     #1C1A17;
+  --grafito-2:   #2A2723;
   --morado:      #5B4FD1;
+  --morado-dim:  #4840B0;
   --morado-soft: #EEEDFE;
   --crema:       #F7F6F3;
   --arena:       #EFEDE7;
   --blanco:      #FFFFFF;
-  --texto:       #1C1A17;
   --subtexto:    #5A5751;
-  --borde:       #E2DFD8;
+  --borde:       #E0DDD6;
+  --borde-dark:  rgba(255,255,255,0.1);
 
-  --font-display: 'Inter', sans-serif;
-  --font-sans:    'DM Sans', sans-serif;
+  --font: 'Inter', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
 
-  --shell: min(1120px, 100% - 48px);
-  --radius: 12px;
-  --radius-lg: 20px;
+  --w: min(1140px, 100% - 48px);
+  --r: 16px;
+  --r-lg: 24px;
 }
 
-/* ── RESET ── */
+/* ─── RESET ─── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body {
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   background: var(--crema);
-  color: var(--texto);
+  color: var(--grafito);
   -webkit-font-smoothing: antialiased;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 a { color: inherit; text-decoration: none; }
-img { max-width: 100%; display: block; }
 
-/* ── SHELL ── */
-.shell { width: var(--shell); margin-inline: auto; }
-
-/* ── NAV ── */
-.nav {
+/* ─── NAV ─── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 200;
+  padding: 0 calc((100% - min(1140px, 100% - 48px)) / 2);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 24px;
-  padding: 20px 0;
-  border-bottom: 1px solid var(--borde);
-  position: sticky;
-  top: 0;
-  background: var(--crema);
-  z-index: 100;
+  height: 64px;
+  background: rgba(28, 26, 23, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--borde-dark);
+}
+.nav-inner {
+  width: var(--w);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
 }
 .wordmark {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 18px;
-  letter-spacing: 0.06em;
-  color: var(--grafito);
+  font-family: var(--font);
+  font-weight: 800;
+  font-size: 17px;
+  letter-spacing: 0.08em;
+  color: var(--blanco);
 }
 .nav-links {
   display: flex;
-  gap: 32px;
+  gap: 36px;
 }
 .nav-links a {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
-  color: var(--subtexto);
-  transition: color 0.2s;
+  color: rgba(255,255,255,0.55);
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
 }
-.nav-links a:hover { color: var(--grafito); }
+.nav-links a:hover { color: var(--blanco); }
 .nav-cta {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
-  color: var(--morado);
-  border: 1.5px solid var(--morado);
-  padding: 8px 18px;
+  background: var(--morado);
+  color: var(--blanco);
+  padding: 9px 20px;
   border-radius: 100px;
-  transition: background 0.2s, color 0.2s;
+  transition: opacity 0.15s;
   white-space: nowrap;
 }
-.nav-cta:hover { background: var(--morado); color: var(--blanco); }
+.nav-cta:hover { opacity: 0.85; }
 
-/* ── HERO ── */
+/* ─── HERO ─── */
 .hero {
-  padding: 96px 0 80px;
-  text-align: center;
-  max-width: 780px;
-  margin-inline: auto;
+  min-height: 100vh;
+  background: var(--grafito);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: 64px;
+  position: relative;
+  overflow: hidden;
 }
-.hero-badge {
-  display: inline-block;
-  font-family: var(--font-display);
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 80% at 85% 50%, rgba(91,79,209,0.18) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 50% at 15% 80%, rgba(91,79,209,0.08) 0%, transparent 60%);
+}
+.hero-inner {
+  width: var(--w);
+  margin: 0 auto;
+  padding: 80px 0 80px;
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 80px;
+  align-items: end;
+}
+.hero-label {
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
   color: var(--morado);
-  background: var(--morado-soft);
-  padding: 6px 14px;
-  border-radius: 100px;
-  margin-bottom: 28px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 32px;
+}
+.hero-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--morado);
 }
 .hero h1 {
-  font-family: var(--font-display);
-  font-size: clamp(36px, 5.5vw, 60px);
-  font-weight: 700;
-  line-height: 1.12;
-  letter-spacing: -0.025em;
-  color: var(--grafito);
-  margin-bottom: 24px;
+  font-family: var(--font);
+  font-size: clamp(52px, 7.5vw, 92px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+  color: var(--blanco);
+  margin-bottom: 32px;
 }
 .hero h1 em {
   font-style: italic;
+  font-weight: 700;
   color: var(--morado);
 }
 .hero-sub {
-  font-size: clamp(17px, 2vw, 19px);
-  color: var(--subtexto);
-  line-height: 1.65;
-  max-width: 600px;
-  margin-inline: auto;
-  margin-bottom: 40px;
+  font-size: clamp(15px, 1.6vw, 18px);
+  color: rgba(255,255,255,0.55);
+  line-height: 1.7;
+  max-width: 520px;
+  margin-bottom: 44px;
 }
 .hero-ctas {
   display: flex;
-  gap: 14px;
-  justify-content: center;
+  align-items: center;
+  gap: 16px;
   flex-wrap: wrap;
 }
 .btn-primary {
@@ -150,388 +185,539 @@ img { max-width: 100%; display: block; }
   background: var(--morado);
   color: var(--blanco);
   font-weight: 600;
-  font-size: 15px;
-  padding: 14px 28px;
+  font-size: 14px;
+  padding: 14px 26px;
   border-radius: 100px;
-  transition: opacity 0.2s, transform 0.15s;
+  transition: opacity 0.15s, transform 0.15s;
+  letter-spacing: 0.01em;
 }
-.btn-primary:hover { opacity: 0.88; transform: translateY(-1px); }
-.btn-secondary {
-  display: inline-flex;
+.btn-primary:hover { opacity: 0.85; transform: translateY(-1px); }
+.btn-ghost {
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.5);
+  display: flex;
   align-items: center;
   gap: 6px;
-  color: var(--grafito);
-  font-weight: 500;
-  font-size: 15px;
-  padding: 14px 24px;
-  border-radius: 100px;
-  border: 1.5px solid var(--borde);
-  transition: border-color 0.2s, background 0.2s;
+  transition: color 0.15s;
 }
-.btn-secondary:hover { border-color: var(--grafito); background: var(--arena); }
+.btn-ghost:hover { color: var(--blanco); }
 
-/* ── SECTION SHARED ── */
-.section-label {
-  font-family: var(--font-display);
+/* hero right panel */
+.hero-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  border: 1px solid var(--borde-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: var(--borde-dark);
+  align-self: end;
+  margin-bottom: 4px;
+}
+.hero-stat {
+  background: rgba(255,255,255,0.04);
+  padding: 24px 28px;
+}
+.hero-stat + .hero-stat {
+  border-top: 1px solid var(--borde-dark);
+}
+.stat-num {
+  font-family: var(--font);
+  font-size: 36px;
+  font-weight: 800;
+  color: var(--blanco);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.stat-num span { color: var(--morado); }
+.stat-label {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.4;
+}
+
+/* ─── PROBLEMA ─── */
+.problema {
+  background: var(--crema);
+  padding: 120px 0;
+}
+.w { width: var(--w); margin: 0 auto; }
+
+.section-tag {
+  font-family: var(--font);
   font-size: 11px;
   font-weight: 600;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--morado);
-  margin-bottom: 24px;
-}
-.section-label.light { color: var(--morado-soft); }
-.section-head { max-width: 660px; margin-bottom: 52px; }
-.section-head.light h2,
-.section-head.light p { color: var(--blanco); }
-.section-head h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.8vw, 42px);
-  font-weight: 700;
-  line-height: 1.17;
-  letter-spacing: -0.02em;
-  color: var(--grafito);
-  margin-bottom: 16px;
-}
-.section-head h2 em {
-  font-style: italic;
-  color: var(--morado);
-}
-.section-head.light h2 em { color: var(--morado-soft); }
-.section-head p {
-  font-size: 17px;
-  color: var(--subtexto);
-  line-height: 1.65;
-}
-
-/* ── ARENA SECTION ── */
-.arena-section {
-  background: var(--arena);
-  padding: 88px 0;
-}
-
-/* ── LA PROMESA ── */
-.promesa-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-  align-items: start;
-}
-.promesa-grid h2 {
-  font-family: var(--font-display);
-  font-size: clamp(26px, 3.2vw, 38px);
-  font-weight: 700;
-  line-height: 1.2;
-  letter-spacing: -0.02em;
-}
-.promesa-grid h2 em {
-  font-style: italic;
-  color: var(--morado);
-}
-.promesa-copy p {
-  font-size: 16px;
-  color: var(--subtexto);
-  line-height: 1.7;
-  margin-bottom: 28px;
-}
-.equation {
   display: flex;
   align-items: center;
   gap: 10px;
-  flex-wrap: wrap;
-  background: var(--blanco);
-  border: 1px solid var(--borde);
-  border-radius: var(--radius);
-  padding: 18px 22px;
-  margin-bottom: 12px;
+  margin-bottom: 40px;
 }
-.equation span {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--grafito);
-  background: var(--crema);
-  border: 1px solid var(--borde);
-  padding: 4px 10px;
-  border-radius: 6px;
-}
-.equation b {
-  font-size: 16px;
-  color: var(--subtexto);
-  font-weight: 400;
-}
-.equation strong {
-  font-size: 18px;
-  color: var(--subtexto);
-  font-weight: 400;
-}
-.equation em {
-  font-style: italic;
-  font-weight: 600;
-  color: var(--morado);
-  font-size: 15px;
-}
-.equation-note {
-  font-size: 13px;
-  color: var(--subtexto);
+.section-tag::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--morado);
+  flex-shrink: 0;
 }
 
-/* ── EL PROBLEMA ── */
-.problema {
-  padding: 88px 0;
+.problema-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 72px;
+  align-items: start;
 }
+.problema-head h2 {
+  font-family: var(--font);
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--grafito);
+}
+.problema-head p {
+  font-size: 17px;
+  color: var(--subtexto);
+  line-height: 1.7;
+  padding-top: 8px;
+}
+
 .questions {
   display: flex;
   flex-direction: column;
-  gap: 2px;
-  margin-bottom: 48px;
 }
 .question-row {
-  display: flex;
+  display: grid;
+  grid-template-columns: 60px 1fr;
   align-items: baseline;
-  gap: 20px;
-  padding: 22px 0;
-  border-bottom: 1px solid var(--borde);
+  gap: 24px;
+  padding: 28px 0;
+  border-top: 1px solid var(--borde);
+  transition: background 0.15s;
 }
-.question-row:first-child { border-top: 1px solid var(--borde); }
+.question-row:last-child { border-bottom: 1px solid var(--borde); }
 .q-num {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 600;
+  font-family: var(--font);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
   color: var(--morado);
-  min-width: 28px;
-  flex-shrink: 0;
 }
 .question-row p {
-  font-size: 17px;
+  font-family: var(--font);
+  font-size: clamp(18px, 2.2vw, 24px);
+  font-weight: 600;
   color: var(--grafito);
-  font-weight: 500;
-  line-height: 1.5;
+  letter-spacing: -0.015em;
+  line-height: 1.35;
 }
+
 .problema-closing {
-  max-width: 620px;
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--grafito);
-  line-height: 1.6;
-  padding: 32px;
-  background: var(--morado-soft);
-  border-radius: var(--radius-lg);
-  border-left: 4px solid var(--morado);
-}
-
-/* ── DARK SECTION ── */
-.dark-section {
+  margin-top: 64px;
   background: var(--grafito);
-  padding: 88px 0;
+  border-radius: var(--r-lg);
+  padding: 48px 52px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 48px;
+  align-items: center;
 }
-.dark-section .section-head p { color: rgba(255,255,255,0.65); }
+.problema-closing p {
+  font-family: var(--font);
+  font-size: clamp(18px, 2vw, 22px);
+  font-weight: 600;
+  color: var(--blanco);
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+.problema-closing p em {
+  font-style: normal;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+}
+.closing-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--morado);
+  color: var(--blanco);
+  font-weight: 600;
+  font-size: 14px;
+  padding: 14px 24px;
+  border-radius: 100px;
+  white-space: nowrap;
+  transition: opacity 0.15s;
+}
+.closing-cta:hover { opacity: 0.85; }
 
-/* ── ALTERNATIVES ── */
+/* ─── POR QUÉ NO FUNCIONÓ ─── */
+.why-not {
+  background: var(--grafito);
+  padding: 120px 0;
+}
+.why-not-head {
+  margin-bottom: 72px;
+}
+.why-not-head h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.06;
+  letter-spacing: -0.03em;
+  color: var(--blanco);
+  max-width: 780px;
+  margin-bottom: 20px;
+}
+.why-not-head h2 em {
+  font-style: italic;
+  font-weight: 700;
+  color: rgba(255,255,255,0.35);
+}
+.why-not-head p {
+  font-size: 17px;
+  color: rgba(255,255,255,0.45);
+  max-width: 520px;
+  line-height: 1.7;
+}
+
 .alternatives {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin-bottom: 52px;
+  gap: 1px;
+  background: var(--borde-dark);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  margin-bottom: 72px;
 }
 .alt-card {
-  background: rgba(255,255,255,0.06);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: var(--radius-lg);
-  padding: 28px;
+  background: var(--grafito-2);
+  padding: 40px 36px;
+}
+.alt-num {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 20px;
 }
 .alt-card h3 {
-  font-family: var(--font-display);
-  font-size: 15px;
-  font-weight: 600;
+  font-family: var(--font);
+  font-size: 19px;
+  font-weight: 700;
   color: var(--blanco);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
 }
 .alt-card p {
   font-size: 15px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.65;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
 }
-.why-not-closing {
-  font-family: var(--font-display);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--blanco);
-  text-align: center;
-  padding: 40px 0 8px;
+.alt-card .alt-flaw {
+  display: inline-block;
+  margin-top: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.25);
+  padding: 6px 12px;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 100px;
 }
 
-/* ── MÉTODO ── */
-.metodo {
-  padding: 88px 0;
+.why-not-statement {
+  text-align: center;
+  padding: 16px 0 0;
 }
+.why-not-statement p {
+  font-family: var(--font);
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: var(--blanco);
+  letter-spacing: -0.02em;
+}
+.why-not-statement p em {
+  font-style: italic;
+  color: var(--morado);
+}
+
+/* ─── MÉTODO ─── */
+.metodo {
+  background: var(--crema);
+  padding: 120px 0;
+}
+.metodo-head {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: end;
+}
+.metodo-head h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+  color: var(--grafito);
+}
+.metodo-head h2 em {
+  font-style: italic;
+  color: var(--morado);
+}
+.metodo-head p {
+  font-size: 17px;
+  color: var(--subtexto);
+  line-height: 1.7;
+}
+
 .stages {
   display: flex;
   flex-direction: column;
   gap: 0;
-  margin-bottom: 52px;
-  border: 1px solid var(--borde);
-  border-radius: var(--radius-lg);
-  overflow: hidden;
 }
 .stage {
   display: grid;
-  grid-template-columns: 72px 220px 1fr;
-  align-items: start;
+  grid-template-columns: 100px 1fr;
   gap: 0;
-  padding: 28px 32px;
-  border-bottom: 1px solid var(--borde);
+  border-top: 1px solid var(--borde);
+  padding: 0;
   transition: background 0.2s;
+  cursor: default;
 }
-.stage:last-child { border-bottom: none; }
+.stage:last-child { border-bottom: 1px solid var(--borde); }
 .stage:hover { background: var(--arena); }
-.stage-num {
-  font-family: var(--font-display);
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--morado);
-  padding-top: 3px;
-}
-.stage h3 {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--grafito);
-  padding-right: 32px;
+.stage-left {
+  padding: 36px 0 36px 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   border-right: 1px solid var(--borde);
-  padding-top: 2px;
-  padding-bottom: 2px;
-  line-height: 1.4;
 }
-.stage p {
+.stage-num {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--morado);
+}
+.stage-name-tag {
+  font-size: 11px;
+  font-weight: 500;
+  color: rgba(28,26,23,0.35);
+  margin-top: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-family: var(--font);
+  line-height: 1.3;
+}
+.stage-right {
+  padding: 36px 0 36px 48px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.stage-title {
+  font-family: var(--font);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--grafito);
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+  padding-top: 2px;
+}
+.stage-text {
   font-size: 15px;
   color: var(--subtexto);
-  line-height: 1.65;
-  padding-left: 32px;
-}
-.metodo-closing {
-  font-size: 18px;
-  font-weight: 500;
-  color: var(--grafito);
-  text-align: center;
-  padding: 8px;
-  font-style: italic;
+  line-height: 1.7;
 }
 
-/* ── GARANTÍAS ── */
-.guarantee-grid {
+/* ─── POR QUÉ VA A FUNCIONAR ─── */
+.why-works {
+  background: var(--arena);
+  padding: 120px 0;
+}
+.why-works-head {
+  margin-bottom: 72px;
+}
+.why-works-head h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--grafito);
+  max-width: 700px;
+  margin-bottom: 20px;
+}
+.why-works-head h2 em {
+  font-style: italic;
+  color: var(--morado);
+}
+.why-works-head p {
+  font-size: 17px;
+  color: var(--subtexto);
+  max-width: 540px;
+  line-height: 1.7;
+}
+
+.guarantees {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  margin-bottom: 52px;
+  margin-bottom: 56px;
 }
-.guarantee-card {
+.guarantee {
   background: var(--blanco);
+  border-radius: var(--r-lg);
+  padding: 36px 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
   border: 1px solid var(--borde);
-  border-radius: var(--radius-lg);
-  padding: 28px;
 }
-.guarantee-card h3 {
-  font-family: var(--font-display);
-  font-size: 16px;
-  font-weight: 600;
+.guarantee-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--morado-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+}
+.guarantee h3 {
+  font-family: var(--font);
+  font-size: 17px;
+  font-weight: 700;
   color: var(--grafito);
-  margin-bottom: 12px;
-  line-height: 1.4;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
 }
-.guarantee-card p {
+.guarantee p {
   font-size: 15px;
   color: var(--subtexto);
-  line-height: 1.65;
-}
-.guarantees-closing {
-  font-size: 17px;
-  color: var(--subtexto);
-  text-align: center;
-  max-width: 520px;
-  margin-inline: auto;
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
-/* ── EQUIPO ── */
-.team {
-  padding: 88px 0;
+.guarantees-footer {
+  background: var(--grafito);
+  border-radius: var(--r-lg);
+  padding: 40px 44px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.guarantees-footer p {
+  font-family: var(--font);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blanco);
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+  max-width: 560px;
+}
+.guarantees-footer p em {
+  font-style: normal;
+  color: rgba(255,255,255,0.4);
+  font-weight: 400;
+}
+
+/* ─── EQUIPO ─── */
+.equipo {
+  background: var(--crema);
+  padding: 120px 0;
   border-top: 1px solid var(--borde);
 }
-.team-grid {
+.equipo-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: start;
+}
+.equipo-left h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 4.5vw, 56px);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  color: var(--grafito);
+  margin-bottom: 24px;
+}
+.equipo-left p {
+  font-size: 16px;
+  color: var(--subtexto);
+  line-height: 1.75;
+}
+
+.equipo-right-label {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--morado);
+  margin-bottom: 20px;
+}
+.equipo-right p {
+  font-size: 16px;
+  color: var(--subtexto);
+  line-height: 1.75;
+  margin-bottom: 20px;
+}
+.equipo-right p:last-child {
+  font-style: italic;
+  color: var(--grafito);
+  font-weight: 500;
+}
+
+/* ─── CTA FINAL ─── */
+.cta-final {
+  background: var(--grafito);
+  padding: 120px 0;
+}
+.cta-inner {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 80px;
   align-items: start;
 }
-.team-copy h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 3.5vw, 42px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  line-height: 1.15;
-  color: var(--grafito);
-  margin-bottom: 20px;
-}
-.team-copy p {
-  font-size: 16px;
-  color: var(--subtexto);
-  line-height: 1.7;
-}
-.allies-label {
-  font-family: var(--font-display);
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--morado);
-  margin-bottom: 16px;
-}
-.allies-copy p {
-  font-size: 16px;
-  color: var(--subtexto);
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.allies-closing {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--grafito);
-  font-style: italic;
-}
-
-/* ── CTA / CONTACTO ── */
-.cta-section { padding: 88px 0; }
-.cta-inner { max-width: 640px; }
-.cta-inner h2 {
-  font-family: var(--font-display);
-  font-size: clamp(28px, 4vw, 46px);
-  font-weight: 700;
-  letter-spacing: -0.022em;
-  line-height: 1.15;
+.cta-left h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 5vw, 64px);
+  font-weight: 800;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
   color: var(--blanco);
-  margin-bottom: 16px;
+  margin-bottom: 24px;
 }
-.cta-inner h2 em {
+.cta-left h2 em {
   font-style: italic;
-  color: var(--morado-soft);
+  color: rgba(255,255,255,0.35);
 }
-.cta-sub {
+.cta-left p {
   font-size: 16px;
-  color: rgba(255,255,255,0.6);
-  line-height: 1.65;
-  margin-bottom: 40px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.7;
 }
 
-/* ── FORM ── */
 .contact-form {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
-.form-row {
+.form-row-2 {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  gap: 12px;
 }
 .form-field {
   display: flex;
@@ -539,139 +725,233 @@ img { max-width: 100%; display: block; }
   gap: 6px;
 }
 .form-field label {
-  font-size: 13px;
-  font-weight: 500;
-  color: rgba(255,255,255,0.7);
-  letter-spacing: 0.01em;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
 }
 .form-field input,
 .form-field textarea {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: var(--radius);
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 10px;
   padding: 13px 16px;
   font-size: 15px;
-  font-family: var(--font-sans);
+  font-family: var(--font-body);
   color: var(--blanco);
   outline: none;
-  transition: border-color 0.2s;
+  transition: border-color 0.15s, background 0.15s;
   width: 100%;
 }
 .form-field input::placeholder,
-.form-field textarea::placeholder { color: rgba(255,255,255,0.35); }
+.form-field textarea::placeholder { color: rgba(255,255,255,0.2); }
 .form-field input:focus,
-.form-field textarea:focus { border-color: var(--morado); }
+.form-field textarea:focus {
+  border-color: var(--morado);
+  background: rgba(91,79,209,0.08);
+}
 .form-field textarea { resize: vertical; }
 .btn-submit {
-  align-self: flex-start;
+  align-self: stretch;
   background: var(--morado);
   color: var(--blanco);
   font-size: 15px;
   font-weight: 600;
-  font-family: var(--font-sans);
-  padding: 14px 28px;
-  border-radius: 100px;
+  font-family: var(--font-body);
+  padding: 16px 28px;
+  border-radius: 10px;
   border: none;
   cursor: pointer;
-  transition: opacity 0.2s, transform 0.15s;
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  transition: opacity 0.15s, transform 0.1s;
+  letter-spacing: 0.01em;
+  margin-top: 4px;
 }
 .btn-submit:hover { opacity: 0.88; transform: translateY(-1px); }
 .form-note {
-  font-size: 13px;
-  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
   line-height: 1.5;
+  text-align: center;
 }
 .form-thanks {
-  background: rgba(255,255,255,0.08);
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: var(--radius-lg);
-  padding: 36px;
+  background: rgba(91,79,209,0.12);
+  border: 1px solid rgba(91,79,209,0.3);
+  border-radius: var(--r-lg);
+  padding: 40px;
+  text-align: center;
 }
 .form-thanks strong {
   display: block;
-  font-size: 20px;
-  font-weight: 600;
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 700;
   color: var(--blanco);
-  margin-bottom: 10px;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
 }
 .form-thanks p {
   font-size: 16px;
-  color: rgba(255,255,255,0.65);
+  color: rgba(255,255,255,0.55);
   line-height: 1.6;
 }
 
-/* ── FOOTER ── */
-.footer {
-  background: var(--grafito);
-  padding: 48px 0 32px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+/* ─── FOOTER ─── */
+footer {
+  background: #111009;
+  border-top: 1px solid rgba(255,255,255,0.06);
+  padding: 56px 0 36px;
 }
 .footer-top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 40px;
-  margin-bottom: 40px;
-  padding-bottom: 32px;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.07);
+  margin-bottom: 32px;
 }
-.footer .wordmark { color: var(--blanco); font-size: 16px; }
-.footer-top > p {
+.footer-brand .wordmark {
+  display: block;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+.footer-brand p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.6;
+}
+.footer-col h4 {
+  font-family: var(--font);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.25);
+  margin-bottom: 16px;
+}
+.footer-col a {
+  display: block;
   font-size: 14px;
   color: rgba(255,255,255,0.45);
-  line-height: 1.7;
+  margin-bottom: 10px;
+  transition: color 0.15s;
 }
-.footer-links {
-  display: flex;
-  gap: 28px;
-}
-.footer-links a {
-  font-size: 14px;
-  color: rgba(255,255,255,0.45);
-  transition: color 0.2s;
-}
-.footer-links a:hover { color: var(--blanco); }
+.footer-col a:hover { color: var(--blanco); }
 .footer-bottom {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  font-size: 12px;
+  color: rgba(255,255,255,0.2);
+}
+.footer-bottom a {
+  color: rgba(255,255,255,0.3);
+  transition: color 0.15s;
+}
+.footer-bottom a:hover { color: rgba(255,255,255,0.7); }
+
+/* ─── PROMESA (inline block) ─── */
+.promesa {
+  background: var(--grafito);
+  padding: 120px 0;
+}
+.promesa-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 100px;
+  align-items: center;
+}
+.promesa-left h2 {
+  font-family: var(--font);
+  font-size: clamp(36px, 4.5vw, 58px);
+  font-weight: 800;
+  line-height: 1.07;
+  letter-spacing: -0.03em;
+  color: var(--blanco);
+  margin-bottom: 28px;
+}
+.promesa-left h2 em {
+  font-style: italic;
+  color: rgba(255,255,255,0.35);
+}
+.promesa-left p {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.75;
+}
+.equation-block {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--borde-dark);
+  border-radius: var(--r-lg);
+  padding: 36px;
+}
+.eq-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 24px;
+}
+.eq-item {
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.7);
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 6px 14px;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+}
+.eq-op {
+  font-size: 18px;
+  color: rgba(255,255,255,0.2);
+}
+.eq-result {
+  font-family: var(--font);
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--blanco);
+  letter-spacing: -0.02em;
+  border-top: 1px solid var(--borde-dark);
+  padding-top: 20px;
+  margin-bottom: 8px;
+}
+.eq-result em { color: var(--morado); font-style: italic; }
+.eq-note {
   font-size: 13px;
   color: rgba(255,255,255,0.3);
 }
-.footer-bottom a {
-  color: rgba(255,255,255,0.4);
-  transition: color 0.2s;
-}
-.footer-bottom a:hover { color: rgba(255,255,255,0.8); }
 
-/* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  :root { --shell: min(1120px, 100% - 40px); }
-  .nav-links { display: none; }
-  .promesa-grid { grid-template-columns: 1fr; gap: 36px; }
+/* ─── RESPONSIVE ─── */
+@media (max-width: 960px) {
+  :root { --w: min(1140px, 100% - 40px); }
+  .hero-inner { grid-template-columns: 1fr; gap: 48px; }
+  .hero-stats { display: grid; grid-template-columns: repeat(3,1fr); flex-direction: unset; }
+  .hero-stat + .hero-stat { border-top: none; border-left: 1px solid var(--borde-dark); }
+  .problema-head { grid-template-columns: 1fr; gap: 24px; }
   .alternatives { grid-template-columns: 1fr; }
-  .guarantee-grid { grid-template-columns: 1fr; }
-  .team-grid { grid-template-columns: 1fr; gap: 48px; }
-  .stage { grid-template-columns: 48px 1fr; }
-  .stage h3 { border-right: none; padding-right: 0; grid-column: 2; }
-  .stage p { padding-left: 0; grid-column: 2; }
-  .footer-top { flex-direction: column; gap: 24px; }
-  .footer-links { flex-wrap: wrap; gap: 16px; }
+  .guarantees { grid-template-columns: 1fr; }
+  .metodo-head { grid-template-columns: 1fr; gap: 24px; }
+  .cta-inner { grid-template-columns: 1fr; }
+  .equipo-grid { grid-template-columns: 1fr; gap: 60px; }
+  .promesa-grid { grid-template-columns: 1fr; gap: 52px; }
+  .footer-top { grid-template-columns: 1fr; }
+  .guarantees-footer { flex-direction: column; gap: 24px; }
+  nav { padding: 0 20px; }
 }
-@media (max-width: 620px) {
-  :root { --shell: min(1120px, 100% - 32px); }
-  .hero { padding: 64px 0 56px; }
-  .arena-section, .dark-section, .problema, .metodo, .team, .cta-section { padding: 64px 0; }
-  .form-row { grid-template-columns: 1fr; }
-  .stage { grid-template-columns: 1fr; padding: 20px 20px; }
-  .stage-num { grid-row: 1; }
-  .stage h3 { grid-row: 2; }
-  .stage p { grid-row: 3; }
-  .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
-  .nav-cta { padding: 8px 14px; font-size: 13px; }
+@media (max-width: 640px) {
+  :root { --w: min(1140px, 100% - 32px); }
+  .hero { padding-top: 64px; }
+  .hero-inner { padding: 56px 0 60px; }
+  .hero-stats { grid-template-columns: 1fr 1fr; }
+  .hero-stat:last-child { grid-column: span 2; border-top: 1px solid var(--borde-dark); border-left: none; }
+  .hero-stat + .hero-stat:nth-child(2) { border-left: 1px solid var(--borde-dark); }
+  .stage-right { grid-template-columns: 1fr; gap: 8px; }
+  .form-row-2 { grid-template-columns: 1fr; }
+  .problema-closing { grid-template-columns: 1fr; gap: 24px; padding: 36px 28px; }
+  .nav-links { display: none; }
+  .footer-bottom { flex-direction: column; gap: 8px; }
 }
 </style>
 </head>
@@ -679,326 +959,403 @@ img { max-width: 100%; display: block; }
 <body>
 
 <!-- ── NAV ── -->
-<nav class="nav shell" aria-label="Navegación principal">
-  <a class="wordmark" href="#inicio" aria-label="GILDCO, inicio">GILDCO</a>
-  <div class="nav-links">
-    <a href="#problema">El problema</a>
-    <a href="#metodo">Método</a>
-    <a href="#equipo">Equipo</a>
+<nav>
+  <div class="nav-inner">
+    <a class="wordmark" href="#inicio">GILDCO</a>
+    <div class="nav-links">
+      <a href="#problema">El problema</a>
+      <a href="#metodo">Método</a>
+      <a href="#equipo">Equipo</a>
+    </div>
+    <a class="nav-cta" href="#contacto">Agenda tu diagnóstico</a>
   </div>
-  <a class="nav-cta" href="#contacto">Agenda tu diagnóstico ↗</a>
 </nav>
 
 <!-- ── HERO ── -->
-<section class="hero" id="inicio">
-  <div class="hero-badge">GILDCO · INTELIGENCIA ORGANIZACIONAL</div>
-  <h1>
-    Tu organización ya tiene el motor.<br>
-    <em>GILDCO lo hace producir más.</em>
-  </h1>
-  <p class="hero-sub">
-    Entendemos tu talento humano, identificamos qué lo está limitando e
-    implementamos la solución correcta — estrategia, proceso y tecnología —
-    con retorno demostrable.
-  </p>
-  <div class="hero-ctas">
-    <a class="btn-primary" href="#contacto">Agenda tu diagnóstico</a>
-    <a class="btn-secondary" href="#metodo">Ver cómo funciona ↓</a>
+<section id="inicio">
+  <div class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner">
+      <div class="hero-copy">
+        <div class="hero-label">Inteligencia organizacional</div>
+        <h1>
+          Tu organización<br>
+          ya tiene el motor.<br>
+          <em>GILDCO lo hace<br>producir más.</em>
+        </h1>
+        <p class="hero-sub">
+          Entendemos tu talento humano, identificamos qué lo está limitando
+          e implementamos la solución correcta — con retorno demostrable.
+        </p>
+        <div class="hero-ctas">
+          <a class="btn-primary" href="#contacto">Agenda tu diagnóstico →</a>
+          <a class="btn-ghost" href="#metodo">Ver cómo funciona ↓</a>
+        </div>
+      </div>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-num">3<span>en 1</span></div>
+          <div class="stat-label">Diagnóstico humano,<br>estrategia y tecnología</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">5</div>
+          <div class="stat-label">Etapas integradas<br>con retorno medido</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Contrataciones nuevas<br>necesarias para crecer</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ── LA PROMESA ── -->
-<section class="arena-section">
-  <div class="shell">
-    <div class="section-label">01 · LA PROMESA</div>
+<section class="promesa">
+  <div class="w">
+    <div class="section-tag" style="color:rgba(255,255,255,0.4);--morado:rgba(255,255,255,0.4)">01 · La promesa</div>
     <div class="promesa-grid">
-      <h2>
-        El motor principal de tu empresa es tu gente.<br>
-        <em>Todo lo demás viene después.</em>
-      </h2>
-      <div class="promesa-copy">
+      <div class="promesa-left">
+        <h2>
+          El motor principal de tu empresa<br>
+          es tu gente.<br>
+          <em>Todo lo demás viene después.</em>
+        </h2>
         <p>
-          La mayoría de las empresas busca eficiencia en herramientas y
-          procesos. GILDCO empieza por el talento — porque cuando entiendes
-          profundamente cómo trabajan las personas, qué las frena y qué las
-          potencia, las decisiones correctas se vuelven evidentes.
+          La mayoría de las empresas busca eficiencia en herramientas y procesos.
+          GILDCO empieza por el talento — porque cuando entiendes profundamente
+          cómo trabajan las personas, qué las frena y qué las potencia, las
+          decisiones correctas se vuelven evidentes.
         </p>
-        <div class="equation">
-          <span>Capital humano</span>
-          <b>+</b>
-          <span>Estrategia</span>
-          <b>+</b>
-          <span>Tecnología</span>
-          <strong>=</strong>
-          <em>Mayor producción</em>
+      </div>
+      <div class="equation-block">
+        <div class="eq-row">
+          <span class="eq-item">Capital humano</span>
+          <span class="eq-op">+</span>
+          <span class="eq-item">Estrategia</span>
+          <span class="eq-op">+</span>
+          <span class="eq-item">Tecnología</span>
         </div>
-        <p class="equation-note">Sin contratar más. Sin reemplazar a nadie.</p>
+        <div class="eq-result"><em>Mayor producción</em></div>
+        <div class="eq-note">Sin contratar más. Sin reemplazar a nadie.</div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ── EL PROBLEMA ── -->
-<section class="problema shell" id="problema">
-  <div class="section-label">02 · EL PROBLEMA</div>
-  <div class="section-head">
-    <h2>¿Lo sientes pero no sabes exactamente dónde está?</h2>
-    <p>Antes de buscar soluciones, hazte estas preguntas:</p>
-  </div>
-  <div class="questions">
-    <div class="question-row">
-      <span class="q-num">01</span>
-      <p>¿Tu equipo trabaja al límite pero los resultados no mejoran al mismo ritmo?</p>
+<section class="problema" id="problema">
+  <div class="w">
+    <div class="section-tag">02 · El problema</div>
+    <div class="problema-head">
+      <h2>¿Lo sientes pero no sabes exactamente dónde está?</h2>
+      <p>
+        Antes de buscar soluciones, hazte estas preguntas. Si alguna resuena,
+        el problema no es tu gente — es que nadie ha conectado los puntos.
+      </p>
     </div>
-    <div class="question-row">
-      <span class="q-num">02</span>
-      <p>¿El clima se está deteriorando y no tienes claridad de dónde nació el problema?</p>
+    <div class="questions">
+      <div class="question-row">
+        <span class="q-num">01</span>
+        <p>¿Tu equipo trabaja al límite pero los resultados no mejoran al mismo ritmo?</p>
+      </div>
+      <div class="question-row">
+        <span class="q-num">02</span>
+        <p>¿El clima se está deteriorando y no tienes claridad de dónde nació el problema?</p>
+      </div>
+      <div class="question-row">
+        <span class="q-num">03</span>
+        <p>¿La rotación sube sin que los reportes expliquen las causas reales?</p>
+      </div>
+      <div class="question-row">
+        <span class="q-num">04</span>
+        <p>¿Implementaron tecnología que el equipo nunca terminó de adoptar?</p>
+      </div>
+      <div class="question-row">
+        <span class="q-num">05</span>
+        <p>¿Sabes que hay ineficiencia pero no tienes cómo llevarla a números concretos?</p>
+      </div>
     </div>
-    <div class="question-row">
-      <span class="q-num">03</span>
-      <p>¿La rotación sube sin que los reportes expliquen las causas reales?</p>
+    <div class="problema-closing">
+      <p>
+        Si respondiste sí a alguna de estas, el problema no es tu gente.
+        <br><em>Es que nadie ha cruzado lo que tu gente vive con lo que tus números muestran.</em>
+      </p>
+      <a class="closing-cta" href="#contacto">Hablemos →</a>
     </div>
-    <div class="question-row">
-      <span class="q-num">04</span>
-      <p>¿Implementaron tecnología que el equipo nunca terminó de adoptar?</p>
-    </div>
-    <div class="question-row">
-      <span class="q-num">05</span>
-      <p>¿Sabes que hay ineficiencia pero no tienes cómo llevarla a números concretos?</p>
-    </div>
-  </div>
-  <div class="problema-closing">
-    Si respondiste sí a alguna de estas, el problema no es tu gente. Es que
-    nadie ha cruzado lo que tu gente vive con lo que tus números muestran.
   </div>
 </section>
 
 <!-- ── POR QUÉ NO HA FUNCIONADO ── -->
-<section class="dark-section">
-  <div class="shell">
-    <div class="section-label light">03 · POR QUÉ NO HA FUNCIONADO</div>
-    <div class="section-head light">
+<section class="why-not">
+  <div class="w">
+    <div class="section-tag" style="color:rgba(255,255,255,0.35)">03 · Por qué no ha funcionado</div>
+    <div class="why-not-head">
       <h2>
         No es que no hayas intentado resolverlo.<br>
         <em>Es que las soluciones disponibles están incompletas.</em>
       </h2>
-      <p>
-        Hay tres aproximaciones que existen hoy para este tipo de problema.
-        Ninguna lo resuelve del todo.
-      </p>
+      <p>Hay tres aproximaciones que existen hoy. Ninguna lo resuelve del todo.</p>
     </div>
     <div class="alternatives">
       <div class="alt-card">
-        <h3>Gestión humana y RR.HH.</h3>
-        <p>Entiende a las personas y mide el clima. Pero rara vez conecta esa información con la operación, los procesos o el retorno económico. El diagnóstico termina en un reporte de satisfacción, no en una decisión.</p>
+        <div class="alt-num">01</div>
+        <h3>Gestión humana<br>y RR.HH.</h3>
+        <p>Entiende a las personas y mide el clima. Pero rara vez conecta esa información con la operación, los procesos o el retorno económico.</p>
+        <span class="alt-flaw">El diagnóstico termina en un reporte, no en una decisión</span>
       </div>
       <div class="alt-card">
-        <h3>Consultoría tradicional</h3>
-        <p>Diagnostica con rigor y entrega recomendaciones bien fundamentadas. Pero no implementa, no acompaña la adopción y no mide si funcionó. El cliente recibe un documento y queda solo frente a la ejecución.</p>
+        <div class="alt-num">02</div>
+        <h3>Consultoría<br>tradicional</h3>
+        <p>Diagnostica con rigor y entrega recomendaciones bien fundamentadas. Pero no implementa, no acompaña la adopción y no mide si funcionó.</p>
+        <span class="alt-flaw">El cliente recibe un documento y queda solo</span>
       </div>
       <div class="alt-card">
-        <h3>IA y automatización</h3>
-        <p>Implementa tecnología con rapidez y casos de éxito reales. Pero llega con la solución antes que el diagnóstico. No entiende el clima, no conoce las causas raíz, y no puede garantizar que la herramienta ataque el problema correcto.</p>
+        <div class="alt-num">03</div>
+        <h3>IA y<br>automatización</h3>
+        <p>Implementa tecnología con rapidez y casos de éxito reales. Pero llega con la solución antes que el diagnóstico. No conoce las causas raíz.</p>
+        <span class="alt-flaw">No puede garantizar que la herramienta ataque el problema correcto</span>
       </div>
     </div>
-    <div class="why-not-closing">GILDCO hace las tres cosas. Conectadas. En ese orden.</div>
+    <div class="why-not-statement">
+      <p>GILDCO hace las tres cosas. <em>Conectadas. En ese orden.</em></p>
+    </div>
   </div>
 </section>
 
-<!-- ── QUÉ HACE GILDCO ── -->
-<section class="metodo shell" id="metodo">
-  <div class="section-label">04 · QUÉ HACE GILDCO</div>
-  <div class="section-head">
-    <h2>
-      Entendemos tu organización desde adentro.<br>
-      Intervenimos donde importa.<br>
-      <em>Medimos que funcionó.</em>
-    </h2>
-    <p>
-      GILDCO estudia cómo trabaja tu gente, cruza esa evidencia con tus
-      datos operativos, identifica dónde está la capacidad atrapada y
-      entrega una intervención integrada — acompañada desde el inicio hasta
-      el resultado demostrable.
-    </p>
+<!-- ── MÉTODO ── -->
+<section class="metodo" id="metodo">
+  <div class="w">
+    <div class="section-tag">04 · Qué hace GILDCO</div>
+    <div class="metodo-head">
+      <h2>
+        Entendemos tu organización<br>
+        desde adentro. Intervenimos<br>
+        donde importa. <em>Medimos<br>que funcionó.</em>
+      </h2>
+      <p>
+        GILDCO estudia cómo trabaja tu gente, cruza esa evidencia con tus datos
+        operativos, identifica dónde está la capacidad atrapada y entrega una
+        intervención integrada — acompañada desde el inicio hasta el resultado demostrable.
+      </p>
+    </div>
+    <div class="stages">
+      <div class="stage">
+        <div class="stage-left">
+          <div class="stage-num">01</div>
+          <div class="stage-name-tag">Human<br>Intelligence</div>
+        </div>
+        <div class="stage-right">
+          <div class="stage-title">Radiografía del talento</div>
+          <div class="stage-text">Clima, cargas, tiempos, liderazgo, fricciones y experiencia del equipo. Entendemos tu organización antes de tocar nada.</div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-left">
+          <div class="stage-num">02</div>
+          <div class="stage-name-tag">Efficiency<br>Map</div>
+        </div>
+        <div class="stage-right">
+          <div class="stage-title">Cruzamos evidencia con datos</div>
+          <div class="stage-text">Tomamos lo que tu gente vive y lo cruzamos con tus datos operativos. Identificamos dónde se pierde capacidad, en horas y en dinero.</div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-left">
+          <div class="stage-num">03</div>
+          <div class="stage-name-tag">Augmentation<br>Plan</div>
+        </div>
+        <div class="stage-right">
+          <div class="stage-title">Diseñamos la intervención</div>
+          <div class="stage-text">Estrategia de gestión humana, proceso y herramienta. Con retorno proyectado antes de implementar — ninguna decisión se toma a ciegas.</div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-left">
+          <div class="stage-num">04</div>
+          <div class="stage-name-tag">Implemen&shy;tation</div>
+        </div>
+        <div class="stage-right">
+          <div class="stage-title">Implementamos y acompañamos</div>
+          <div class="stage-text">La herramienta llega con estrategia de adopción, no sola. Estamos en el terreno hasta que el cambio es real.</div>
+        </div>
+      </div>
+      <div class="stage">
+        <div class="stage-left">
+          <div class="stage-num">05</div>
+          <div class="stage-name-tag">Continuous<br>Intelligence</div>
+        </div>
+        <div class="stage-right">
+          <div class="stage-title">Medimos el retorno real</div>
+          <div class="stage-text">Antes y después. Calculamos el retorno con los datos de tu operación. Detectamos nuevas fricciones y el ciclo continúa.</div>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="stages">
-    <div class="stage">
-      <div class="stage-num">01</div>
-      <h3>Human Intelligence</h3>
-      <p>Radiografía del talento: clima, cargas, tiempos, liderazgo, fricciones y experiencia del equipo.</p>
-    </div>
-    <div class="stage">
-      <div class="stage-num">02</div>
-      <h3>Efficiency Map</h3>
-      <p>Cruzamos evidencia humana con datos operativos. Identificamos dónde se pierde capacidad, en horas y en dinero.</p>
-    </div>
-    <div class="stage">
-      <div class="stage-num">03</div>
-      <h3>Augmentation Plan</h3>
-      <p>Diseñamos la intervención: estrategia de gestión humana, proceso y herramienta. Con retorno proyectado antes de implementar.</p>
-    </div>
-    <div class="stage">
-      <div class="stage-num">04</div>
-      <h3>Implementation</h3>
-      <p>Implementamos y acompañamos la adopción. La herramienta llega con estrategia de entrada, no sola.</p>
-    </div>
-    <div class="stage">
-      <div class="stage-num">05</div>
-      <h3>Continuous Intelligence</h3>
-      <p>Medimos antes y después. Calculamos el retorno real. Detectamos nuevas fricciones y el ciclo continúa.</p>
-    </div>
-  </div>
-  <div class="metodo-closing">No entregamos recomendaciones. Entregamos resultados con evidencia.</div>
 </section>
 
 <!-- ── POR QUÉ VA A FUNCIONAR ── -->
-<section class="arena-section">
-  <div class="shell">
-    <div class="section-label">05 · POR QUÉ VA A FUNCIONAR</div>
-    <div class="section-head">
+<section class="why-works">
+  <div class="w">
+    <div class="section-tag">05 · Por qué va a funcionar</div>
+    <div class="why-works-head">
       <h2>
-        La herramienta correcta, en el momento correcto,<br>
+        La herramienta correcta,<br>
+        en el momento correcto,<br>
         <em>con acompañamiento real.</em>
       </h2>
       <p>
-        La mayoría de las implementaciones tecnológicas fallan por la misma
-        razón: llegan sin diagnóstico, sin estrategia de adopción y sin
-        forma de medir si funcionaron. GILDCO elimina esos tres riesgos
-        antes de que ocurran.
+        La mayoría de las implementaciones tecnológicas fallan por la misma razón:
+        llegan sin diagnóstico, sin estrategia de adopción y sin forma de medir
+        si funcionaron. GILDCO elimina esos tres riesgos antes de que ocurran.
       </p>
     </div>
-    <div class="guarantee-grid">
-      <div class="guarantee-card">
+    <div class="guarantees">
+      <div class="guarantee">
+        <div class="guarantee-icon">🎯</div>
         <h3>La herramienta llega justificada</h3>
-        <p>Ninguna herramienta se recomienda sin evidencia. El diagnóstico determina qué problema existe, dónde está y cuánto cuesta. La intervención se diseña sobre esa evidencia — no sobre tendencias ni suposiciones.</p>
+        <p>Ninguna herramienta se recomienda sin evidencia. El diagnóstico determina qué problema existe, dónde está y cuánto cuesta. La intervención se diseña sobre esa evidencia — no sobre tendencias.</p>
       </div>
-      <div class="guarantee-card">
+      <div class="guarantee">
+        <div class="guarantee-icon">🤝</div>
         <h3>La adopción está diseñada desde el inicio</h3>
         <p>Implementar no es instalar. GILDCO acompaña el proceso de adopción desde el primer día — porque una herramienta que el equipo no usa no resuelve nada.</p>
       </div>
-      <div class="guarantee-card">
+      <div class="guarantee">
+        <div class="guarantee-icon">📊</div>
         <h3>El retorno se mide con tus propios números</h3>
-        <p>Antes de intervenir definimos los KPIs y la línea base. Después medimos con los datos de tu operación. El retorno no es una promesa — es un cálculo con evidencia real.</p>
+        <p>Antes de intervenir definimos los KPIs y la línea base. Después medimos con los datos de tu operación. El retorno no es una promesa — es un cálculo.</p>
       </div>
     </div>
-    <div class="guarantees-closing">
-      No vas a comprar tecnología a ciegas. Vas a tomar una decisión
-      respaldada por evidencia de tu propia empresa.
+    <div class="guarantees-footer">
+      <p>No vas a comprar tecnología a ciegas. Vas a tomar una decisión respaldada por evidencia de <em>tu propia empresa.</em></p>
+      <a class="closing-cta" href="#contacto">Agenda tu diagnóstico →</a>
     </div>
   </div>
 </section>
 
-<!-- ── QUIÉNES SOMOS ── -->
-<section class="team shell" id="equipo">
-  <div class="section-label">06 · QUIÉNES SOMOS</div>
-  <div class="team-grid">
-    <div class="team-copy">
-      <h2>
-        El equipo<br>detrás de GILDCO.
-      </h2>
-      <p>
-        Somos un equipo con formación en administración, ingeniería
-        industrial e innovación digital, construido específicamente para
-        entender organizaciones desde adentro y transformarlas con
-        evidencia.
-      </p>
-    </div>
-    <div class="allies-copy">
-      <div class="allies-label">Aliados estratégicos</div>
-      <p>
-        Las herramientas que implementamos están respaldadas por aliados
-        especializados con trayectoria comprobada en sus categorías. Cada
-        aliado fue seleccionado porque resuelve un problema específico
-        mejor que cualquier alternativa genérica.
-      </p>
-      <p class="allies-closing">
-        No llegamos con herramientas genéricas. Llegamos con la red
-        correcta para cada problema específico.
-      </p>
+<!-- ── EQUIPO ── -->
+<section class="equipo" id="equipo">
+  <div class="w">
+    <div class="section-tag">06 · Quiénes somos</div>
+    <div class="equipo-grid">
+      <div class="equipo-left">
+        <h2>El equipo detrás de GILDCO.</h2>
+        <p>
+          Somos un equipo con formación en administración, ingeniería industrial
+          e innovación digital, construido específicamente para entender
+          organizaciones desde adentro y transformarlas con evidencia.
+        </p>
+      </div>
+      <div class="equipo-right">
+        <div class="equipo-right-label">Aliados estratégicos</div>
+        <p>
+          Las herramientas que implementamos están respaldadas por aliados
+          especializados con trayectoria comprobada en sus categorías. Cada
+          aliado fue seleccionado porque resuelve un problema específico mejor
+          que cualquier alternativa genérica.
+        </p>
+        <p>
+          No llegamos con herramientas genéricas. Llegamos con la red correcta
+          para cada problema específico.
+        </p>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ── CTA FINAL ── -->
-<section class="cta-section dark-section" id="contacto">
-  <div class="shell cta-inner">
-    <div class="section-label light">EMPECEMOS</div>
-    <h2>
-      ¿Qué está frenando hoy<br>
-      <em>el rendimiento de tu equipo?</em>
-    </h2>
-    <p class="cta-sub">
-      Cuéntanos antes de la llamada. Llegamos preparados para aprovechar
-      cada minuto.
-    </p>
-
-    <div id="form-container">
-      <form class="contact-form" id="contact-form">
-        <div class="form-row">
-          <div class="form-field">
-            <label for="nombre">Nombre</label>
-            <input id="nombre" type="text" required placeholder="Tu nombre">
-          </div>
-          <div class="form-field">
-            <label for="empresa">Empresa</label>
-            <input id="empresa" type="text" required placeholder="Nombre de tu empresa">
-          </div>
-        </div>
-        <div class="form-field">
-          <label for="sector">Sector y número aproximado de empleados</label>
-          <input id="sector" type="text" required placeholder="Ej: Logística, 80 empleados">
-        </div>
-        <div class="form-field">
-          <label for="reto">¿Cuál es el principal reto que está enfrentando tu equipo hoy?</label>
-          <textarea id="reto" required rows="4" placeholder="Cuéntanos con tus palabras..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit">
-          Agenda tu diagnóstico ↗
-        </button>
-        <p class="form-note">
-          Sin compromisos. Una conversación de 30 minutos para entender tu situación.
+<section class="cta-final" id="contacto">
+  <div class="w">
+    <div class="section-tag" style="color:rgba(255,255,255,0.35)">Empecemos</div>
+    <div class="cta-inner">
+      <div class="cta-left">
+        <h2>
+          ¿Qué está frenando hoy<br>
+          <em>el rendimiento de<br>tu equipo?</em>
+        </h2>
+        <p>
+          Cuéntanos antes de la llamada. Llegamos preparados para aprovechar
+          cada minuto. Sin compromisos — una conversación de 30 minutos para
+          entender tu situación.
         </p>
-      </form>
+      </div>
+      <div id="form-wrapper">
+        <form class="contact-form" id="contact-form">
+          <div class="form-row-2">
+            <div class="form-field">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" type="text" required placeholder="Tu nombre">
+            </div>
+            <div class="form-field">
+              <label for="empresa">Empresa</label>
+              <input id="empresa" type="text" required placeholder="Nombre de tu empresa">
+            </div>
+          </div>
+          <div class="form-field">
+            <label for="sector">Sector y número de empleados</label>
+            <input id="sector" type="text" required placeholder="Ej: Logística, 80 empleados">
+          </div>
+          <div class="form-field">
+            <label for="reto">¿Cuál es el principal reto de tu equipo hoy?</label>
+            <textarea id="reto" required rows="4" placeholder="Cuéntanos con tus palabras..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">Agenda tu diagnóstico →</button>
+          <p class="form-note">Sin compromisos. 30 minutos. Sin costo.</p>
+        </form>
+      </div>
     </div>
   </div>
 </section>
 
 <!-- ── FOOTER ── -->
-<footer class="footer">
-  <div class="shell">
+<footer>
+  <div class="w">
     <div class="footer-top">
-      <a class="wordmark" href="#inicio">GILDCO</a>
-      <p>
-        Inteligencia organizacional<br>
-        para decisiones más humanas.
-      </p>
-      <div class="footer-links">
+      <div class="footer-brand">
+        <a class="wordmark" href="#inicio">GILDCO</a>
+        <p>Inteligencia organizacional<br>para decisiones más humanas.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegación</h4>
         <a href="#problema">El problema</a>
         <a href="#metodo">Método</a>
         <a href="#equipo">Equipo</a>
         <a href="#contacto">Contacto</a>
       </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:hola@gildandco.com">hola@gildandco.com</a>
+      </div>
     </div>
     <div class="footer-bottom">
       <span>© <span id="yr"></span> GILDCO · Colombia</span>
-      <a href="mailto:hola@gildandco.com">hola@gildandco.com</a>
+      <span>Inteligencia organizacional</span>
     </div>
   </div>
 </footer>
 
 <script>
-  // Year
   document.getElementById('yr').textContent = new Date().getFullYear();
 
-  // Form submit
   document.getElementById('contact-form').addEventListener('submit', function(e) {
     e.preventDefault();
     var nombre = document.getElementById('nombre').value;
-    document.getElementById('form-container').innerHTML =
+    document.getElementById('form-wrapper').innerHTML =
       '<div class="form-thanks">' +
         '<strong>Gracias, ' + nombre + '.</strong>' +
-        '<p>Recibimos tu información. Te contactamos pronto para coordinar la llamada.</p>' +
+        '<p>Recibimos tu información. Te contactamos pronto para coordinar la llamada de diagnóstico.</p>' +
       '</div>';
+  });
+
+  // Nav style on scroll
+  var nav = document.querySelector('nav');
+  window.addEventListener('scroll', function() {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(17,16,9,0.95)';
+    } else {
+      nav.style.background = 'rgba(28,26,23,0.85)';
+    }
   });
 </script>
 
