@@ -1117,7 +1117,7 @@ $$('[data-gar]').forEach(c => c.addEventListener('click', () => c.classList.togg
 
 /* ═══════════════════ WIZARD ═══════════════════ */
 const wiz = $('#wiz'), STEPS = 6; let step = 0;
-function openWiz(e){ if (e) e.preventDefault(); wiz.classList.add('show'); document.body.classList.add('wiz-open'); setMega(false); history.replaceState(null,'','#diagnostico'); go(state.done ? 5 : (state.step || 0)); wiz.scrollTop = 0; }
+function openWiz(e){ if (e) e.preventDefault(); wiz.classList.add('show'); document.body.classList.add('wiz-open'); setMega(false); history.replaceState(null,'','#diagnostico'); go(0); wiz.scrollTop = 0; }
 function closeWiz(){ wiz.classList.remove('show'); document.body.classList.remove('wiz-open'); history.replaceState(null,'',' '); }
 function bindWizOpeners(){ $$('[data-open-wiz]').forEach(a => { if (!a._w){ a._w = 1; a.addEventListener('click', openWiz); } }); }
 bindWizOpeners();
